@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="resource"/>
+	<classpathentry kind="src" path="src/main/resources"/>
+	<classpathentry kind="src" path="src/test/java"/>
+	<classpathentry kind="src" path=""/>
+	<classpathentry kind="lib" path="D:/src/API/[基础-前置]PlaceholderAPI-2.10.4.jar"/>
+	<classpathentry kind="lib" path="D:/src/API/spigot-1.12.2-R0.1-SNAPSHOT.jar" sourcepath="D:/src/API/spigot-1.12.2-R0.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="D:/src/API/spigot-1.12-R0.1-SNAPSHOT-b1345.jar" sourcepath="D:/src/API/spigot-1.12-R0.1-SNAPSHOT-b1345.jar"/>
+	<classpathentry kind="lib" path="D:/src/API/spigot-1.7.10-SNAPSHOT-b1643.jar" sourcepath="D:/src/API/spigot-1.7.10-SNAPSHOT-b1643.jar"/>
+	<classpathentry kind="lib" path="D:/src/API/spigot-1.7.2-R0.4-SNAPSHOT.jar" sourcepath="D:/src/API/spigot-1.7.2-R0.4-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="D:/src/API/spigot-1.8.8-R0.1-SNAPSHOT-latest.jar" sourcepath="D:/src/API/spigot-1.8.8-R0.1-SNAPSHOT-latest.jar"/>
+	<classpathentry kind="lib" path="D:/src/API/1.8.0Spigot.jar" sourcepath="D:/src/API/1.8.0Spigot.jar"/>
+	<classpathentry kind="lib" path="D:/src/API/craftbukkit-1.10-R0.1-SNAPSHOT-latest.jar" sourcepath="D:/src/API/craftbukkit-1.10-R0.1-SNAPSHOT-latest.jar"/>
+	<classpathentry kind="lib" path="D:/src/API/craftbukkit-1.11.2-R0.1-SNAPSHOT.jar" sourcepath="D:/src/API/craftbukkit-1.11.2-R0.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="D:/src/API/craftbukkit-1.8.3-R0.1-SNAPSHOT.jar" sourcepath="D:/src/API/craftbukkit-1.8.3-R0.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="D:/src/API/craftbukkit-1.9-R0.1-SNAPSHOT-latest.jar" sourcepath="D:/src/API/craftbukkit-1.9-R0.1-SNAPSHOT-latest.jar"/>
+	<classpathentry kind="lib" path="D:/src/API/spigot-1.11-R0.1-SNAPSHOT-latest.jar" sourcepath="D:/src/API/spigot-1.11-R0.1-SNAPSHOT-latest.jar"/>
+	<classpathentry kind="lib" path="D:/src/API/spigot-1.7.5-R0.1-SNAPSHOT-1387.jar" sourcepath="D:/src/API/spigot-1.7.5-R0.1-SNAPSHOT-1387.jar"/>
+	<classpathentry kind="lib" path="D:/src/API/spigot-1.8.4-R0.1-SNAPSHOT-latest.jar" sourcepath="D:/src/API/spigot-1.8.4-R0.1-SNAPSHOT-latest.jar"/>
+	<classpathentry kind="lib" path="D:/src/API/spigot-1.9-R0.1-SNAPSHOT-latest.jar" sourcepath="D:/src/API/spigot-1.9-R0.1-SNAPSHOT-latest.jar"/>
+	<classpathentry kind="lib" path="D:/src/API/spigot-1.9.2-R0.1-SNAPSHOT-latest.jar" sourcepath="D:/src/API/spigot-1.9.2-R0.1-SNAPSHOT-latest.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/lib"/>
+	<classpathentry kind="output" path="target/classes"/>
+</classpath>

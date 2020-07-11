@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="AML1.2.301" />
+    </artifacts-to-build>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="646b38d0-aa18-4c59-a466-178b1db13a8c" name="默认更改列表" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState>
+        <option name="isInclusion" value="true" />
+      </ProjectState>
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="amlbuild" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Class" />
+        <option value="Interface" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="D:\JAVA\maven-3.2.2\repository" />
+        <option name="mavenHome" value="D:/JAVA/maven-3.2.2" />
+        <option name="userSettingsFile" value="D:\JAVA\maven-3.2.2\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1btBeKVzvSttfxdR4VsdCqO7sOc" />
+  <component name="PropertiesComponent">
+    <property name="GenerateAntBuildDialog.backupFiles" value="true" />
+    <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
+    <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
+    <property name="GenerateAntBuildDialog.outputFileNameProperty" value="tjgwtjxt" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="模块" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="project.propCompiler" />
+    <property name="show.unlinked.gradle.project.popup" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="top.aot.ml.nms" />
+      <recent name="top.aot.ml.cls" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\src\eclipse-workspace\AsxMail\src\top\aot\mail\plugin" />
+      <recent name="D:\src\eclipse-workspace\AsxMail\resource" />
+      <recent name="D:\src\eclipse-workspace\amlbuild\lib" />
+      <recent name="D:\src\eclipse-workspace\amlbuild\src\lib" />
+      <recent name="D:\src\eclipse-workspace" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="top.aot.mail.plugin" />
+      <recent name="top.aot.ml.nms" />
+      <recent name="top.aot.ml.variable" />
+      <recent name="top.aot.ml.cls" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\src\eclipse-workspace\amlbuild\cn" />
+      <recent name="D:\src\eclipse-workspace\amlbuild" />
+      <recent name="D:\src\eclipse-workspace\amlbuild\resource" />
+      <recent name="D:\src\eclipse-workspace\amlbuild\src" />
+      <recent name="D:\src\eclipse-workspace\tjgwtjxt\src" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.Test">
+    <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <module name="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType" factoryName="Kotlin script">
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <module name="" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="R (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="source.R" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="source.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="R" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="source.R" />
+      <module name="aml" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="source.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StringToBytes" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="source.StringToBytes" />
+      <module name="aml" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="source.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="T" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="top.aot.ml.cls.T" />
+      <module name="aml" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="source.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="source.Test" />
+      <module name="aml" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="source.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Test" />
+        <item itemvalue="Application.R" />
+        <item itemvalue="Application.StringToBytes" />
+        <item itemvalue="Application.R (1)" />
+        <item itemvalue="Application.T" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="646b38d0-aa18-4c59-a466-178b1db13a8c" name="默认更改列表" comment="" />
+      <created>1589441603708</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1589441603708</updated>
+      <workItem from="1589441606171" duration="1268000" />
+      <workItem from="1589502541161" duration="3348000" />
+      <workItem from="1589589458423" duration="19000" />
+      <workItem from="1589611705351" duration="14000" />
+      <workItem from="1589611752019" duration="7498000" />
+      <workItem from="1589690431069" duration="112000" />
+      <workItem from="1589860853377" duration="16325000" />
+      <workItem from="1589881928142" duration="510000" />
+      <workItem from="1589899591163" duration="15000" />
+      <workItem from="1589932870506" duration="2990000" />
+      <workItem from="1589943558463" duration="76000" />
+      <workItem from="1589944933549" duration="158000" />
+      <workItem from="1589945148848" duration="383000" />
+      <workItem from="1589945557093" duration="36000" />
+      <workItem from="1589945597701" duration="35000" />
+      <workItem from="1589945644593" duration="177000" />
+      <workItem from="1589958461272" duration="2121000" />
+      <workItem from="1590018787457" duration="13985000" />
+      <workItem from="1590041572390" duration="612000" />
+      <workItem from="1590051619066" duration="3298000" />
+      <workItem from="1590107741482" duration="5654000" />
+      <workItem from="1590463579222" duration="6118000" />
+      <workItem from="1590567000297" duration="595000" />
+      <workItem from="1590623478624" duration="4682000" />
+      <workItem from="1590649479020" duration="4141000" />
+      <workItem from="1590712461779" duration="154000" />
+      <workItem from="1590712623313" duration="2303000" />
+      <workItem from="1590718513260" duration="3950000" />
+      <workItem from="1590729834110" duration="11450000" />
+      <workItem from="1590798187020" duration="11381000" />
+      <workItem from="1590900342701" duration="14463000" />
+      <workItem from="1590917253460" duration="1922000" />
+      <workItem from="1590971763034" duration="653000" />
+      <workItem from="1590974090795" duration="600000" />
+      <workItem from="1590975810724" duration="13489000" />
+      <workItem from="1591056835823" duration="1105000" />
+      <workItem from="1591098081924" duration="732000" />
+      <workItem from="1591099349100" duration="1884000" />
+      <workItem from="1591163333440" duration="757000" />
+      <workItem from="1591184166550" duration="424000" />
+      <workItem from="1591193144965" duration="3189000" />
+      <workItem from="1591196819668" duration="3255000" />
+      <workItem from="1591230006237" duration="4165000" />
+      <workItem from="1591314869613" duration="1821000" />
+      <workItem from="1591401931834" duration="3735000" />
+      <workItem from="1591574134799" duration="4851000" />
+      <workItem from="1591660435701" duration="1943000" />
+      <workItem from="1591845152341" duration="123000" />
+      <workItem from="1591848216329" duration="6000" />
+      <workItem from="1591858484447" duration="14000" />
+      <workItem from="1592031571472" duration="748000" />
+      <workItem from="1592561312648" duration="102000" />
+      <workItem from="1592611805485" duration="1705000" />
+      <workItem from="1592622033219" duration="1519000" />
+      <workItem from="1592626123736" duration="2614000" />
+      <workItem from="1592794140635" duration="75000" />
+      <workItem from="1592794383863" duration="475000" />
+      <workItem from="1592897750070" duration="322000" />
+      <workItem from="1593649289989" duration="2929000" />
+      <workItem from="1593653226048" duration="386000" />
+      <workItem from="1593653619257" duration="299000" />
+      <workItem from="1593653922935" duration="14000" />
+      <workItem from="1593653941674" duration="11305000" />
+      <workItem from="1593735783272" duration="12057000" />
+      <workItem from="1593823399951" duration="2263000" />
+      <workItem from="1594017521692" duration="636000" />
+      <workItem from="1594080139565" duration="5529000" />
+      <workItem from="1594166195730" duration="3000" />
+      <workItem from="1594166393533" duration="326000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-field">
+          <url>jar://$PROJECT_DIR$/../../API/spigot-1.8.8-R0.1-SNAPSHOT-latest.jar!/org/bukkit/craftbukkit/v1_8_R3/block/CraftBlock.class</url>
+          <line>41</line>
+          <properties field="chunk" class="org.bukkit.craftbukkit.v1_8_R3.block.CraftBlock" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

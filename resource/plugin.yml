@@ -1,0 +1,9 @@
+name: AML
+main: top.aot.ml.MListMain
+version: 1.2.302
+softdepend: [PlaceholderAPI]
+
+commands:
+   aml:
+      description: open
+      usage: /aml
