@@ -113,6 +113,7 @@ public enum Cls implements i, iex, is, iu, ce {
                     if (nameTable.containsKey(customName)) {
                         Monster monster = nameTable.get(customName);
                         if (isNpc == monster.isNpc()) {
+                            role.addKillNum(monster);
                             if (!role.isUnlock(monster)) {
                                 role.unlockMonster(monster);
                                 APlugin.Msg.sendMsgTrue(killer, C.s(5));
@@ -792,6 +793,16 @@ public enum Cls implements i, iex, is, iu, ce {
         }
 
         /**
+         * 锁定怪物
+         */
+        public void lockMonster(Monster monster) {
+            if (monsterList.contains(monster.getId())) {
+                monsterList.remove(monster.getId());
+                update();
+            }
+        }
+
+        /**
          * 领取奖励
          */
         public void receive(Monster monster) {
@@ -817,6 +828,36 @@ public enum Cls implements i, iex, is, iu, ce {
 
         public int getUnlockNum() {
             return monsterList.size();
+        }
+
+        /**
+         * 获取击杀数量
+         * */
+        public int getKillNum(Monster monster) {
+            return customConfig.getInt("killNumList." + monster.getId(), 0);
+        }
+
+        /**
+         * 添加击杀数量
+         * */
+        public void addKillNum(Monster monster) {
+            setKillNum(monster, getKillNum(monster) + 1);
+            update();
+        }
+
+        /**
+         * 添加击杀数量
+         * */
+        public void reduceKillNum(Monster monster, int num) {
+            setKillNum(monster, getKillNum(monster) - num);
+            update();
+        }
+
+        /**
+         * 设置击杀数量
+         * */
+        private void setKillNum(Monster monster, int num) {
+            customConfig.set("killNumList." + monster.getId(), num);
         }
     }
 
