@@ -53,6 +53,62 @@ public class MonsterTable extends AsxConfig {
     private int ejIndex;
     private int fjIndex;
 
+    private int ajItemId;
+
+    public int getAjItemId() {
+        return ajItemId;
+    }
+
+    public void setAjItemId(int ajItemId) {
+        this.ajItemId = ajItemId;
+    }
+
+    public int getBjItemId() {
+        return bjItemId;
+    }
+
+    public void setBjItemId(int bjItemId) {
+        this.bjItemId = bjItemId;
+    }
+
+    public int getCjItemId() {
+        return cjItemId;
+    }
+
+    public void setCjItemId(int cjItemId) {
+        this.cjItemId = cjItemId;
+    }
+
+    public int getDjItemId() {
+        return djItemId;
+    }
+
+    public void setDjItemId(int djItemId) {
+        this.djItemId = djItemId;
+    }
+
+    public int getEjItemId() {
+        return ejItemId;
+    }
+
+    public void setEjItemId(int ejItemId) {
+        this.ejItemId = ejItemId;
+    }
+
+    public int getFjItemId() {
+        return fjItemId;
+    }
+
+    public void setFjItemId(int fjItemId) {
+        this.fjItemId = fjItemId;
+    }
+
+    private int bjItemId;
+    private int cjItemId;
+    private int djItemId;
+    private int ejItemId;
+    private int fjItemId;
+
     private int[] sizes = new int[6];
 
     public int[] getSizes() {
@@ -88,6 +144,12 @@ public class MonsterTable extends AsxConfig {
         djId = 1;
         ejId = 1;
         fjId = 1;
+        ajItemId = 397;
+        bjItemId = 397;
+        cjItemId = 397;
+        djItemId = 397;
+        ejItemId = 397;
+        fjItemId = 397;
         ajName = "普通怪物图鉴";
         bjName = "精英怪物图鉴";
         cjName = "稀有怪物图鉴";
@@ -128,6 +190,12 @@ public class MonsterTable extends AsxConfig {
         config.set("djIndex", djIndex);
         config.set("ejIndex", ejIndex);
         config.set("fjIndex", fjIndex);
+        config.set("ajItemId", ajItemId);
+        config.set("bjItemId", bjItemId);
+        config.set("cjItemId", cjItemId);
+        config.set("djItemId", djItemId);
+        config.set("ejItemId", ejItemId);
+        config.set("fjItemId", fjItemId);
     }
 
     @Override
@@ -157,6 +225,13 @@ public class MonsterTable extends AsxConfig {
         djIndex = config.getInt("djIndex", 14);
         ejIndex = config.getInt("ejIndex", 15);
         fjIndex = config.getInt("fjIndex", 16);
+
+        ajItemId = config.getInt("ajItemId", 397);
+        bjItemId = config.getInt("bjItemId", 397);
+        cjItemId = config.getInt("cjItemId", 397);
+        djItemId = config.getInt("djItemId", 397);
+        ejItemId = config.getInt("ejItemId", 397);
+        fjItemId = config.getInt("fjItemId", 397);
     }
 
     public List<String> getAj() {

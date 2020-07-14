@@ -73,7 +73,7 @@ public final class APlugin {
 
         public Assembly(T gui) {
             this.gui = gui;
-            setItemStack(new ItemStack(material())); // 初始化物品
+            setItemStack(itemId() > 0? new ItemStack(itemId(), 1):new ItemStack(material())); // 初始化物品
             itemMeta = getItemStack().getItemMeta();
             setSecondID(secondID());
             init(gui, itemMeta);
@@ -153,6 +153,13 @@ public final class APlugin {
          * 设置组件图标
          */
         protected abstract Material material();
+
+        /**
+         * 设置组件图标
+         */
+        protected int itemId() {
+            return 0;
+        }
 
         /**
          * 物品附加id

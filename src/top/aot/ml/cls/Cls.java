@@ -392,6 +392,11 @@ public enum Cls implements i, iex, is, iu, ce {
                     }
 
                     @Override
+                    protected int itemId() {
+                        return table.getAjItemId();
+                    }
+
+                    @Override
                     protected String explain() {
                         return "§a查看" + C.ex(String.class, "i", table.getAjName());
                     }
@@ -414,6 +419,11 @@ public enum Cls implements i, iex, is, iu, ce {
                     protected String buttonName() {
 
                         return C.ex(String.class, "i", table.getBjName());
+                    }
+
+                    @Override
+                    protected int itemId() {
+                        return table.getBjItemId();
                     }
 
                     @Override
@@ -446,6 +456,11 @@ public enum Cls implements i, iex, is, iu, ce {
                     }
 
                     @Override
+                    protected int itemId() {
+                        return table.getCjItemId();
+                    }
+
+                    @Override
                     protected String explain() {
                         return "§a查看" + C.ex(String.class, "i", table.getCjName());
                     }
@@ -469,6 +484,11 @@ public enum Cls implements i, iex, is, iu, ce {
                     protected String buttonName() {
 
                         return C.ex(String.class, "i", table.getDjName());
+                    }
+
+                    @Override
+                    protected int itemId() {
+                        return table.getDjItemId();
                     }
 
                     @Override
@@ -499,6 +519,11 @@ public enum Cls implements i, iex, is, iu, ce {
                     }
 
                     @Override
+                    protected int itemId() {
+                        return table.getEjItemId();
+                    }
+
+                    @Override
                     protected String explain() {
                         return "§a查看" + C.ex(String.class, "i", table.getEjName());
                     }
@@ -521,6 +546,11 @@ public enum Cls implements i, iex, is, iu, ce {
                     protected String buttonName() {
 
                         return C.ex(String.class, "i", table.getFjName());
+                    }
+
+                    @Override
+                    protected int itemId() {
+                        return table.getFjItemId();
                     }
 
                     @Override
