@@ -42,6 +42,7 @@ public class MonsterList extends AsxConfig {
         drops.add("§f牛皮*1 10%");
         customConfig.set("a.drops", drops);
         customConfig.set("a.location", "刘家村");
+        customConfig.set("a.itemId", 397);
         customConfig.set("a.touId", 0);
         customConfig.set("a.health", "80");
         List<String> repeatList = new ArrayList<>();
@@ -75,9 +76,10 @@ public class MonsterList extends AsxConfig {
                     .setAttrs(config.getStringList(key + ".attrs"))
                     .setDesc(config.getStringList(key + ".desc"))
                     .setDrops(config.getStringList(key + ".drops"))
-                    .setLocation(config.getString(key + ".location"))
-                    .setTouId(config.getInt(key + ".touId"))
-                    .setHealth(config.getString(key + ".health"))
+                    .setLocation(config.getString(key + ".location", "未知"))
+                    .setItemId(config.getInt(key + ".itemId", 0))
+                    .setTouId(config.getInt(key + ".touId", 0))
+                    .setHealth(config.getString(key + ".health", "1"))
                     .setOnlyList(config.getStringList(key + ".only.list"))
                     .setRepeatList(config.getStringList(key + ".repeat.list"))
                     .setOnlyExplain(config.getString(key + ".only.explan", ""))

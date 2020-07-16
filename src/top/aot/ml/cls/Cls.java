@@ -689,6 +689,11 @@ public enum Cls implements i, iex, is, iu, ce {
                         protected Material material() {
                             return unlock ? Material.SKULL_ITEM : (C.is17Version() ? Material.ARROW : Material.BARRIER);
                         }
+
+                        @Override
+                        protected int itemId() {
+                            return unlock ? monster.getItemId() : (C.is17Version() ? Material.ARROW.getId() : Material.BARRIER.getId());
+                        }
                     };
                     if (role.isUnlock(monster)) {
                         if (monster.getOnlyList().size() > 0 && !role.isReceive(monster)) {
@@ -898,6 +903,7 @@ public enum Cls implements i, iex, is, iu, ce {
         private List<String> desc;
         private List<String> drops;
         private String location;
+        private int itemId; // 物品id
         private int touId; // 头id
         private final String id;
         private String health;
@@ -1033,6 +1039,15 @@ public enum Cls implements i, iex, is, iu, ce {
 
         public Monster setNpc(boolean npc) {
             this.npc = npc;
+            return this;
+        }
+
+        public int getItemId() {
+            return itemId;
+        }
+
+        public Monster setItemId(int itemId) {
+            this.itemId = itemId;
             return this;
         }
     }
