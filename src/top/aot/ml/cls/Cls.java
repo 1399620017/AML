@@ -644,8 +644,8 @@ public enum Cls implements i, iex, is, iu, ce {
             Role role = Role.getRole(getOwnerName());
             for (String name : listName) {
                 Monster monster = MListMain.list.getMonsterById(name);
-                boolean unlock = role.isUnlock(monster);
                 if (monster != null) {
+                    boolean unlock = role.isUnlock(monster);
                     APlugin.AssemblyDynamic<ListGui> monsterAssembly = new APlugin.AssemblyDynamic<ListGui>(this) {
 
                         @Override
