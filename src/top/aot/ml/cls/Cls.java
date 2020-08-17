@@ -87,7 +87,7 @@ public enum Cls implements i, iex, is, iu, ce {
             t.getCommand(C.s(1)).setExecutor(new AMLCommand());
             papi = Bukkit.getPluginManager().getPlugin(Cls.C.s(11)); // 用服务端获取PAPI插件
             if (papi != null) {
-                boolean b = new Variable().hook();
+                boolean b = Variable.register();
                 if (b) {
                     APlugin.Msg.sendConMsgTrue(C.s(6));
                 } else {
@@ -692,7 +692,7 @@ public enum Cls implements i, iex, is, iu, ce {
 
                         @Override
                         protected int itemId() {
-                            return unlock ? monster.getItemId() : (C.is17Version() ? Material.ARROW.getId() : Material.BARRIER.getId());
+                            return unlock ? monster.getItemId() : (C.is17Version() ? 262 : 166);
                         }
                     };
                     if (role.isUnlock(monster)) {

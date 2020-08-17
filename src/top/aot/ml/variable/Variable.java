@@ -1,22 +1,21 @@
 package top.aot.ml.variable;
 
-import me.clip.placeholderapi.external.EZPlaceholderHook;
+import me.clip.placeholderapi.PlaceholderAPI;
+import me.clip.placeholderapi.PlaceholderHook;
 import org.bukkit.entity.Player;
 import top.aot.ml.MListMain;
 import top.aot.ml.cls.Cls;
-import top.aot.ml.plugin.APlugin;
 
 import java.util.Objects;
 
-@SuppressWarnings("deprecation")
-public class Variable extends EZPlaceholderHook {
+public class Variable extends PlaceholderHook {
 
     static {
         Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
     }
 
-    public Variable() {
-        super(APlugin.plugin, Cls.C.s(1));
+    public static boolean register() {
+        return PlaceholderAPI.registerPlaceholderHook(Cls.C.s(1), new Variable());
     }
 
     @Override
@@ -52,27 +51,24 @@ public class Variable extends EZPlaceholderHook {
                     break;
             }
         } else if (variables.length == 3) {
-            switch (variables[0]) {
-                case "pay":
-                    Cls.Monster monster = MListMain.list.getMonsterById(variables[1]);
-                    if (monster == null) {
+            if ("pay".equals(variables[0])) {
+                Cls.Monster monster = MListMain.list.getMonsterById(variables[1]);
+                if (monster == null) {
+                    return "false";
+                }
+                Cls.Role role = Cls.Role.getRole(player);
+                int killNum = role.getKillNum(monster);
+                try {
+                    int payNum = Integer.parseInt(variables[2]);
+                    if (killNum < payNum) {
                         return "false";
+                    } else {
+                        role.reduceKillNum(monster, payNum);
+                        return "true";
                     }
-                    Cls.Role role = Cls.Role.getRole(player);
-                    int killNum = role.getKillNum(monster);
-                    try {
-                        int payNum = Integer.parseInt(variables[2]);
-                        if (killNum < payNum) {
-                            return "false";
-                        } else {
-                            role.reduceKillNum(monster, payNum);
-                            return "true";
-                        }
-                    } catch (Exception e) {
-                        return "false";
-                    }
-                default:
-                    break;
+                } catch (Exception e) {
+                    return "false";
+                }
             }
         }
         return null;
