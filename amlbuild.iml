@@ -25,6 +25,15 @@
       <src_folder value="file://$MODULE_DIR$/" expected_position="5" />
     </src_description>
   </component>
+  <component name="FacetManager">
+    <facet type="minecraft" name="Minecraft">
+      <configuration>
+        <autoDetectTypes>
+          <platformType>PAPER</platformType>
+        </autoDetectTypes>
+      </configuration>
+    </facet>
+  </component>
   <component name="NewModuleRootManager">
     <output url="file://$MODULE_DIR$/target/classes" />
     <exclude-output />
@@ -209,15 +218,6 @@
         <SOURCES>
           <root url="jar://$MODULE_DIR$/../../API/spigot-1.9.2-R0.1-SNAPSHOT-latest.jar!/" />
         </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../API/hutool-all-5.3.7.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
       </library>
     </orderEntry>
     <orderEntry type="module-library">

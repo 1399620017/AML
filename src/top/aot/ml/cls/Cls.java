@@ -1,6 +1,5 @@
 package top.aot.ml.cls;
 
-import cn.hutool.core.convert.Convert;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -96,7 +95,6 @@ public enum Cls implements i, iex, is, iu, ce {
             }
             // 初始化通用nms
             Cls.D.init();
-            Convert.toStr(new int[] {1,2});
         }
 
         public void _kill(EntityDeathEvent e) {
