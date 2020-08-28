@@ -34,7 +34,7 @@ public class AMLCommand implements CommandExecutor {
                     GuiBase.openWindow(player, new Cls.MLGui(player));
                 } else {
                     if (arg0.isOp()) {
-                        APlugin.Msg.sendMsg(arg0, "/asx lock <player> <monsterKey> <true/false> 解锁player的monsterKey的怪物");
+                        APlugin.Msg.sendMsg(arg0, "/aml lock <player> <monsterKey> <true/false> 解锁player的monsterKey的怪物");
                     }
                 }
                 break;
@@ -67,13 +67,13 @@ public class AMLCommand implements CommandExecutor {
                             APlugin.Msg.sendMsgFalse(arg0, "player不在线");
                         }
                     } else {
-                        APlugin.Msg.sendMsg(arg0, "/asx lock <player> <monsterKey> <true/false> 解锁player的monsterKey的怪物");
+                        APlugin.Msg.sendMsg(arg0, "/aml lock <player> <monsterKey> <true/false> 解锁player的monsterKey的怪物");
                     }
                 }
                 break;
             default:
                 if (arg0.isOp()) {
-                    APlugin.Msg.sendMsg(arg0, "/asx lock <player> <monsterKey> <true/false> 解锁player的monsterKey的怪物");
+                    APlugin.Msg.sendMsg(arg0, "/aml lock <player> <monsterKey> <true/false> 解锁player的monsterKey的怪物");
                 }
                 break;
         }

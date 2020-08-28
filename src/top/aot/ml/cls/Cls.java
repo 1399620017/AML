@@ -11,13 +11,16 @@ import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.Plugin;
+import setting.GuiSetup;
 import setting.MonsterList;
 import setting.MonsterTable;
 import top.aot.ml.MListMain;
 import top.aot.ml.command.AMLCommand;
 import top.aot.ml.command.OpenCommand;
 import top.aot.ml.command.ReloadCommand;
+import top.aot.ml.command.SwitchGuiSetupCommand;
 import top.aot.ml.gui.Button;
+import top.aot.ml.interfaces.tgi;
 import top.aot.ml.listener.KillEntityListener;
 import top.aot.ml.listener.PlayerLoginListener;
 import top.aot.ml.plugin.APlugin;
@@ -82,6 +85,7 @@ public enum Cls implements i, iex, is, iu, ce {
         public void d(MListMain t) {
             version = Bukkit.getVersion();
             MonsterTable.getMonsterTable();
+            GuiSetup.getMonsterTable();
             MListMain.list = new MonsterList();
             t.getCommand(C.s(1)).setExecutor(new AMLCommand());
             papi = Bukkit.getPluginManager().getPlugin(Cls.C.s(11)); // 用服务端获取PAPI插件
@@ -124,7 +128,8 @@ public enum Cls implements i, iex, is, iu, ce {
 
         public void co() {
             new OpenCommand("m", 0, "", C.s(2), false);
-            new ReloadCommand("r", 0, "", C.s(3), false);
+            new ReloadCommand("r", 0, "", C.s(3), true);
+            new SwitchGuiSetupCommand("sgs", 0, "", C.s(12), true);
         }
 
         public void e(MListMain t) {
@@ -311,6 +316,10 @@ public enum Cls implements i, iex, is, iu, ce {
                 new String(new byte[]{80, 108, 97, 99, 101, 104, 111, 108,
                         100, 101, 114, 65, 80, 73},
                         StandardCharsets.UTF_8),
+                // "切换新版GUI配置" 12
+                new String(new String(new byte[]{-27, -120, -121, -26, -115,
+                        -94, -26, -106, -80, -25, -119, -120, 71, 85, 73, -23,
+                        -123, -115, -25, -67, -82}, StandardCharsets.UTF_8)),
         };
 
         public static String s(int S) {
@@ -360,7 +369,10 @@ public enum Cls implements i, iex, is, iu, ce {
     public static class MLGui extends APlugin.Gui {
 
         private MonsterTable table;
+        // 用于获取列表的Key
         private String listType;
+        private GuiSetup newTable;
+        private tgi currentTgi;
 
         public MLGui(Player owner) {
             super(owner, Cls.C.f(), 6);
@@ -373,200 +385,229 @@ public enum Cls implements i, iex, is, iu, ce {
 
         @Override
         protected void initWindow() {
-            setListType("aj");
-            setTable(MonsterTable.getMonsterTable());
+            newTable = GuiSetup.getMonsterTable();
+            if (newTable.isEnable()) {
+                listType = "";
+            } else {
+                listType = "aj";
+                setTable(MonsterTable.getMonsterTable());
+            }
         }
 
         @Override
         public void updateWindow() {
-            int[] sizes = table.getSizes();
-            if (sizes[0] > 0) {
-                Button<MLGui> ajButton = new Button<MLGui>(this) {
+            if (newTable.isEnable()) {
+                for (Map.Entry<String, tgi> tgiEr : newTable.getTgiMap().entrySet()) {
+                    tgi tgi = tgiEr.getValue();
+                    APlugin.AssemblyDynamic<MLGui> iAssembly = new APlugin.AssemblyDynamic<MLGui>(this) {
+                        @Override
+                        protected void init(MLGui gui, ItemMeta itemMeta) {
+                            setTitle(tgi.getName());
+                            setLore(tgi.getDesc());
+                            setLevel(tgi.getNumber());
+                        }
 
-                    @Override
-                    protected String buttonName() {
+                        @Override
+                        protected Material material() {
+                            return tgi.getMaterial();
+                        }
 
-                        return C.ex(String.class, "i", table.getAjName());
-                    }
+                        @Override
+                        protected short secondID() {
+                            return tgi.getDataId();
+                        }
+                    }.setClickListener((APlugin.LeftClickListener) () -> {
+                        currentTgi = tgi;
+                        APlugin.GuiBase.openWindow(getOwner(), new ListGui(MLGui.this, getOwner()));
+                    });
+                    setAssembly(tgi.getSlot(), iAssembly);
+                }
+            } else {
+                int[] sizes = table.getSizes();
+                if (sizes[0] > 0) {
+                    Button<MLGui> ajButton = new Button<MLGui>(this) {
 
-                    @Override
-                    protected int itemId() {
-                        return table.getAjItemId();
-                    }
+                        @Override
+                        protected String buttonName() {
 
-                    @Override
-                    protected String explain() {
-                        return "§a查看" + C.ex(String.class, "i", table.getAjName());
-                    }
+                            return C.ex(String.class, "i", table.getAjName());
+                        }
 
-                    @Override
-                    protected short secondID() {
-                        return (short) MLGui.this.table.getAjId();
-                    }
-                };
-                ajButton.setClickListener((APlugin.LeftClickListener) () -> {
-                    setListType("aj");
-                    APlugin.GuiBase.openWindow(getOwner(), new ListGui(MLGui.this, getOwner()));
-                });
-                setAssembly(table.getAjIndex(), ajButton);
-            }
-            if (sizes[1] > 0) {
-                Button<MLGui> bjButton = new Button<MLGui>(this) {
+                        @Override
+                        protected int itemId() {
+                            return table.getAjItemId();
+                        }
 
-                    @Override
-                    protected String buttonName() {
+                        @Override
+                        protected String explain() {
+                            return "§a查看" + C.ex(String.class, "i", table.getAjName());
+                        }
 
-                        return C.ex(String.class, "i", table.getBjName());
-                    }
+                        @Override
+                        protected short secondID() {
+                            return (short) MLGui.this.table.getAjId();
+                        }
+                    };
+                    ajButton.setClickListener((APlugin.LeftClickListener) () -> {
+                        setListType("aj");
+                        APlugin.GuiBase.openWindow(getOwner(), new ListGui(MLGui.this, getOwner()));
+                    });
+                    setAssembly(table.getAjIndex(), ajButton);
+                }
+                if (sizes[1] > 0) {
+                    Button<MLGui> bjButton = new Button<MLGui>(this) {
 
-                    @Override
-                    protected int itemId() {
-                        return table.getBjItemId();
-                    }
+                        @Override
+                        protected String buttonName() {
 
-                    @Override
-                    protected String explain() {
-                        return "§a查看" + C.ex(String.class, "i", table.getBjName());
-                    }
+                            return C.ex(String.class, "i", table.getBjName());
+                        }
 
-                    @Override
-                    protected short secondID() {
-                        return (short) MLGui.this.table.getBjId();
-                    }
-                };
-                bjButton.setClickListener(new APlugin.LeftClickListener() {
+                        @Override
+                        protected int itemId() {
+                            return table.getBjItemId();
+                        }
 
-                    @Override
-                    public void leftClick() {
+                        @Override
+                        protected String explain() {
+                            return "§a查看" + C.ex(String.class, "i", table.getBjName());
+                        }
+
+                        @Override
+                        protected short secondID() {
+                            return (short) MLGui.this.table.getBjId();
+                        }
+                    };
+                    bjButton.setClickListener((APlugin.LeftClickListener) () -> {
                         setListType("bj");
                         APlugin.GuiBase.openWindow(getOwner(), new ListGui(MLGui.this, getOwner()));
-                    }
-                });
-                setAssembly(table.getBjIndex(), bjButton);
-            }
-            if (sizes[2] > 0) {
-                Button<MLGui> cjButton = new Button<MLGui>(this) {
+                    });
+                    setAssembly(table.getBjIndex(), bjButton);
+                }
+                if (sizes[2] > 0) {
+                    Button<MLGui> cjButton = new Button<MLGui>(this) {
 
-                    @Override
-                    protected String buttonName() {
+                        @Override
+                        protected String buttonName() {
 
-                        return C.ex(String.class, "i", table.getCjName());
-                    }
+                            return C.ex(String.class, "i", table.getCjName());
+                        }
 
-                    @Override
-                    protected int itemId() {
-                        return table.getCjItemId();
-                    }
+                        @Override
+                        protected int itemId() {
+                            return table.getCjItemId();
+                        }
 
-                    @Override
-                    protected String explain() {
-                        return "§a查看" + C.ex(String.class, "i", table.getCjName());
-                    }
+                        @Override
+                        protected String explain() {
+                            return "§a查看" + C.ex(String.class, "i", table.getCjName());
+                        }
 
-                    @Override
-                    protected short secondID() {
-                        return (short) MLGui.this.table.getCjId();
-                    }
+                        @Override
+                        protected short secondID() {
+                            return (short) MLGui.this.table.getCjId();
+                        }
 
-                };
-                cjButton.setClickListener((APlugin.LeftClickListener) () -> {
-                    setListType("cj");
-                    APlugin.GuiBase.openWindow(getOwner(), new ListGui(MLGui.this, getOwner()));
-                });
-                setAssembly(table.getCjIndex(), cjButton);
-            }
-            if (sizes[3] > 0) {
-                Button<MLGui> djButton = new Button<MLGui>(this) {
+                    };
+                    cjButton.setClickListener((APlugin.LeftClickListener) () -> {
+                        setListType("cj");
+                        APlugin.GuiBase.openWindow(getOwner(), new ListGui(MLGui.this, getOwner()));
+                    });
+                    setAssembly(table.getCjIndex(), cjButton);
+                }
+                if (sizes[3] > 0) {
+                    Button<MLGui> djButton = new Button<MLGui>(this) {
 
-                    @Override
-                    protected String buttonName() {
+                        @Override
+                        protected String buttonName() {
 
-                        return C.ex(String.class, "i", table.getDjName());
-                    }
+                            return C.ex(String.class, "i", table.getDjName());
+                        }
 
-                    @Override
-                    protected int itemId() {
-                        return table.getDjItemId();
-                    }
+                        @Override
+                        protected int itemId() {
+                            return table.getDjItemId();
+                        }
 
-                    @Override
-                    protected String explain() {
-                        return "§a查看" + C.ex(String.class, "i", table.getDjName());
-                    }
+                        @Override
+                        protected String explain() {
+                            return "§a查看" + C.ex(String.class, "i", table.getDjName());
+                        }
 
-                    @Override
-                    protected short secondID() {
-                        return (short) MLGui.this.table.getDjId();
-                    }
+                        @Override
+                        protected short secondID() {
+                            return (short) MLGui.this.table.getDjId();
+                        }
 
-                };
-                djButton.setClickListener((APlugin.LeftClickListener) () -> {
-                    setListType("dj");
-                    APlugin.GuiBase.openWindow(getOwner(), new ListGui(MLGui.this, getOwner()));
-                });
-                setAssembly(table.getDjIndex(), djButton);
-            }
+                    };
+                    djButton.setClickListener((APlugin.LeftClickListener) () -> {
+                        setListType("dj");
+                        APlugin.GuiBase.openWindow(getOwner(), new ListGui(MLGui.this, getOwner()));
+                    });
+                    setAssembly(table.getDjIndex(), djButton);
+                }
 
-            if (sizes[4] > 0) {
-                Button<MLGui> ejButton = new Button<MLGui>(this) {
+                if (sizes[4] > 0) {
+                    Button<MLGui> ejButton = new Button<MLGui>(this) {
 
-                    @Override
-                    protected String buttonName() {
+                        @Override
+                        protected String buttonName() {
 
-                        return C.ex(String.class, "i", table.getEjName());
-                    }
+                            return C.ex(String.class, "i", table.getEjName());
+                        }
 
-                    @Override
-                    protected int itemId() {
-                        return table.getEjItemId();
-                    }
+                        @Override
+                        protected int itemId() {
+                            return table.getEjItemId();
+                        }
 
-                    @Override
-                    protected String explain() {
-                        return "§a查看" + C.ex(String.class, "i", table.getEjName());
-                    }
+                        @Override
+                        protected String explain() {
+                            return "§a查看" + C.ex(String.class, "i", table.getEjName());
+                        }
 
-                    @Override
-                    protected short secondID() {
-                        return (short) MLGui.this.table.getEjId();
-                    }
-                };
-                ejButton.setClickListener((APlugin.LeftClickListener) () -> {
-                    setListType("ej");
-                    APlugin.GuiBase.openWindow(getOwner(), new ListGui(MLGui.this, getOwner()));
-                });
-                setAssembly(table.getEjIndex(), ejButton);
-            }
-            if (sizes[5] > 0) {
-                Button<MLGui> fjButton = new Button<MLGui>(this) {
+                        @Override
+                        protected short secondID() {
+                            return (short) MLGui.this.table.getEjId();
+                        }
+                    };
+                    ejButton.setClickListener((APlugin.LeftClickListener) () -> {
+                        setListType("ej");
+                        APlugin.GuiBase.openWindow(getOwner(), new ListGui(MLGui.this, getOwner()));
+                    });
+                    setAssembly(table.getEjIndex(), ejButton);
+                }
+                if (sizes[5] > 0) {
+                    Button<MLGui> fjButton = new Button<MLGui>(this) {
 
-                    @Override
-                    protected String buttonName() {
+                        @Override
+                        protected String buttonName() {
 
-                        return C.ex(String.class, "i", table.getFjName());
-                    }
+                            return C.ex(String.class, "i", table.getFjName());
+                        }
 
-                    @Override
-                    protected int itemId() {
-                        return table.getFjItemId();
-                    }
+                        @Override
+                        protected int itemId() {
+                            return table.getFjItemId();
+                        }
 
-                    @Override
-                    protected String explain() {
-                        return "§a查看" + C.ex(String.class, "i", table.getFjName());
-                    }
+                        @Override
+                        protected String explain() {
+                            return "§a查看" + C.ex(String.class, "i", table.getFjName());
+                        }
 
-                    @Override
-                    protected short secondID() {
-                        return (short) MLGui.this.table.getFjId();
-                    }
+                        @Override
+                        protected short secondID() {
+                            return (short) MLGui.this.table.getFjId();
+                        }
 
-                };
-                fjButton.setClickListener((APlugin.LeftClickListener) () -> {
-                    setListType("fj");
-                    APlugin.GuiBase.openWindow(getOwner(), new ListGui(MLGui.this, getOwner()));
-                });
-                setAssembly(table.getFjIndex(), fjButton);
+                    };
+                    fjButton.setClickListener((APlugin.LeftClickListener) () -> {
+                        setListType("fj");
+                        APlugin.GuiBase.openWindow(getOwner(), new ListGui(MLGui.this, getOwner()));
+                    });
+                    setAssembly(table.getFjIndex(), fjButton);
+                }
             }
         }
 
@@ -591,12 +632,16 @@ public enum Cls implements i, iex, is, iu, ce {
             this.table = table;
         }
 
+        public tgi getCurrentTgi() {
+            return currentTgi;
+        }
     }
 
     public static class ListGui extends APlugin.Gui {
 
         MLGui mlGui;
         List<String> listName;
+        private GuiSetup newTable;
 
         public ListGui(APlugin.Gui beforeGui, Player owner) {
             super(beforeGui, owner, "§e怪物列表", 6);
@@ -609,29 +654,34 @@ public enum Cls implements i, iex, is, iu, ce {
 
         @Override
         protected void initWindow() {
+            newTable = GuiSetup.getMonsterTable();
             mlGui = (MLGui) getBeforeGui();
-            switch (mlGui.getListType()) {
-                case "aj":
-                    listName = mlGui.getTable().getAj();
-                    break;
-                case "bj":
-                    listName = mlGui.getTable().getBj();
-                    break;
-                case "cj":
-                    listName = mlGui.getTable().getCj();
-                    break;
-                case "dj":
-                    listName = mlGui.getTable().getDj();
-                    break;
-                case "ej":
-                    listName = mlGui.getTable().getEj();
-                    break;
-                case "fj":
-                    listName = mlGui.getTable().getFj();
-                    break;
+            if (newTable.isEnable()) {
+                listName = mlGui.getCurrentTgi().getMonsterList();
+            } else {
+                switch (mlGui.getListType()) {
+                    case "aj":
+                        listName = mlGui.getTable().getAj();
+                        break;
+                    case "bj":
+                        listName = mlGui.getTable().getBj();
+                        break;
+                    case "cj":
+                        listName = mlGui.getTable().getCj();
+                        break;
+                    case "dj":
+                        listName = mlGui.getTable().getDj();
+                        break;
+                    case "ej":
+                        listName = mlGui.getTable().getEj();
+                        break;
+                    case "fj":
+                        listName = mlGui.getTable().getFj();
+                        break;
 
-                default:
-                    break;
+                    default:
+                        break;
+                }
             }
         }
 
