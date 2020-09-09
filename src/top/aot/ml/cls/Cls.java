@@ -317,9 +317,10 @@ public enum Cls implements i, iex, is, iu, ce {
                         100, 101, 114, 65, 80, 73},
                         StandardCharsets.UTF_8),
                 // "切换新版GUI配置" 12
-                new String(new String(new byte[]{-27, -120, -121, -26, -115,
+                new String(new byte[]{-27, -120, -121, -26, -115,
                         -94, -26, -106, -80, -25, -119, -120, 71, 85, 73, -23,
-                        -123, -115, -25, -67, -82}, StandardCharsets.UTF_8)),
+                        -123, -115, -25, -67, -82}, StandardCharsets.UTF_8),
+                
         };
 
         public static String s(int S) {

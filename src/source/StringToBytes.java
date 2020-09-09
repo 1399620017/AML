@@ -11,7 +11,7 @@ import java.util.Arrays;
  */
 public class StringToBytes {
     public static void main(String[] args) throws UnsupportedEncodingException {
-        String string = "切换新版GUI配置";
+        String string = "5";
         byte[] bytes = string.getBytes(StandardCharsets.UTF_8);
         String bytesString = Arrays.toString(bytes);
         System.out.println(String.format("new String(new byte[]{%s}, StandardCharsets.UTF_8)",
