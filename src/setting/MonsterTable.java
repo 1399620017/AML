@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.bukkit.configuration.file.FileConfiguration;
 
-import top.aot.ml.cls.Cls;
-import top.aot.ml.plugin.APlugin.AsxConfig;
+import top.aot.cls.Cls;
+import top.aot.plugin.APlugin.AsxConfig;
 
 public class MonsterTable extends AsxConfig {
 
@@ -17,7 +17,7 @@ public class MonsterTable extends AsxConfig {
     private static MonsterTable table;
 
     public static MonsterTable getMonsterTable() {
-        if (table == null) {
+        if (Cls.C.ex(table, false)) {
             table = new MonsterTable();
         }
         return table;

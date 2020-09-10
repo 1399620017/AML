@@ -4,7 +4,7 @@ import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.PlaceholderHook;
 import org.bukkit.entity.Player;
 import top.aot.ml.MListMain;
-import top.aot.ml.cls.Cls;
+import top.aot.cls.Cls;
 
 import java.util.Objects;
 
@@ -34,7 +34,7 @@ public class Variable extends PlaceholderHook {
                 case "num":
                     // 获取玩家击杀的某类型怪物数量
                     Cls.Monster monster = MListMain.list.getMonsterById(variables[1]);
-                    if (monster == null) {
+                    if (Cls.C.ex(monster, false)) {
                         return "0";
                     }
                     role = Cls.Role.getRole(player);
@@ -42,7 +42,7 @@ public class Variable extends PlaceholderHook {
                 case "state":
                     // 获取玩家击杀的某类型怪物数量
                     monster = MListMain.list.getMonsterById(variables[1]);
-                    if (monster == null) {
+                    if (Cls.C.ex(monster, false)) {
                         return "false";
                     }
                     role = Cls.Role.getRole(player);
@@ -53,7 +53,7 @@ public class Variable extends PlaceholderHook {
         } else if (variables.length == 3) {
             if ("pay".equals(variables[0])) {
                 Cls.Monster monster = MListMain.list.getMonsterById(variables[1]);
-                if (monster == null) {
+                if (Cls.C.ex(monster, false)) {
                     return "false";
                 }
                 Cls.Role role = Cls.Role.getRole(player);

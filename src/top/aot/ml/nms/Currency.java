@@ -1,8 +1,12 @@
 package top.aot.ml.nms;
 
 import org.bukkit.entity.Entity;
-import top.aot.ml.cls.Cls;
-import top.aot.ml.plugin.APlugin;
+import top.aot.itf.ci;
+import top.aot.itf.coi;
+import top.aot.itf.ei;
+import top.aot.itf.ni;
+import top.aot.cls.Cls;
+import top.aot.plugin.APlugin;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -93,7 +97,7 @@ public enum Currency implements ci, ni, coi, ei {
         public Method getMethod(Class<?> cls, Class<?> resultCls, Class<?>... params) {
             Method[] k = cls.getDeclaredMethods();
             for (Method method : k) {
-                if ((resultCls == null || Objects.equals(method.getReturnType(), resultCls))
+                if ((Cls.C.ex(resultCls, false) || Objects.equals(method.getReturnType(), resultCls))
                         && Arrays.equals(method.getParameterTypes(), params)) {
                     method.setAccessible(true);
                     return method;
@@ -125,7 +129,7 @@ public enum Currency implements ci, ni, coi, ei {
                         field = f;
                     }
                 }
-                if (field == null) {
+                if (Cls.C.ex(field, false)) {
                     return null;
                 }
                 field.setAccessible(true);
@@ -690,7 +694,7 @@ public enum Currency implements ci, ni, coi, ei {
             lm(craftCreatureGetHandleMethod = n.getMethod(craftCreatureCls, entityCreatureCls),
                     "CraftCreature > getHandle()");
 
-            lm(entityInsentientCls = (entityCreatureCls == null ? null : entityCreatureCls.getSuperclass()),
+            lm(entityInsentientCls = (Cls.C.ex(entityCreatureCls, false) ? null : entityCreatureCls.getSuperclass()),
                     "EntityInsentient");
             lm(entityNbt = n.getField(entityInsentientCls, c.getNmsNBTTagCompoundCls()),
                     "EntityInsentient > entityNbt");
@@ -754,7 +758,7 @@ public enum Currency implements ci, ni, coi, ei {
      * 显示载入类、方法、字段的结果信息
      */
     private static void lm(Object nmscls, String objectName) {
-        if (nmscls == null) {
+        if (Cls.C.ex(nmscls, false)) {
             APlugin.Msg.sendConMsgFalse("Failed to load " + objectName + "");
         } else {
             APlugin.Msg.sendConMsgTrue("Loading " + objectName + " succeeded");
@@ -928,289 +932,3 @@ public enum Currency implements ci, ni, coi, ei {
     }
 }
 
-/**
- * 项目接口
- */
-@FunctionalInterface
-interface ci {
-    String s = Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
-
-    void init();
-}
-
-/**
- * 实体接口
- */
-interface ei {
-    String s = Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
-
-    default Object getNmsEntity(Entity entity) {
-        return null;
-    }
-
-    default Object getCraftCreature(Entity entity) {
-        return null;
-    }
-
-    default Object getEntityNbt(Object nmsEntity) {
-        return null;
-    }
-
-    default Currency.cee getCurrencyEntity(Entity entity) {
-        return null;
-    }
-
-    default Object getEntityCreature(Object craftCreature) {
-        return null;
-    }
-
-    default Object getNmEntityCreature(Object craftCreature) {
-        return null;
-    }
-
-    default Object getNmEEntityCreature(Object craftCreature) {
-        return null;
-    }
-}
-
-/**
- * Compound接口
- */
-interface coi {
-    String s = Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
-
-    default Object createByteNBT(byte num) {
-        return null;
-    }
-
-    default Object createByteArrayNBT(byte[] num) {
-        return null;
-    }
-
-    default Object createCompoundNBT() {
-        return null;
-    }
-
-    default Object createDoubleNBT(double num) {
-        return null;
-    }
-
-    default Object createFloatNBT(float num) {
-        return null;
-    }
-
-    default Object createIntNBT(int num) {
-        return null;
-    }
-
-    default Object createIntArrayNBT(int[] num) {
-        return null;
-    }
-
-    default Object createListNBT() {
-        return null;
-    }
-
-    default Object createLongNBT(long num) {
-        return null;
-    }
-
-    default Object createShortNBT(short num) {
-        return null;
-    }
-
-    default Object createStringNBT(String string) {
-        return null;
-    }
-
-    default byte getTagByte(Object byteTag) {
-        return 0;
-    }
-
-    default byte[] getTagArrayByte(Object byteArrayTag) {
-        return new byte[0];
-    }
-
-    default double getTagDouble(Object doubleTag) {
-        return 0;
-    }
-
-    default float getTagFloat(Object floatTag) {
-        return 0;
-    }
-
-    default int getTagInt(Object intTag) {
-        return 0;
-    }
-
-    default int[] getTagIntArray(Object intArrayTag) {
-        return new int[0];
-    }
-
-    default List getTagList(Object listTag) {
-        return null;
-    }
-
-    default void tagListAdd(Object listTag, Object addElement) {
-
-    }
-
-    default boolean tagListDel(Object listTag, int index) {
-        return false;
-    }
-
-    default boolean tagListClear(Object listTag) {
-        return false;
-    }
-
-    default void setTagList(Object listTag, Object list) {
-
-    }
-
-    default long getTagLong(Object longTag) {
-        return 0;
-    }
-
-    default short getTagShort(Object shortTag) {
-        return 0;
-    }
-
-    default String getTagString(Object stringTag) {
-        return null;
-    }
-
-    default Currency.cco getCurrencyCompound(Object object) {
-        return null;
-    }
-
-    default void addCompoundTag(Object tag, String key, Object obj) {
-
-    }
-
-    default Object getCompoundTag(Object compoundTag, String key) {
-        return null;
-    }
-
-    default Object delCompoundTag(Object compoundTag, String key) {
-        return null;
-    }
-
-    default Set<String> getTagKeySet(Object compoundTag) {
-        return null;
-    }
-
-    default boolean isTagBase(Object compoundTag, String key) {
-        return false;
-    }
-
-    default boolean isByte(Object compoundTag, String key) {
-        return false;
-    }
-
-    default boolean isByteArray(Object compoundTag, String key) {
-        return false;
-    }
-
-    default boolean isCompound(Object compoundTag, String key) {
-        return false;
-    }
-
-    default boolean isDouble(Object compoundTag, String key) {
-        return false;
-    }
-
-    default boolean isFloat(Object compoundTag, String key) {
-        return false;
-    }
-
-    default boolean isInt(Object compoundTag, String key) {
-        return false;
-    }
-
-    default boolean isIntArray(Object compoundTag, String key) {
-        return false;
-    }
-
-    default boolean isList(Object compoundTag, String key) {
-        return false;
-    }
-
-    default boolean isLong(Object compoundTag, String key) {
-        return false;
-    }
-
-    default boolean isShort(Object compoundTag, String key) {
-        return false;
-    }
-
-    default boolean isString(Object compoundTag, String key) {
-        return false;
-    }
-
-    default Class<?> getNmsNBTTagCompoundCls() {
-        return null;
-    }
-}
-
-/**
- * NMS接口
- */
-interface ni {
-    String s = Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
-
-    default String getNmsVersion() {
-        return null;
-    }
-
-    default Class<?> getNmsClass(String className) {
-        return null;
-    }
-
-    default Class<?> getCraftClass(String path, String className) {
-        return null;
-    }
-
-    default Method getMethod(Class<?> cls, String methodName) {
-        return null;
-    }
-
-    default Method getMethod(Class<?> cls, Class<?> resultCls) {
-        return null;
-    }
-
-    default Method getMethod(Class<?> cls, Class<?> resultCls, Class<?>... params) {
-        return null;
-    }
-
-    default Field getField(Class<?> cls, String fieldName) {
-        return null;
-    }
-
-    default Field getField(Class<?> cls, Class<?> fieldType) {
-        return null;
-    }
-
-    default void setValue(Field field, Object obj, Object args) {
-
-    }
-
-    default Object getValue(Field field, Object obj) {
-        return null;
-    }
-
-    default Object invokeMethod(Method method, Object obj, Object... args) {
-        return null;
-    }
-
-    default Object newNBTTag(Constructor<?> constructor, Object... args) {
-        return null;
-    }
-
-    default Constructor<?> getConstructor(Class<?> nmsNBTTagLongCls, Class<?>... classes) {
-        return null;
-    }
-
-    default Class<?> getClassOfPath(String path) {
-        return null;
-    }
-}

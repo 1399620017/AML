@@ -5,8 +5,8 @@ import java.util.Arrays;
 import org.bukkit.Material;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import top.aot.ml.cls.Cls;
-import top.aot.ml.plugin.APlugin.AssemblyDynamic;
+import top.aot.cls.Cls;
+import top.aot.plugin.APlugin.AssemblyDynamic;
 
 public abstract class Button<T> extends AssemblyDynamic<T>{
 

@@ -1,4 +1,4 @@
-package top.aot.ml.cls;
+package top.aot.cls;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -6,24 +6,34 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Projectile;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.projectiles.ProjectileSource;
 import setting.GuiSetup;
 import setting.MonsterList;
 import setting.MonsterTable;
+import top.aot.bean.RcEvent;
+import top.aot.et.RCMain;
+import top.aot.et.command.OpenRcCommand;
+import top.aot.et.command.ReloadRcCommand;
+import top.aot.et.listener.KillListener;
+import top.aot.et.submission.Submission;
+import top.aot.itf.*;
 import top.aot.ml.MListMain;
 import top.aot.ml.command.AMLCommand;
 import top.aot.ml.command.OpenCommand;
 import top.aot.ml.command.ReloadCommand;
 import top.aot.ml.command.SwitchGuiSetupCommand;
 import top.aot.ml.gui.Button;
-import top.aot.ml.interfaces.tgi;
 import top.aot.ml.listener.KillEntityListener;
 import top.aot.ml.listener.PlayerLoginListener;
-import top.aot.ml.plugin.APlugin;
+import top.aot.plugin.APlugin;
 import top.aot.ml.utils.Ἐγὼὀκνοίην;
 import top.aot.ml.variable.Variable;
 
@@ -39,7 +49,7 @@ import java.util.Map;
  * @date ：Created in 2020/5/16 14:59
  * @description：ad
  */
-public enum Cls implements i, iex, is, iu, ce {
+public enum Cls implements i, iex, is, iu, ce, ircu {
     C {
         private Map<String, Method> mp = new HashMap<>();
 
@@ -61,6 +71,7 @@ public enum Cls implements i, iex, is, iu, ce {
             return ex(String.class, Cls.C.s(10));
         }
 
+        // C类方法有返回值调用
         public <T> T ex(Class<T> z, String n, Object... o) {
             try {
                 return z.cast(mp.get(n).invoke(null, o));
@@ -69,6 +80,16 @@ public enum Cls implements i, iex, is, iu, ce {
             }
         }
 
+        // C类方法空判断 i为true对象不为空返回true， i为false判断对象为空true
+        public boolean ex(Object o, boolean i) {
+            try {
+                return i == (boolean) mp.get("b").invoke(null, o);
+            } catch (Exception e) {
+                return true;
+            }
+        }
+
+        // C类方法无返回值调用
         public void ex(String n, Object... o) {
             try {
                 mp.get(n).invoke(null, o);
@@ -89,7 +110,7 @@ public enum Cls implements i, iex, is, iu, ce {
             MListMain.list = new MonsterList();
             t.getCommand(C.s(1)).setExecutor(new AMLCommand());
             papi = Bukkit.getPluginManager().getPlugin(Cls.C.s(11)); // 用服务端获取PAPI插件
-            if (papi != null) {
+            if (C.ex(papi, true)) {
                 boolean b = Variable.register();
                 if (b) {
                     APlugin.Msg.sendConMsgTrue(C.s(6));
@@ -99,6 +120,7 @@ public enum Cls implements i, iex, is, iu, ce {
             }
             // 初始化通用nms
             Cls.D.init();
+            RCMain.start(t);
         }
 
         public void _kill(EntityDeathEvent e) {
@@ -110,7 +132,7 @@ public enum Cls implements i, iex, is, iu, ce {
                     Map<String, Monster> nameTable = MListMain.list.getMonsterNameList();
 
                     String typeString = le.getType().toString();
-                    boolean isNpc = typeString.contains("CUSTOMNPC");
+                    boolean isNpc = typeString.toUpperCase().contains("NPC");
                     String customName = isNpc ? Cls.D.getName(le) : le.getCustomName();
                     if (nameTable.containsKey(customName)) {
                         Monster monster = nameTable.get(customName);
@@ -130,11 +152,14 @@ public enum Cls implements i, iex, is, iu, ce {
             new OpenCommand("m", 0, "", C.s(2), false);
             new ReloadCommand("r", 0, "", C.s(3), true);
             new SwitchGuiSetupCommand("sgs", 0, "", C.s(12), true);
+            new OpenRcCommand("rcm", 0, "", "打开日程板", false);
+            new ReloadRcCommand("rc", 0, "", "重载配置文件", true);
         }
 
         public void e(MListMain t) {
             t.regListener(new KillEntityListener());
             t.regListener(new PlayerLoginListener());
+            t.regListener(new KillListener());
         }
 
         public String f() {
@@ -239,6 +264,73 @@ public enum Cls implements i, iex, is, iu, ce {
                 };
             }
         }
+    },
+    E {
+        private final Map<String, RcEvent> killEventMap = new HashMap<>();
+        private final Map<String, RcEvent> damageEventMap = new HashMap<>();
+        @Override
+        public void init() {
+
+        }
+
+        public void _kill_rc(EntityDeathEvent e) {
+            LivingEntity entity = e.getEntity();
+            Player player = entity.getKiller();
+            if (entity instanceof Player) {
+                if (killEventMap.containsKey("Player")) {
+                    RcEvent event = killEventMap.get("Player");
+                    Submission.sendNumber(event, player, 1);
+                }
+            } else {
+                if (killEventMap.containsKey(entity.getCustomName())) {
+                    RcEvent event = killEventMap.get(entity.getCustomName());
+                    Submission.sendNumber(event, player, 1);
+                }
+            }
+        }
+
+        public void _damage_rc(EntityDamageByEntityEvent e) {
+            Entity entity = e.getDamager();
+            int damage = (int) e.getDamage(EntityDamageEvent.DamageModifier.MAGIC);
+            Player player = null;
+            if (entity instanceof Projectile) {
+                ProjectileSource ps = ((Projectile) entity).getShooter();
+                if (ps instanceof Player) {
+                    player = (Player) ps;
+                }
+            } else if (entity instanceof Player){
+                player = (Player) entity;
+            } else {
+                return;
+            }
+            if (C.ex(player, true)) {
+                ItemStack itemStack = player.getItemInHand();
+                if (C.ex(itemStack, true) && itemStack.getType() != Material.AIR) {
+                    String type = itemStack.getType().toString();
+                    for (Map.Entry<String, RcEvent> entry : damageEventMap.entrySet()) {
+                        if (type.contains(entry.getKey())) {
+                            Submission.sendNumber(entry.getValue(), player, damage);
+                        }
+                    }
+                }
+            }
+        }
+
+        public void ak(RcEvent ee) {
+            killEventMap.put("killEntity".equals(ee.getType())? ee.getContent(): "Player", ee);
+        }
+
+        public void ad(RcEvent ee) {
+            damageEventMap.put(ee.getContent(), ee);
+        }
+
+        public void ck() {
+            killEventMap.clear();
+        }
+
+        public void cd() {
+            damageEventMap.clear();
+        }
     };
     public static Object cls;
 
@@ -250,8 +342,12 @@ public enum Cls implements i, iex, is, iu, ce {
         return istr.v();
     }
 
+    /**
+     * C类定义
+     * */
     public static class C {
 
+        // 系统常量表
         private static final String[] s = new String[]{
                 // "插件名称AML|开发人员aoisa|QQ1399620017"  0
                 new String(new byte[]{
@@ -323,10 +419,12 @@ public enum Cls implements i, iex, is, iu, ce {
                 
         };
 
+        // 常量表取值
         public static String s(int S) {
             return s[S];
         }
 
+        // 对象空判断
         public static boolean b(Object object) {
             return object != null;
         }
@@ -693,7 +791,7 @@ public enum Cls implements i, iex, is, iu, ce {
             Role role = Role.getRole(getOwnerName());
             for (String name : listName) {
                 Monster monster = MListMain.list.getMonsterById(name);
-                if (monster != null) {
+                if (C.ex(monster, true)) {
                     boolean unlock = role.isUnlock(monster);
                     APlugin.AssemblyDynamic<ListGui> monsterAssembly = new APlugin.AssemblyDynamic<ListGui>(this) {
 
@@ -1103,83 +1201,3 @@ public enum Cls implements i, iex, is, iu, ce {
 
 }
 
-interface i {
-
-    String s = Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
-
-    void init();
-
-}
-
-interface iex {
-
-    String s = Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
-
-    default <T> T ex(Class<T> z, String n, Object... o) {
-        return null;
-    }
-
-    default void ex(String n, Object... o) {
-
-    }
-
-    default Class<?> c(byte[] b, int len) {
-        return null;
-    }
-}
-
-interface is {
-
-    String s = Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
-
-    default String version() {
-        return null;
-    }
-
-    default String s(int s) {
-        return null;
-    }
-
-    default String f() {
-        return null;
-    }
-
-}
-
-interface iu {
-
-    String s = Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
-
-    // 关联onEnable()
-    default void d(MListMain t) {
-    }
-
-    // 关联击杀处理
-    default void _kill(EntityDeathEvent e) {
-
-    }
-
-    // 命令注册
-    default void co() {
-
-    }
-
-    // 监听器注册
-    default void e(MListMain t) {
-
-    }
-
-    // 版本判断
-    default boolean is17Version() {
-        return false;
-    }
-
-}
-
-// 通用实体接口
-interface ce {
-
-    default String getName(Entity entity) {
-        return null;
-    }
-}

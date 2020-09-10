@@ -3,10 +3,11 @@ package setting;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
-import top.aot.ml.cls.Cls;
-import top.aot.ml.interfaces.tgi;
-import top.aot.ml.plugin.APlugin;
-import top.aot.ml.plugin.APlugin.AsxConfig;
+import top.aot.cls.Cls;
+import top.aot.itf.tgi;
+import top.aot.itf.tsi;
+import top.aot.plugin.APlugin;
+import top.aot.plugin.APlugin.AsxConfig;
 
 import java.util.*;
 
@@ -21,7 +22,7 @@ public class GuiSetup extends AsxConfig {
     private static GuiSetup table;
 
     public static GuiSetup getMonsterTable() {
-        if (table == null) {
+        if (Cls.C.ex(table, false)) {
             table = new GuiSetup();
         }
         return table;
@@ -72,7 +73,7 @@ public class GuiSetup extends AsxConfig {
         for (String typeName : typeNameSet) {
             tsi tsi = new ti();
             String name = itemConfig.getString(typeName + ".name");
-            if (name != null && name.length() > 0) {
+            if (Cls.C.ex(name, true) && name.length() > 0) {
                 tsi.setName(name);
             } else {
                 APlugin.Msg.sendConMsgFalse(String.format("读取分类 %s 的name失败!", typeName));
@@ -202,15 +203,4 @@ public class GuiSetup extends AsxConfig {
         }
     }
 
-}
-interface tsi extends tgi {
-
-    void setName(String name);
-    void setItemId(int itemId);
-    void setDataId(short dataId);
-    void setItemName(String itemName);
-    void setDesc(List<String> desc);
-    void setNumber(int number);
-    void setSlot(int slot);
-    void setMonsterList(List<String> monsterList);
 }

@@ -2,9 +2,9 @@ package top.aot.ml.command;
 
 import org.bukkit.entity.Player;
 
-import top.aot.ml.cls.Cls;
-import top.aot.ml.plugin.APlugin.Command;
-import top.aot.ml.plugin.APlugin.GuiBase;
+import top.aot.cls.Cls;
+import top.aot.plugin.APlugin.Command;
+import top.aot.plugin.APlugin.GuiBase;
 
 public class OpenCommand extends Command{
 

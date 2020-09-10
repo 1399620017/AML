@@ -2,9 +2,8 @@ package top.aot.ml.listener;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
-import top.aot.ml.cls.Cls;
+import top.aot.cls.Cls;
 
 public class PlayerLoginListener implements Listener{
 	static {

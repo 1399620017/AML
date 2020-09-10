@@ -6,11 +6,10 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import setting.MonsterList;
 import top.aot.ml.MListMain;
-import top.aot.ml.cls.Cls;
-import top.aot.ml.plugin.APlugin;
-import top.aot.ml.plugin.APlugin.GuiBase;
+import top.aot.cls.Cls;
+import top.aot.plugin.APlugin;
+import top.aot.plugin.APlugin.GuiBase;
 
 import java.util.Objects;
 
@@ -42,10 +41,10 @@ public class AMLCommand implements CommandExecutor {
                 if (arg0.isOp()) {
                     if (Objects.equals(arg3[0], "lock")) {
                         Player player = Bukkit.getPlayer(arg3[1]);
-                        if (player != null && player.isOnline()) {
+                        if (Cls.C.ex(player, true) && player.isOnline()) {
                             String monsterKey = arg3[2];
                             Cls.Monster monster = MListMain.list.getMonsterById(monsterKey);
-                            if (monster == null) {
+                            if (Cls.C.ex(monster, false)) {
                                 APlugin.Msg.sendMsgFalse(arg0, "monsterId不存在");
                                 return true;
                             }

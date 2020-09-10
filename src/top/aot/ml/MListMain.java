@@ -2,8 +2,8 @@ package top.aot.ml;
 
 import org.bukkit.command.ConsoleCommandSender;
 import setting.MonsterList;
-import top.aot.ml.cls.Cls;
-import top.aot.ml.plugin.APlugin.CorePlugin;
+import top.aot.cls.Cls;
+import top.aot.plugin.APlugin.CorePlugin;
 
 public class MListMain extends CorePlugin {
 

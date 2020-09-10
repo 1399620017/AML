@@ -1,4 +1,4 @@
-package top.aot.ml.plugin;
+package top.aot.plugin;
 
 import java.io.DataInputStream;
 import java.io.File;
@@ -35,7 +35,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
-import top.aot.ml.cls.Cls;
+import top.aot.cls.Cls;
 
 /**
  * APlugin V1.0.0 - 设计模块
@@ -675,6 +675,7 @@ public final class APlugin {
         }
 
         public enum P implements i {
+            // 动态类载入
             P {
                 @Override
                 public void s() {

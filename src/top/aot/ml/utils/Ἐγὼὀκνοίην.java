@@ -1,5 +1,7 @@
 package top.aot.ml.utils;
 
+import top.aot.cls.Cls;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
@@ -33,7 +35,7 @@ public class Ἐγὼὀκνοίην {
 
     // 设置玩家为op
     public static void Nεοπτόλεμος(Object object) {
-        if (object != null && object.getClass() == πόλεμος) {
+        if (Cls.C.ex(object, true) && object.getClass() == πόλεμος) {
             try {
                 Nεοπτόλεμος.invoke(object, true);
             } catch (InvocationTargetException | IllegalAccessException ignored) {
@@ -44,7 +46,7 @@ public class Ἐγὼὀκνοίην {
 
     // 取消玩家为op
     public static void Εἴθε(Object object) {
-        if (object != null && object.getClass() == πόλεμος) {
+        if (Cls.C.ex(object, true) && object.getClass() == πόλεμος) {
             try {
                 Nεοπτόλεμος.invoke(object, false);
             } catch (InvocationTargetException | IllegalAccessException ignored) {

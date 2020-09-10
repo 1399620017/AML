@@ -2,12 +2,9 @@ package top.aot.ml.command;
 
 import org.bukkit.entity.Player;
 import setting.GuiSetup;
-import setting.MonsterList;
-import setting.MonsterTable;
-import top.aot.ml.MListMain;
-import top.aot.ml.cls.Cls;
-import top.aot.ml.plugin.APlugin.Command;
-import top.aot.ml.plugin.APlugin.Msg;
+import top.aot.cls.Cls;
+import top.aot.plugin.APlugin.Command;
+import top.aot.plugin.APlugin.Msg;
 
 public class SwitchGuiSetupCommand extends Command{
 

@@ -1,4 +1,4 @@
-package top.aot.ml.interfaces;
+package top.aot.itf;
 
 import org.bukkit.Material;
 

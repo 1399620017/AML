@@ -7,8 +7,8 @@ import java.util.Map;
 
 import org.bukkit.configuration.file.FileConfiguration;
 
-import top.aot.ml.cls.Cls;
-import top.aot.ml.plugin.APlugin.AsxConfig;
+import top.aot.cls.Cls;
+import top.aot.plugin.APlugin.AsxConfig;
 
 public class MonsterList extends AsxConfig {
 
