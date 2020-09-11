@@ -1,17 +1,17 @@
 package setting;
 
 import org.bukkit.configuration.file.FileConfiguration;
-import top.aot.et.RCMain;
+import top.aot.et.rcm;
 import top.aot.bean.RcEvent;
 import top.aot.cls.Cls;
-import top.aot.plugin.APlugin;
+import top.aot.plugin.APlugin.AsxConfig;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class EventList extends APlugin.AsxConfig {
+public class EventList extends AsxConfig {
 
 	private Map<String, RcEvent> eMap;
 	private Map<String, RcEvent> bMap;
@@ -103,7 +103,7 @@ public class EventList extends APlugin.AsxConfig {
 	protected void loadConfig(FileConfiguration config) {
 		Cls.E.ck();
 		eMap = new HashMap<>();
-		for (String key : RCMain.setting.geteList()) {
+		for (String key : rcm.setting.geteList()) {
 			RcEvent ee = new RcEvent(key).setName(config.getString("event." + key + ".name"))
 					.setType(config.getString("event." + key + ".type"))
 					.setContent(config.getString("event." + key + ".content"))
@@ -127,7 +127,7 @@ public class EventList extends APlugin.AsxConfig {
 			}
 		}
 		bMap = new HashMap<>();
-		for (String key : RCMain.setting.getbList()) {
+		for (String key : rcm.setting.getbList()) {
 			RcEvent eb = new RcEvent(key).setName(config.getString("box." + key + ".name"))
 					.setType(config.getString("box." + key + ".type"))
 					.setContent(config.getString("box." + key + ".content"))

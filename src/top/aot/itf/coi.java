@@ -1,7 +1,7 @@
 package top.aot.itf;
 
 import top.aot.cls.Cls;
-import top.aot.ml.nms.Currency;
+import top.aot.ml.nms.cur;
 
 import java.util.List;
 import java.util.Set;
@@ -112,7 +112,7 @@ public interface coi {
         return null;
     }
 
-    default Currency.cco getCurrencyCompound(Object object) {
+    default cur.cco getCurrencyCompound(Object object) {
         return null;
     }
 

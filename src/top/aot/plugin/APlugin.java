@@ -495,8 +495,8 @@ public final class APlugin {
          * 发送当前命令使用方式
          */
         public final void cmdUsage(Player player, Command command) {
-            Msg.sendMessage(player, new StringBuilder(Msg.getPluginName()).append(APlugin.cmdName).append(" ")
-                    .append(command.name).append(" ").append(this.usage).append("  ").append(this.desc).toString());
+            Msg.sendMessage(player, Msg.getPluginName() + APlugin.cmdName + " " +
+                    command.name + " " + this.usage + "  " + this.desc);
         }
 
         /**

@@ -1,12 +1,12 @@
 package setting;
 
 import org.bukkit.configuration.file.FileConfiguration;
-import top.aot.plugin.APlugin;
+import top.aot.plugin.APlugin.AsxConfig;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class EventSetup extends APlugin.AsxConfig {
+public class EventSetup extends AsxConfig {
 
 	private List<String> eList;
 	private List<String> bList;

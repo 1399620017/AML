@@ -15,7 +15,7 @@ public class MListMain extends CorePlugin {
 
     @Override
     public void start() {
-        Cls.C.d(this);
+        Cls.C.d();
     }
 
     @Override
@@ -35,7 +35,7 @@ public class MListMain extends CorePlugin {
 
     @Override
     public void listenter() {
-        Cls.C.e(this);
+        Cls.C.e();
     }
 
     @Override

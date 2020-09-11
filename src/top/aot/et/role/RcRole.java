@@ -1,14 +1,15 @@
 package top.aot.et.role;
 
 import org.bukkit.configuration.file.FileConfiguration;
-import top.aot.et.RCMain;
+import top.aot.et.rcm;
 import top.aot.bean.RcEvent;
 import top.aot.cls.Cls;
-import top.aot.plugin.APlugin;
+import top.aot.plugin.APlugin.Util.DateTool;
+import top.aot.plugin.APlugin.AsxConfig;
 
 import java.util.*;
 
-public class RcRole extends APlugin.AsxConfig {
+public class RcRole extends AsxConfig {
 
 	static {
 		Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
@@ -24,13 +25,13 @@ public class RcRole extends APlugin.AsxConfig {
 	}
 	
 	private boolean reset() {
-		if (!Objects.equals(APlugin.Util.DateTool.getDateString(), date)) {
-			for (String id : RCMain.setting.geteList()) {
+		if (!Objects.equals(DateTool.getDateString(), date)) {
+			for (String id : rcm.setting.geteList()) {
 				customConfig.set("event." + id, 0);
 			}
 			point = 0;
 			boxList = new ArrayList<>();
-			date = APlugin.Util.DateTool.getDateString();
+			date = DateTool.getDateString();
 			update();
 			return true;
 		}
@@ -64,7 +65,7 @@ public class RcRole extends APlugin.AsxConfig {
 	public Map<String, Integer> getEValues() {
 		reset();
 		Map<String, Integer> map = new HashMap<>();
-		for (String key : RCMain.eventList.getEventTable().keySet()) {
+		for (String key : rcm.eventList.getEventTable().keySet()) {
 			map.put(key, customConfig.getInt("event." + key, 0));
 		}
 		map.put("point", customConfig.getInt("point"));

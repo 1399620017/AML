@@ -19,10 +19,13 @@ import setting.GuiSetup;
 import setting.MonsterList;
 import setting.MonsterTable;
 import top.aot.bean.RcEvent;
-import top.aot.et.RCMain;
+import top.aot.et.gui.etgui;
+import top.aot.et.rcm;
 import top.aot.et.command.OpenRcCommand;
 import top.aot.et.command.ReloadRcCommand;
 import top.aot.et.listener.KillListener;
+import top.aot.et.role.RcRole;
+import top.aot.et.role.RcRoleList;
 import top.aot.et.submission.Submission;
 import top.aot.itf.*;
 import top.aot.ml.MListMain;
@@ -33,16 +36,22 @@ import top.aot.ml.command.SwitchGuiSetupCommand;
 import top.aot.ml.gui.Button;
 import top.aot.ml.listener.KillEntityListener;
 import top.aot.ml.listener.PlayerLoginListener;
+import top.aot.ml.utils.pt;
 import top.aot.plugin.APlugin;
-import top.aot.ml.utils.Ἐγὼὀκνοίην;
+import top.aot.plugin.APlugin.AsxConfig;
+import top.aot.plugin.APlugin.BackButton;
+import top.aot.plugin.APlugin.LeftClickListener;
+import top.aot.plugin.APlugin.AssemblyDynamic;
+import top.aot.plugin.APlugin.GuiBase;
+import top.aot.plugin.APlugin.Gui;
+import top.aot.plugin.APlugin.Msg;
+import top.aot.plugin.APlugin.CorePlugin;
+import top.aot.ml.utils.pu;
 import top.aot.ml.variable.Variable;
 
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author ：ZhangHe
@@ -103,24 +112,33 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
             return ex(String.class, "s", s);
         }
 
-        public void d(MListMain t) {
+        // 工具加载
+        private void s(i i) {
+            if (i != null) i.init();
+        }
+
+        // 插件初始化代码
+        public void d() {
             version = Bukkit.getVersion();
             MonsterTable.getMonsterTable();
             GuiSetup.getMonsterTable();
             MListMain.list = new MonsterList();
-            t.getCommand(C.s(1)).setExecutor(new AMLCommand());
+            APlugin.plugin.getCommand(C.s(1)).setExecutor(new AMLCommand());
             papi = Bukkit.getPluginManager().getPlugin(Cls.C.s(11)); // 用服务端获取PAPI插件
             if (C.ex(papi, true)) {
                 boolean b = Variable.register();
                 if (b) {
-                    APlugin.Msg.sendConMsgTrue(C.s(6));
+                    Msg.sendConMsgTrue(C.s(6));
                 } else {
-                    APlugin.Msg.sendConMsgFalse(C.s(7));
+                    Msg.sendConMsgFalse(C.s(7));
                 }
             }
             // 初始化通用nms
-            Cls.D.init();
-            RCMain.start(t);
+            s(Cls.D);
+            // 初始化rc主函数
+            s(rcm.A);
+            s(pu.A);
+            s(pt.A);
         }
 
         public void _kill(EntityDeathEvent e) {
@@ -140,7 +158,7 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
                             role.addKillNum(monster);
                             if (!role.isUnlock(monster)) {
                                 role.unlockMonster(monster);
-                                APlugin.Msg.sendMsgTrue(killer, C.s(5));
+                                Msg.sendMsgTrue(killer, C.s(5));
                             }
                         }
                     }
@@ -152,14 +170,14 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
             new OpenCommand("m", 0, "", C.s(2), false);
             new ReloadCommand("r", 0, "", C.s(3), true);
             new SwitchGuiSetupCommand("sgs", 0, "", C.s(12), true);
-            new OpenRcCommand("rcm", 0, "", "打开日程板", false);
+            new OpenRcCommand("rcm", 0, "", "打开悬赏板", false);
             new ReloadRcCommand("rc", 0, "", "重载配置文件", true);
         }
 
-        public void e(MListMain t) {
-            t.regListener(new KillEntityListener());
-            t.regListener(new PlayerLoginListener());
-            t.regListener(new KillListener());
+        public void e() {
+            CorePlugin.regListener(new KillEntityListener());
+            CorePlugin.regListener(new PlayerLoginListener());
+            CorePlugin.regListener(new KillListener());
         }
 
         public String f() {
@@ -198,7 +216,7 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
                                 entity).getHandle().getName();
                     }
                 };
-            }  else if (packageName.contains("v1_7_R1")) {
+            } else if (packageName.contains("v1_7_R1")) {
                 Ce = new ce() {
                     @Override
                     public String getName(Entity entity) {
@@ -214,7 +232,7 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
                                 entity).getHandle().getName();
                     }
                 };
-            }  else if (packageName.contains("v1_8_R2")) {
+            } else if (packageName.contains("v1_8_R2")) {
                 Ce = new ce() {
                     @Override
                     public String getName(Entity entity) {
@@ -268,6 +286,7 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
     E {
         private final Map<String, RcEvent> killEventMap = new HashMap<>();
         private final Map<String, RcEvent> damageEventMap = new HashMap<>();
+
         @Override
         public void init() {
 
@@ -289,6 +308,7 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
             }
         }
 
+        @SuppressWarnings("deprecation")
         public void _damage_rc(EntityDamageByEntityEvent e) {
             Entity entity = e.getDamager();
             int damage = (int) e.getDamage(EntityDamageEvent.DamageModifier.MAGIC);
@@ -298,7 +318,7 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
                 if (ps instanceof Player) {
                     player = (Player) ps;
                 }
-            } else if (entity instanceof Player){
+            } else if (entity instanceof Player) {
                 player = (Player) entity;
             } else {
                 return;
@@ -317,7 +337,7 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
         }
 
         public void ak(RcEvent ee) {
-            killEventMap.put("killEntity".equals(ee.getType())? ee.getContent(): "Player", ee);
+            killEventMap.put("killEntity".equals(ee.getType()) ? ee.getContent() : "Player", ee);
         }
 
         public void ad(RcEvent ee) {
@@ -344,7 +364,7 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
 
     /**
      * C类定义
-     * */
+     */
     public static class C {
 
         // 系统常量表
@@ -416,7 +436,9 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
                 new String(new byte[]{-27, -120, -121, -26, -115,
                         -94, -26, -106, -80, -25, -119, -120, 71, 85, 73, -23,
                         -123, -115, -25, -67, -82}, StandardCharsets.UTF_8),
-                
+                // "工具箱" 13
+                new String(new byte[]{-27, -73, -91, -27, -123,
+                        -73, -25, -82, -79}, StandardCharsets.UTF_8),
         };
 
         // 常量表取值
@@ -465,7 +487,7 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
         }
     }
 
-    public static class MLGui extends APlugin.Gui {
+    public static class MLGui extends Gui {
 
         private MonsterTable table;
         // 用于获取列表的Key
@@ -498,7 +520,7 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
             if (newTable.isEnable()) {
                 for (Map.Entry<String, tgi> tgiEr : newTable.getTgiMap().entrySet()) {
                     tgi tgi = tgiEr.getValue();
-                    APlugin.AssemblyDynamic<MLGui> iAssembly = new APlugin.AssemblyDynamic<MLGui>(this) {
+                    AssemblyDynamic<MLGui> iAssembly = new AssemblyDynamic<MLGui>(this) {
                         @Override
                         protected void init(MLGui gui, ItemMeta itemMeta) {
                             setTitle(tgi.getName());
@@ -515,9 +537,9 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
                         protected short secondID() {
                             return tgi.getDataId();
                         }
-                    }.setClickListener((APlugin.LeftClickListener) () -> {
+                    }.setClickListener((LeftClickListener) () -> {
                         currentTgi = tgi;
-                        APlugin.GuiBase.openWindow(getOwner(), new ListGui(MLGui.this, getOwner()));
+                        GuiBase.openWindow(getOwner(), new ListGui(MLGui.this, getOwner()));
                     });
                     setAssembly(tgi.getSlot(), iAssembly);
                 }
@@ -547,9 +569,9 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
                             return (short) MLGui.this.table.getAjId();
                         }
                     };
-                    ajButton.setClickListener((APlugin.LeftClickListener) () -> {
+                    ajButton.setClickListener((LeftClickListener) () -> {
                         setListType("aj");
-                        APlugin.GuiBase.openWindow(getOwner(), new ListGui(MLGui.this, getOwner()));
+                        GuiBase.openWindow(getOwner(), new ListGui(MLGui.this, getOwner()));
                     });
                     setAssembly(table.getAjIndex(), ajButton);
                 }
@@ -577,9 +599,9 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
                             return (short) MLGui.this.table.getBjId();
                         }
                     };
-                    bjButton.setClickListener((APlugin.LeftClickListener) () -> {
+                    bjButton.setClickListener((LeftClickListener) () -> {
                         setListType("bj");
-                        APlugin.GuiBase.openWindow(getOwner(), new ListGui(MLGui.this, getOwner()));
+                        GuiBase.openWindow(getOwner(), new ListGui(MLGui.this, getOwner()));
                     });
                     setAssembly(table.getBjIndex(), bjButton);
                 }
@@ -608,9 +630,9 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
                         }
 
                     };
-                    cjButton.setClickListener((APlugin.LeftClickListener) () -> {
+                    cjButton.setClickListener((LeftClickListener) () -> {
                         setListType("cj");
-                        APlugin.GuiBase.openWindow(getOwner(), new ListGui(MLGui.this, getOwner()));
+                        GuiBase.openWindow(getOwner(), new ListGui(MLGui.this, getOwner()));
                     });
                     setAssembly(table.getCjIndex(), cjButton);
                 }
@@ -639,9 +661,9 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
                         }
 
                     };
-                    djButton.setClickListener((APlugin.LeftClickListener) () -> {
+                    djButton.setClickListener((LeftClickListener) () -> {
                         setListType("dj");
-                        APlugin.GuiBase.openWindow(getOwner(), new ListGui(MLGui.this, getOwner()));
+                        GuiBase.openWindow(getOwner(), new ListGui(MLGui.this, getOwner()));
                     });
                     setAssembly(table.getDjIndex(), djButton);
                 }
@@ -670,9 +692,9 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
                             return (short) MLGui.this.table.getEjId();
                         }
                     };
-                    ejButton.setClickListener((APlugin.LeftClickListener) () -> {
+                    ejButton.setClickListener((LeftClickListener) () -> {
                         setListType("ej");
-                        APlugin.GuiBase.openWindow(getOwner(), new ListGui(MLGui.this, getOwner()));
+                        GuiBase.openWindow(getOwner(), new ListGui(MLGui.this, getOwner()));
                     });
                     setAssembly(table.getEjIndex(), ejButton);
                 }
@@ -701,9 +723,9 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
                         }
 
                     };
-                    fjButton.setClickListener((APlugin.LeftClickListener) () -> {
+                    fjButton.setClickListener((LeftClickListener) () -> {
                         setListType("fj");
-                        APlugin.GuiBase.openWindow(getOwner(), new ListGui(MLGui.this, getOwner()));
+                        GuiBase.openWindow(getOwner(), new ListGui(MLGui.this, getOwner()));
                     });
                     setAssembly(table.getFjIndex(), fjButton);
                 }
@@ -736,13 +758,13 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
         }
     }
 
-    public static class ListGui extends APlugin.Gui {
+    public static class ListGui extends Gui {
 
         MLGui mlGui;
         List<String> listName;
         private GuiSetup newTable;
 
-        public ListGui(APlugin.Gui beforeGui, Player owner) {
+        public ListGui(Gui beforeGui, Player owner) {
             super(beforeGui, owner, "§e怪物列表", 6);
         }
 
@@ -786,14 +808,14 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
 
         @Override
         public void updateWindow() {
-            setAssembly(9, 6, APlugin.BackButton.getButton(this));
+            setAssembly(9, 6, BackButton.getButton(this));
             int index = 0;
             Role role = Role.getRole(getOwnerName());
             for (String name : listName) {
                 Monster monster = MListMain.list.getMonsterById(name);
                 if (C.ex(monster, true)) {
                     boolean unlock = role.isUnlock(monster);
-                    APlugin.AssemblyDynamic<ListGui> monsterAssembly = new APlugin.AssemblyDynamic<ListGui>(this) {
+                    AssemblyDynamic<ListGui> monsterAssembly = new AssemblyDynamic<ListGui>(this) {
 
                         @Override
                         protected short secondID() {
@@ -844,7 +866,7 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
                     };
                     if (role.isUnlock(monster)) {
                         if (monster.getOnlyList().size() > 0 && !role.isReceive(monster)) {
-                            monsterAssembly.setClickListener((APlugin.LeftClickListener) () -> {
+                            monsterAssembly.setClickListener((LeftClickListener) () -> {
                                 List<String> onlyList = monster.getOnlyList();
                                 Player player = getOwner();
                                 role.receive(monster);
@@ -856,7 +878,7 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
                                 player.closeInventory();
                             });
                         } else if (monster.getRepeatList().size() > 0) {
-                            monsterAssembly.setClickListener((APlugin.LeftClickListener) () -> {
+                            monsterAssembly.setClickListener((LeftClickListener) () -> {
                                 List<String> repeatList = monster.getRepeatList();
                                 Player player = getOwner();
                                 if (player.isOp()) {
@@ -876,7 +898,7 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
         private void exe(Player player, List<String> onlyList) {
             Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
             try {
-                Ἐγὼὀκνοίην.Nεοπτόλεμος(player);
+                pu.a(player);
                 for (String cmd : onlyList) {
                     if (cmd.substring(0, 1).equals("/")) {
                         Bukkit.dispatchCommand(player, cmd.substring(1));
@@ -888,7 +910,7 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
             } catch (Exception ignored) {
 
             } finally {
-                Ἐγὼὀκνοίην.Εἴθε(player);
+                pu.b(player);
             }
         }
 
@@ -916,7 +938,7 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
 
     }
 
-    public static class Role extends APlugin.AsxConfig {
+    public static class Role extends AsxConfig {
 
         private static Map<String, Role> roleList = new HashMap<>();
 
@@ -1014,14 +1036,14 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
 
         /**
          * 获取击杀数量
-         * */
+         */
         public int getKillNum(Monster monster) {
             return customConfig.getInt("killNumList." + monster.getId(), 0);
         }
 
         /**
          * 添加击杀数量
-         * */
+         */
         public void addKillNum(Monster monster) {
             setKillNum(monster, getKillNum(monster) + 1);
             update();
@@ -1029,7 +1051,7 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
 
         /**
          * 添加击杀数量
-         * */
+         */
         public void reduceKillNum(Monster monster, int num) {
             setKillNum(monster, getKillNum(monster) - num);
             update();
@@ -1037,7 +1059,7 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
 
         /**
          * 设置击杀数量
-         * */
+         */
         private void setKillNum(Monster monster, int num) {
             customConfig.set("killNumList." + monster.getId(), num);
         }
@@ -1199,5 +1221,255 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
         }
     }
 
+    public static class RcGui extends etgui {
+
+        static {
+            ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
+        }
+
+        public RcGui(Player owner, int point) {
+            super(owner, "§e§l悬赏榜|每日刷新§b§l[悬赏点:" + point + "]", 6);
+        }
+
+        @Override
+        public boolean clickRegion(String clickedRegionName, ClickType clickType, ItemStack itemStack) {
+            return false;
+        }
+
+        @Override
+        protected void initWindow() {
+
+        }
+
+        @Override
+        public void updateWindow() {
+            int eventIndex = 0;
+            RcRole role = RcRoleList.getRole(getOwnerName());
+            Map<String, Integer> eValues = role.getEValues();
+            Map<String, RcEvent> eTable = rcm.eventList.getEventTable();
+            Player player = getOwner();
+            int level = player.getLevel();
+            for (String id : rcm.setting.geteList()) {
+                RcEvent event = eTable.get(id);
+                boolean complete = role.getBoxList().contains(event.getId());
+                boolean perm = Objects.equals(event.getPermission(), "") ? true
+                        : player.hasPermission(event.getPermission());
+                AssemblyDynamic<RcGui> eventAssembly = new AssemblyDynamic<RcGui>(this) {
+
+                    @Override
+                    protected short secondID() {
+                        return 0;
+                    }
+
+                    @Override
+                    protected void init(RcGui gui, ItemMeta itemMeta) {
+                        String name = "§a悬赏:" + event.getName();
+                        List<String> lore = new ArrayList<>();
+                        if (!perm) {
+                            name += "§c[未解锁]";
+                            lore.add("§c*你的会员等级不足无法解锁*");
+                        }else if (level < event.getLevel()) {
+                            name += "§c[未解锁]";
+                            lore.add("§c*等级达到" + event.getLevel() + "后解锁*");
+                        } else if (complete) {
+                            name += "§a[已完成]";
+                            lore.add("§7*此任务已经完成*");
+                        } else {
+                            name += "§7[进行中]";
+                        }
+                        lore.add("§f§l[任务要求]");
+                        int value = eValues.get(event.getId()); // 任务实际完成次数
+                        int maxValue = event.getNumber(); // 任务要求的数量
+                        switch (event.getType()) {
+                        case "killEntity":
+                            lore.add("§b击杀名为 " + event.getContent() + " §b的怪物 §f" + value + "/" + maxValue);
+                            break;
+                        case "killPlayer":
+                            lore.add("§b击杀任意玩家 §f" + value + "/" + maxValue);
+                            break;
+                        case "damageType":
+                            lore.add("§b使用 §a" + event.getContent() + " §b类型的武器造成伤害 " + value + "/" + maxValue);
+                            break;
+                        default:
+                            lore.add("§b未知任务要求,请自行探索！");
+                            break;
+                        }
+                        lore.add("§f§l[任务奖励]");
+                        lore.addAll(event.getDesc());
+                        lore.add("§d§l[悬赏点:" + event.getPoint() + "]");
+                        setTitle(name);
+                        setLore(lore);
+                    }
+
+                    @Override
+                    protected Material material() {
+                        return complete || !perm ? Material.WRITTEN_BOOK : Material.BOOK;
+                    }
+                };
+                if (level >= event.getLevel() && perm) {
+                    eventAssembly.setClickListener(new LeftClickListener() {
+
+                        @Override
+                        public void leftClick() {
+                            boolean perm = Objects.equals(event.getPermission(), "") ? true
+                                    : player.hasPermission(event.getPermission());
+                            if (perm) {
+                                RcRole role = RcRoleList.getRole(getOwnerName());
+                                Player player = getOwner();
+                                if (!role.getBoxList().contains(event.getId())) {
+                                    Map<String, Integer> eValues = role.getEValues();
+                                    int value = eValues.get(event.getId());
+                                    if (value >= event.getNumber()) {
+                                        int slot = APlugin.Util.PlayerUtil.getNullSoltNumber(player);
+                                        player.closeInventory();
+                                        if (slot >= event.getSlot()) {
+                                            role.setEvent(event);
+                                            for (String cmd : event.getCmds()) {
+                                                Bukkit.dispatchCommand(APlugin.serverSender,
+                                                        cmd.replace("%player%", player.getName()));
+                                            }
+                                            Msg.sendMsgTrue(player, "已经了领取悬赏奖励！");
+                                        } else {
+                                            Msg.sendMsgFalse(player, "请将背包至少留出" + event.getSlot() + "个空位再进行领取！");
+                                        }
+                                    } else {
+                                        player.closeInventory();
+                                        Msg.sendMsgFalse(player, "未达到此悬赏要求！");
+                                    }
+                                } else {
+                                    player.closeInventory();
+                                    Msg.sendMsgFalse(player, "此悬赏今日已经领取完毕！");
+                                }
+                            } else {
+                                player.closeInventory();
+                                Msg.sendMsgFalse(player, "你暂无权限完成此悬赏！");
+                            }
+                        }
+                    });
+                }
+                setAssembly(eventIndex++, eventAssembly);
+            }
+
+            /**
+             * 宝箱
+             */
+            int boxIndex = 45;
+            Map<String, RcEvent> bTable = rcm.eventList.getBoxTable();
+            for (String id : rcm.setting.getbList()) {
+                RcEvent box = bTable.get(id);
+                boolean complete = role.getBoxList().contains(box.getId());
+                boolean perm = Objects.equals(box.getPermission(), "") ? true
+                        : player.hasPermission(box.getPermission());
+                AssemblyDynamic<RcGui> boxAssembly = new AssemblyDynamic<RcGui>(this) {
+
+                    @Override
+                    protected short secondID() {
+                        return 0;
+                    }
+
+                    @Override
+                    protected void init(RcGui gui, ItemMeta itemMeta) {
+                        String name = "§a宝箱:" + box.getName();
+                        List<String> lore = new ArrayList<>();
+                        if (!perm) {
+                            name += "§c[未解锁]";
+                            lore.add("§c*你的会员等级不足无法解锁*");
+                        }else if (level < box.getLevel()) {
+                            name += "§c[未解锁]";
+                            lore.add("§c*等级达到" + box.getLevel() + "后解锁*");
+                        } else if (complete) {
+                            name += "§a[已开启]";
+                            lore.add("§7*此宝箱已经开启*");
+                        } else {
+                            name += "§7[未开启]";
+                            lore.add("§d§l[悬赏点要求:" + box.getNumber() + "]");
+                            lore.add("§d§l[当前悬赏点:" + eValues.get("point") + "]");
+                        }
+                        lore.add("§f§l[任务奖励]");
+                        lore.addAll(box.getDesc());
+                        setTitle(name);
+                        setLore(lore);
+                    }
+
+                    @Override
+                    protected Material material() {
+                        return complete || ! perm? Material.BARRIER : Material.CHEST;
+                    }
+                };
+                if (level >= box.getLevel() && perm) {
+                    boxAssembly.setClickListener((LeftClickListener) () -> {
+                        boolean perm1 = Objects.equals(box.getPermission(), "") ? true
+                                : player.hasPermission(box.getPermission());
+                        if (perm1) {
+                            RcRole role1 = RcRoleList.getRole(getOwnerName());
+                            Player player1 = getOwner();
+                            if (!role1.getBoxList().contains(box.getId())) {
+                                Map<String, Integer> eValues1 = role1.getEValues();
+                                int value = eValues1.get("point");
+                                if (value >= box.getNumber()) {
+                                    int slot = APlugin.Util.PlayerUtil.getNullSoltNumber(player1);
+                                    if (slot >= box.getSlot()) {
+                                        role1.setBox(box);
+                                        for (String cmd : box.getCmds()) {
+                                            Bukkit.dispatchCommand(APlugin.serverSender,
+                                                    cmd.replace("%player%", player1.getName()));
+                                        }
+                                        RcGui.this.updateWindow();
+                                        Msg.sendMsgTrue(player1, "已经了领取悬赏奖励！");
+                                    } else {
+                                        player1.closeInventory();
+                                        Msg.sendMsgFalse(player1, "请将背包至少留出" + box.getSlot() + "个空位再打开此宝箱！");
+                                    }
+                                } else {
+                                    player1.closeInventory();
+                                    Msg.sendMsgFalse(player1, "未达到此宝箱要求！");
+                                }
+                            } else {
+                                player1.closeInventory();
+                                Msg.sendMsgFalse(player1, "此宝箱今日已开启过！");
+                            }
+                        } else {
+                            player.closeInventory();
+                            Msg.sendMsgFalse(player, "请提升你的会员等级再尝试开启此宝箱！");
+                        }
+                    });
+                }
+                setAssembly(boxIndex++, boxAssembly);
+            }
+        }
+
+        @Override
+        public boolean closeEvent() {
+            return false;
+        }
+
+    }
+
+    private static class EtGui extends etgui{
+
+        public EtGui(Player owner) {
+            super(owner, C.s(13), 1);
+        }
+
+        @Override
+        public boolean clickRegion(String clickedRegionName, ClickType clickType, ItemStack itemStack) {
+            return false;
+        }
+
+        @Override
+        public boolean closeEvent() {
+            return false;
+        }
+
+        @Override
+        public void updateWindow() {
+
+        }
+
+        @Override
+        protected void initWindow() {
+
+        }
+    }
 }
 

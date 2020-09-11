@@ -6,7 +6,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import top.aot.cls.Cls;
 import top.aot.itf.tgi;
 import top.aot.itf.tsi;
-import top.aot.plugin.APlugin;
+import top.aot.plugin.APlugin.Msg;
 import top.aot.plugin.APlugin.AsxConfig;
 
 import java.util.*;
@@ -76,7 +76,7 @@ public class GuiSetup extends AsxConfig {
             if (Cls.C.ex(name, true) && name.length() > 0) {
                 tsi.setName(name);
             } else {
-                APlugin.Msg.sendConMsgFalse(String.format("读取分类 %s 的name失败!", typeName));
+                Msg.sendConMsgFalse(String.format("读取分类 %s 的name失败!", typeName));
                 continue;
             }
             tsi.setItemId(itemConfig.getInt(typeName + ".itemId", 0));
@@ -88,14 +88,14 @@ public class GuiSetup extends AsxConfig {
             if (number > 0 && number < 65) {
                 tsi.setNumber(number);
             } else {
-                APlugin.Msg.sendConMsgFalse(String.format("读取分类 %s 的number失败!", typeName));
+                Msg.sendConMsgFalse(String.format("读取分类 %s 的number失败!", typeName));
                 continue;
             }
             int slot = itemConfig.getInt(typeName + ".slot", 0);
             if (slot > 0 && slot < 55) {
                 tsi.setSlot(slot);
             } else {
-                APlugin.Msg.sendConMsgFalse(String.format("读取分类 %s 的slot失败!", typeName));
+                Msg.sendConMsgFalse(String.format("读取分类 %s 的slot失败!", typeName));
                 continue;
             }
             tgiMap.put(typeName, tsi);
@@ -131,6 +131,7 @@ public class GuiSetup extends AsxConfig {
             return name;
         }
 
+        @SuppressWarnings("deprecation")
         @Override
         public Material getMaterial() {
             return itemName.length() > 0 ? Material.getMaterial(itemName) : Material.getMaterial(itemId);

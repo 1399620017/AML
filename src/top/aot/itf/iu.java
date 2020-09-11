@@ -14,7 +14,7 @@ public interface iu {
     String s = Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
 
     // 关联onEnable()
-    default void d(MListMain t) {
+    default void d() {
     }
 
     // 关联击杀处理
@@ -28,7 +28,7 @@ public interface iu {
     }
 
     // 监听器注册
-    default void e(MListMain t) {
+    default void e() {
 
     }
 

@@ -2,7 +2,7 @@ package top.aot.itf;
 
 import org.bukkit.entity.Entity;
 import top.aot.cls.Cls;
-import top.aot.ml.nms.Currency;
+import top.aot.ml.nms.cur;
 
 /**
  * 实体接口
@@ -22,7 +22,7 @@ public interface ei {
         return null;
     }
 
-    default Currency.cee getCurrencyEntity(Entity entity) {
+    default cur.cee getCurrencyEntity(Entity entity) {
         return null;
     }
 

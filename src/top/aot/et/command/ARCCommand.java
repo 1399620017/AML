@@ -4,11 +4,10 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import top.aot.et.gui.RcGui;
 import top.aot.et.role.RcRole;
 import top.aot.et.role.RcRoleList;
 import top.aot.cls.Cls;
-import top.aot.plugin.APlugin;
+import top.aot.plugin.APlugin.GuiBase;
 
 public class ARCCommand implements CommandExecutor {
 
@@ -21,7 +20,7 @@ public class ARCCommand implements CommandExecutor {
 		if (arg0 instanceof Player) {
 			Player player = (Player) arg0;
 			RcRole role = RcRoleList.getRole(player);
-			APlugin.GuiBase.openWindow(player, new RcGui(player, role.getEValues().get("point")));
+			GuiBase.openWindow(player, new Cls.RcGui(player, role.getEValues().get("point")));
 		}
 		return true;
 	}

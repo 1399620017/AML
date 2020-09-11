@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 
 import top.aot.ml.MListMain;
 import top.aot.cls.Cls;
-import top.aot.plugin.APlugin;
+import top.aot.plugin.APlugin.Msg;
 import top.aot.plugin.APlugin.GuiBase;
 
 import java.util.Objects;
@@ -24,7 +24,7 @@ public class AMLCommand implements CommandExecutor {
         switch (arg3.length) {
             case 1:
                 if (Objects.equals(arg3[0], "v")) {
-                    APlugin.Msg.sendMsgTrue(arg0, Cls.C.version());
+                    Msg.sendMsgTrue(arg0, Cls.C.version());
                 }
                 break;
             case 0:
@@ -33,7 +33,7 @@ public class AMLCommand implements CommandExecutor {
                     GuiBase.openWindow(player, new Cls.MLGui(player));
                 } else {
                     if (arg0.isOp()) {
-                        APlugin.Msg.sendMsg(arg0, "/aml lock <player> <monsterKey> <true/false> 解锁player的monsterKey的怪物");
+                        Msg.sendMsg(arg0, "/aml lock <player> <monsterKey> <true/false> 解锁player的monsterKey的怪物");
                     }
                 }
                 break;
@@ -45,7 +45,7 @@ public class AMLCommand implements CommandExecutor {
                             String monsterKey = arg3[2];
                             Cls.Monster monster = MListMain.list.getMonsterById(monsterKey);
                             if (Cls.C.ex(monster, false)) {
-                                APlugin.Msg.sendMsgFalse(arg0, "monsterId不存在");
+                                Msg.sendMsgFalse(arg0, "monsterId不存在");
                                 return true;
                             }
                             try {
@@ -53,26 +53,26 @@ public class AMLCommand implements CommandExecutor {
                                 Cls.Role role = Cls.Role.getRole(player);
                                 if (b) {
                                     role.unlockMonster(monster);
-                                    APlugin.Msg.sendMsgTrue(arg0, "解锁成功！");
+                                    Msg.sendMsgTrue(arg0, "解锁成功！");
                                 } else {
                                     role.lockMonster(monster);
-                                    APlugin.Msg.sendMsgTrue(arg0, "锁定成功！");
+                                    Msg.sendMsgTrue(arg0, "锁定成功！");
                                 }
                             } catch (Exception e) {
-                                APlugin.Msg.sendMsgFalse(arg0, "开启关闭状态错误");
+                                Msg.sendMsgFalse(arg0, "开启关闭状态错误");
                                 return true;
                             }
                         } else {
-                            APlugin.Msg.sendMsgFalse(arg0, "player不在线");
+                            Msg.sendMsgFalse(arg0, "player不在线");
                         }
                     } else {
-                        APlugin.Msg.sendMsg(arg0, "/aml lock <player> <monsterKey> <true/false> 解锁player的monsterKey的怪物");
+                        Msg.sendMsg(arg0, "/aml lock <player> <monsterKey> <true/false> 解锁player的monsterKey的怪物");
                     }
                 }
                 break;
             default:
                 if (arg0.isOp()) {
-                    APlugin.Msg.sendMsg(arg0, "/aml lock <player> <monsterKey> <true/false> 解锁player的monsterKey的怪物");
+                    Msg.sendMsg(arg0, "/aml lock <player> <monsterKey> <true/false> 解锁player的monsterKey的怪物");
                 }
                 break;
         }

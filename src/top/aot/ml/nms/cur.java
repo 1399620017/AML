@@ -6,18 +6,19 @@ import top.aot.itf.coi;
 import top.aot.itf.ei;
 import top.aot.itf.ni;
 import top.aot.cls.Cls;
-import top.aot.plugin.APlugin;
+import top.aot.plugin.APlugin.Msg;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.*;
 
-public enum Currency implements ci, ni, coi, ei {
+@SuppressWarnings("all")
+public enum cur implements ci, ni, coi, ei {
     /**
      * nms工具类
      */
-    n {
+    A {
         {
             Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
         }
@@ -31,7 +32,7 @@ public enum Currency implements ci, ni, coi, ei {
 
         @Override
         public void init() {
-            APlugin.Msg.sendConMsgTrue("Start net.minecraft.server version search!");
+            Msg.sendConMsgTrue("Start net.minecraft.server version search!");
             for (String versionName : nmsVersionList) {
                 try {
                     Class.forName("net.minecraft.server." + versionName + ".ItemStack");
@@ -41,7 +42,7 @@ public enum Currency implements ci, ni, coi, ei {
 
                 }
             }
-            APlugin.Msg.sendConMsgTrue("Current net.minecraft.server version - " + nmsVersion);
+            Msg.sendConMsgTrue("Current net.minecraft.server version - " + nmsVersion);
         }
 
         public String getNmsVersion() {
@@ -113,7 +114,7 @@ public enum Currency implements ci, ni, coi, ei {
                 return field;
             } catch (Exception e) {
                 for (Field field : cls.getDeclaredFields()) {
-                    APlugin.Msg.sendConMsgFalse(field.getName() + " type : " + field.getType());
+                    Msg.sendConMsgFalse(field.getName() + " type : " + field.getType());
                 }
                 return null;
             }
@@ -136,7 +137,7 @@ public enum Currency implements ci, ni, coi, ei {
                 return field;
             } catch (Exception e) {
                 for (Field field : cls.getDeclaredFields()) {
-                    APlugin.Msg.sendConMsgFalse(field.getName() + " type : " + field.getType());
+                    Msg.sendConMsgFalse(field.getName() + " type : " + field.getType());
                 }
                 return null;
             }
@@ -244,224 +245,224 @@ public enum Currency implements ci, ni, coi, ei {
 
         @Override
         public void init() {
-            APlugin.Msg.sendConMsgTrue("Start initialization CurrencyItemStack");
+            Msg.sendConMsgTrue("Start initialization CurrencyItemStack");
             long time = System.nanoTime();
 
             // 加载NBTBase
-            lm(nmsNBTBaseCls = n.getNmsClass("NBTBase"),
+            lm(nmsNBTBaseCls = A.getNmsClass("NBTBase"),
                     "NBTBase");
 
             // 加载NBTTagByte
-            lm(nmsNBTTagByteCls = n.getNmsClass("NBTTagByte"),
+            lm(nmsNBTTagByteCls = A.getNmsClass("NBTTagByte"),
                     "NBTTagByte");
-            lm(nmsNBTTagByteConstructor = n.getConstructor(nmsNBTTagByteCls, byte.class),
+            lm(nmsNBTTagByteConstructor = A.getConstructor(nmsNBTTagByteCls, byte.class),
                     "NBTTagByte > constructor()");
-            lm(nmsNBTTagByteField = n.getField(nmsNBTTagByteCls, "data"),
+            lm(nmsNBTTagByteField = A.getField(nmsNBTTagByteCls, "data"),
                     "NBTTagByte > data");
 
             // 加载NBTTagByteArray
-            lm(nmsNBTTagByteArrayCls = n.getNmsClass("NBTTagByteArray"),
+            lm(nmsNBTTagByteArrayCls = A.getNmsClass("NBTTagByteArray"),
                     "NBTTagByteArray");
-            lm(nmsNBTTagByteArrayConstructor = n.getConstructor(nmsNBTTagByteArrayCls, byte[].class),
+            lm(nmsNBTTagByteArrayConstructor = A.getConstructor(nmsNBTTagByteArrayCls, byte[].class),
                     "NBTTagByteArray > constructor()");
-            lm(nmsNBTTagByteArrayField = n.getField(nmsNBTTagByteArrayCls, "data"),
+            lm(nmsNBTTagByteArrayField = A.getField(nmsNBTTagByteArrayCls, "data"),
                     "NBTTagByteArray > data");
 
             // 加载NBTTagCompound
-            lm(nmsNBTTagCompoundCls = n.getNmsClass("NBTTagCompound"),
+            lm(nmsNBTTagCompoundCls = A.getNmsClass("NBTTagCompound"),
                     "NBTTagCompound");
-            lm(cMethod = n.getMethod(nmsNBTTagCompoundCls, Set.class),
+            lm(cMethod = A.getMethod(nmsNBTTagCompoundCls, Set.class),
                     "NBTTagCompound > c()");
-            lm(nmsNBTTagCompoundSetMethod = n.getMethod(nmsNBTTagCompoundCls,
+            lm(nmsNBTTagCompoundSetMethod = A.getMethod(nmsNBTTagCompoundCls,
                     null, String.class, nmsNBTBaseCls),
                     "NBTTagCompound > set()");
-            lm(nmsNBTTagCompoundGetMethod = n.getMethod(nmsNBTTagCompoundCls,
+            lm(nmsNBTTagCompoundGetMethod = A.getMethod(nmsNBTTagCompoundCls,
                     nmsNBTBaseCls, String.class), "NBTTagCompound > get()");
-            lm(nmsNBTTagCompoundDelMethod = n.getMethod(nmsNBTTagCompoundCls,
+            lm(nmsNBTTagCompoundDelMethod = A.getMethod(nmsNBTTagCompoundCls,
                     void.class, String.class), "NBTTagCompound > del()");
-            lm(nmsNBTTagCompoundConstructor = n.getConstructor(nmsNBTTagCompoundCls),
+            lm(nmsNBTTagCompoundConstructor = A.getConstructor(nmsNBTTagCompoundCls),
                     "NBTTagCompound > constructor()");
 
             // 加载NBTTagDouble
-            lm(nmsNBTTagDoubleCls = n.getNmsClass("NBTTagDouble"),
+            lm(nmsNBTTagDoubleCls = A.getNmsClass("NBTTagDouble"),
                     "NBTTagDouble");
-            lm(nmsNBTTagDoubleConstructor = n.getConstructor(nmsNBTTagDoubleCls, double.class),
+            lm(nmsNBTTagDoubleConstructor = A.getConstructor(nmsNBTTagDoubleCls, double.class),
                     "NBTTagDouble > constructor()");
-            lm(nmsNBTTagDoubleField = n.getField(nmsNBTTagDoubleCls, "data"),
+            lm(nmsNBTTagDoubleField = A.getField(nmsNBTTagDoubleCls, "data"),
                     "NBTTagDouble > data");
 
             // 加载NBTTagFloat
-            lm(nmsNBTTagFloatCls = n.getNmsClass("NBTTagFloat"),
+            lm(nmsNBTTagFloatCls = A.getNmsClass("NBTTagFloat"),
                     "NBTTagFloat");
-            lm(nmsNBTTagFloatConstructor = n.getConstructor(nmsNBTTagFloatCls, float.class),
+            lm(nmsNBTTagFloatConstructor = A.getConstructor(nmsNBTTagFloatCls, float.class),
                     "NBTTagFloat > constructor()");
-            lm(nmsNBTTagFloatField = n.getField(nmsNBTTagFloatCls, "data"),
+            lm(nmsNBTTagFloatField = A.getField(nmsNBTTagFloatCls, "data"),
                     "NBTTagFloat > data");
 
             // 加载NBTTagInt
-            lm(nmsNBTTagIntCls = n.getNmsClass("NBTTagInt"),
+            lm(nmsNBTTagIntCls = A.getNmsClass("NBTTagInt"),
                     "NBTTagInt");
-            lm(nmsNBTTagIntConstructor = n.getConstructor(nmsNBTTagIntCls, int.class),
+            lm(nmsNBTTagIntConstructor = A.getConstructor(nmsNBTTagIntCls, int.class),
                     "NBTTagInt > constructor()");
-            lm(nmsNBTTagIntField = n.getField(nmsNBTTagIntCls, "data"),
+            lm(nmsNBTTagIntField = A.getField(nmsNBTTagIntCls, "data"),
                     "NBTTagInt > data");
 
             // 加载NBTTagIntArray
-            lm(nmsNBTTagIntArrayCls = n.getNmsClass("NBTTagIntArray"),
+            lm(nmsNBTTagIntArrayCls = A.getNmsClass("NBTTagIntArray"),
                     "NBTTagIntArray");
-            lm(nmsNBTTagIntArrayConstructor = n.getConstructor(nmsNBTTagIntArrayCls, int[].class),
+            lm(nmsNBTTagIntArrayConstructor = A.getConstructor(nmsNBTTagIntArrayCls, int[].class),
                     "NBTTagIntArray > constructor()");
-            lm(nmsNBTTagIntArrayField = n.getField(nmsNBTTagIntArrayCls, "data"),
+            lm(nmsNBTTagIntArrayField = A.getField(nmsNBTTagIntArrayCls, "data"),
                     "NBTTagIntArray > data");
 
             // 加载NBTTagList
-            lm(nmsNBTTagListCls = n.getNmsClass("NBTTagList"),
+            lm(nmsNBTTagListCls = A.getNmsClass("NBTTagList"),
                     "NBTTagList");
-            lm(nmsNBTTagListConstructor = n.getConstructor(nmsNBTTagListCls),
+            lm(nmsNBTTagListConstructor = A.getConstructor(nmsNBTTagListCls),
                     "NBTTagList > constructor()");
-            lm(nmsNBTTagListListField = n.getField(nmsNBTTagListCls, "list"),
+            lm(nmsNBTTagListListField = A.getField(nmsNBTTagListCls, "list"),
                     "NBTTagList > list");
-            lm(nmsNBTTagListAddMethod = n.getMethod(nmsNBTTagListCls,
+            lm(nmsNBTTagListAddMethod = A.getMethod(nmsNBTTagListCls,
                     null, nmsNBTBaseCls), "NBTTagList > add()");
 
             // 加载NBTTagLong
-            lm(nmsNBTTagLongCls = n.getNmsClass("NBTTagLong"),
+            lm(nmsNBTTagLongCls = A.getNmsClass("NBTTagLong"),
                     "NBTTagLong");
-            lm(nmsNBTTagLongConstructor = n.getConstructor(nmsNBTTagLongCls, long.class),
+            lm(nmsNBTTagLongConstructor = A.getConstructor(nmsNBTTagLongCls, long.class),
                     "NBTTagLong > constructor()");
-            lm(nmsNBTTagLongField = n.getField(nmsNBTTagLongCls, "data"),
+            lm(nmsNBTTagLongField = A.getField(nmsNBTTagLongCls, "data"),
                     "NBTTagLong > data");
 
             // 加载NBTTagShort
-            lm(nmsNBTTagShortCls = n.getNmsClass("NBTTagShort"),
+            lm(nmsNBTTagShortCls = A.getNmsClass("NBTTagShort"),
                     "NBTTagShort");
-            lm(nmsNBTTagShortConstructor = n.getConstructor(nmsNBTTagShortCls, short.class),
+            lm(nmsNBTTagShortConstructor = A.getConstructor(nmsNBTTagShortCls, short.class),
                     "NBTTagShort > constructor()");
-            lm(nmsNBTTagShortField = n.getField(nmsNBTTagShortCls, "data"),
+            lm(nmsNBTTagShortField = A.getField(nmsNBTTagShortCls, "data"),
                     "NBTTagShort > data");
 
             // 加载NBTTagString
-            lm(nmsNBTTagStringCls = n.getNmsClass("NBTTagString"),
+            lm(nmsNBTTagStringCls = A.getNmsClass("NBTTagString"),
                     "NBTTagString");
-            lm(nmsNBTTagStringConstructor = n.getConstructor(nmsNBTTagStringCls, String.class),
+            lm(nmsNBTTagStringConstructor = A.getConstructor(nmsNBTTagStringCls, String.class),
                     "NBTTagString > constructor()");
-            lm(nmsNBTTagStringField = n.getField(nmsNBTTagStringCls, "data"),
+            lm(nmsNBTTagStringField = A.getField(nmsNBTTagStringCls, "data"),
                     "NBTTagString > data");
 
-            APlugin.Msg.sendConMsgTrue("time:" + (System.nanoTime() - time));
-            APlugin.Msg.sendConMsgTrue("Initialization CurrencyItemStack complete");
+            Msg.sendConMsgTrue("time:" + (System.nanoTime() - time));
+            Msg.sendConMsgTrue("Initialization CurrencyItemStack complete");
         }
 
         /**
          * 生成一个Byte类型的NBT
          */
         public Object createByteNBT(byte num) {
-            return n.newNBTTag(nmsNBTTagByteConstructor, num);
+            return A.newNBTTag(nmsNBTTagByteConstructor, num);
         }
 
         /**
          * 生成一个ByteArray类型的NBT
          */
         public Object createByteArrayNBT(byte[] num) {
-            return n.newNBTTag(nmsNBTTagByteArrayConstructor, num);
+            return A.newNBTTag(nmsNBTTagByteArrayConstructor, num);
         }
 
         /**
          * 生成一个Compound类型的NBT
          */
         public Object createCompoundNBT() {
-            return n.newNBTTag(nmsNBTTagCompoundConstructor);
+            return A.newNBTTag(nmsNBTTagCompoundConstructor);
         }
 
         /**
          * 生成一个Double类型的NBT
          */
         public Object createDoubleNBT(double num) {
-            return n.newNBTTag(nmsNBTTagDoubleConstructor, num);
+            return A.newNBTTag(nmsNBTTagDoubleConstructor, num);
         }
 
         /**
          * 生成一个Float类型的NBT
          */
         public Object createFloatNBT(float num) {
-            return n.newNBTTag(nmsNBTTagFloatConstructor, num);
+            return A.newNBTTag(nmsNBTTagFloatConstructor, num);
         }
 
         /**
          * 生成一个Int类型的NBT
          */
         public Object createIntNBT(int num) {
-            return n.newNBTTag(nmsNBTTagIntConstructor, num);
+            return A.newNBTTag(nmsNBTTagIntConstructor, num);
         }
 
         /**
          * 生成一个IntArray类型的NBT
          */
         public Object createIntArrayNBT(int[] num) {
-            return n.newNBTTag(nmsNBTTagIntArrayConstructor, num);
+            return A.newNBTTag(nmsNBTTagIntArrayConstructor, num);
         }
 
         /**
          * 生成一个空的List类型的NBT
          */
         public Object createListNBT() {
-            return n.newNBTTag(nmsNBTTagListConstructor);
+            return A.newNBTTag(nmsNBTTagListConstructor);
         }
 
         /**
          * 生成一个long的NBT
          */
         public Object createLongNBT(long num) {
-            return n.newNBTTag(nmsNBTTagLongConstructor, num);
+            return A.newNBTTag(nmsNBTTagLongConstructor, num);
         }
 
         /**
          * 生成一个short的NBT
          */
         public Object createShortNBT(short num) {
-            return n.newNBTTag(nmsNBTTagShortConstructor, num);
+            return A.newNBTTag(nmsNBTTagShortConstructor, num);
         }
 
         /**
          * 生成一个string的NBT
          */
         public Object createStringNBT(String string) {
-            return n.newNBTTag(nmsNBTTagStringConstructor, string);
+            return A.newNBTTag(nmsNBTTagStringConstructor, string);
         }
 
         /**
          * 获取Byte类型NBT的byte值
          */
         public byte getTagByte(Object byteTag) {
-            return (byte) n.getValue(nmsNBTTagByteField, byteTag);
+            return (byte) A.getValue(nmsNBTTagByteField, byteTag);
         }
 
         /**
          * 获取ByteArray类型NBT的byteArray值
          */
         public byte[] getTagArrayByte(Object byteArrayTag) {
-            return (byte[]) n.getValue(nmsNBTTagByteArrayField, byteArrayTag);
+            return (byte[]) A.getValue(nmsNBTTagByteArrayField, byteArrayTag);
         }
 
         /**
          * 获取Double类型NBT的double值
          */
         public double getTagDouble(Object doubleTag) {
-            return (double) n.getValue(nmsNBTTagDoubleField, doubleTag);
+            return (double) A.getValue(nmsNBTTagDoubleField, doubleTag);
         }
 
         /**
          * 获取Float类型NBT的float值
          */
         public float getTagFloat(Object floatTag) {
-            return (float) n.getValue(nmsNBTTagFloatField, floatTag);
+            return (float) A.getValue(nmsNBTTagFloatField, floatTag);
         }
 
         /**
          * 获取Int类型NBT的int值
          */
         public int getTagInt(Object intTag) {
-            return (int) n.getValue(nmsNBTTagIntField, intTag);
+            return (int) A.getValue(nmsNBTTagIntField, intTag);
         }
 
 
@@ -469,21 +470,21 @@ public enum Currency implements ci, ni, coi, ei {
          * 获取IntArray类型NBT的intArray值
          */
         public int[] getTagIntArray(Object intArrayTag) {
-            return (int[]) n.getValue(nmsNBTTagIntArrayField, intArrayTag);
+            return (int[]) A.getValue(nmsNBTTagIntArrayField, intArrayTag);
         }
 
         /**
          * 获取list类型的NBT的List
          */
         public List getTagList(Object listTag) {
-            return (List) n.getValue(nmsNBTTagListListField, listTag);
+            return (List) A.getValue(nmsNBTTagListListField, listTag);
         }
 
         /**
          * 给List类型的NBT添加一个元素
          */
         public void tagListAdd(Object listTag, Object addElement) {
-            n.invokeMethod(nmsNBTTagListAddMethod, listTag, addElement);
+            A.invokeMethod(nmsNBTTagListAddMethod, listTag, addElement);
         }
 
         /**
@@ -516,28 +517,28 @@ public enum Currency implements ci, ni, coi, ei {
          * @param NBTTagList, List<NBTBase>
          */
         public void setTagList(Object listTag, Object list) {
-            n.setValue(nmsNBTTagListListField, listTag, list);
+            A.setValue(nmsNBTTagListListField, listTag, list);
         }
 
         /**
          * 获取Long类型NBT的long值
          */
         public long getTagLong(Object longTag) {
-            return (long) n.getValue(nmsNBTTagLongField, longTag);
+            return (long) A.getValue(nmsNBTTagLongField, longTag);
         }
 
         /**
          * 获取Short类型NBT的short值
          */
         public short getTagShort(Object shortTag) {
-            return (short) n.getValue(nmsNBTTagShortField, shortTag);
+            return (short) A.getValue(nmsNBTTagShortField, shortTag);
         }
 
         /**
          * 获取String类型NBT的String值
          */
         public String getTagString(Object stringTag) {
-            return (String) n.getValue(nmsNBTTagStringField, stringTag);
+            return (String) A.getValue(nmsNBTTagStringField, stringTag);
         }
 
         /**
@@ -551,21 +552,21 @@ public enum Currency implements ci, ni, coi, ei {
          * 为compound类型NBT添加一个子节点
          */
         public void addCompoundTag(Object tag, String key, Object obj) {
-            n.invokeMethod(nmsNBTTagCompoundSetMethod, tag, key, obj);
+            A.invokeMethod(nmsNBTTagCompoundSetMethod, tag, key, obj);
         }
 
         /**
          * 获取compound类型NBT的子节点
          */
         public Object getCompoundTag(Object compoundTag, String key) {
-            return n.invokeMethod(nmsNBTTagCompoundGetMethod, compoundTag, key);
+            return A.invokeMethod(nmsNBTTagCompoundGetMethod, compoundTag, key);
         }
 
         /**
          * 删除compound类型NBT的子节点
          */
         public Object delCompoundTag(Object compoundTag, String key) {
-            return n.invokeMethod(nmsNBTTagCompoundDelMethod, compoundTag, key);
+            return A.invokeMethod(nmsNBTTagCompoundDelMethod, compoundTag, key);
         }
 
         /**
@@ -573,7 +574,7 @@ public enum Currency implements ci, ni, coi, ei {
          */
         public Set<String> getTagKeySet(Object compoundTag) {
             if (nmsNBTTagCompoundCls == compoundTag.getClass()) {
-                return (Set<String>) n.invokeMethod(cMethod, compoundTag);
+                return (Set<String>) A.invokeMethod(cMethod, compoundTag);
             } else {
                 return Collections.emptySet();
             }
@@ -678,38 +679,38 @@ public enum Currency implements ci, ni, coi, ei {
 
             long time = System.nanoTime();
 
-            lm(nmsEntityCls = n.getNmsClass("Entity"), "Entity");
+            lm(nmsEntityCls = A.getNmsClass("Entity"), "Entity");
 
-            lm(craftEntityCls = n.getCraftClass("entity", "CraftEntity"),
+            lm(craftEntityCls = A.getCraftClass("entity", "CraftEntity"),
                     "CraftEntity");
-            lm(nmsEntityField = n.getField(craftEntityCls, nmsEntityCls),
+            lm(nmsEntityField = A.getField(craftEntityCls, nmsEntityCls),
                     "CraftEntity > entity");
 
-            lm(entityCreatureCls = n.getNmsClass("EntityCreature"),
+            lm(entityCreatureCls = A.getNmsClass("EntityCreature"),
                     "EntityCreature");
 
-            lm(craftCreatureCls = n.getCraftClass("entity", "CraftCreature"),
+            lm(craftCreatureCls = A.getCraftClass("entity", "CraftCreature"),
                     "CraftCreature");
 
-            lm(craftCreatureGetHandleMethod = n.getMethod(craftCreatureCls, entityCreatureCls),
+            lm(craftCreatureGetHandleMethod = A.getMethod(craftCreatureCls, entityCreatureCls),
                     "CraftCreature > getHandle()");
 
             lm(entityInsentientCls = (Cls.C.ex(entityCreatureCls, false) ? null : entityCreatureCls.getSuperclass()),
                     "EntityInsentient");
-            lm(entityNbt = n.getField(entityInsentientCls, c.getNmsNBTTagCompoundCls()),
+            lm(entityNbt = A.getField(entityInsentientCls, c.getNmsNBTTagCompoundCls()),
                     "EntityInsentient > entityNbt");
 
-            lm(nmEntityCreatureCls = n.getClassOfPath("net.minecraft.entity.EntityCreature"),
+            lm(nmEntityCreatureCls = A.getClassOfPath("net.minecraft.entity.EntityCreature"),
                     "nmEntityCreature");
-            lm(craftNmGetHandleMethod = n.getMethod(craftCreatureCls, nmEntityCreatureCls),
+            lm(craftNmGetHandleMethod = A.getMethod(craftCreatureCls, nmEntityCreatureCls),
                     "CraftCreature > (nm)getHandle()");
 
-            lm(nmEntityCls = n.getClassOfPath("net.minecraft.entity.Entity"),
+            lm(nmEntityCls = A.getClassOfPath("net.minecraft.entity.Entity"),
                     "nmEntityCreature");
-            lm(nmEGetHandleMethod = n.getMethod(craftCreatureCls, nmEntityCls),
+            lm(nmEGetHandleMethod = A.getMethod(craftCreatureCls, nmEntityCls),
                     "CraftCreature > (nme)getHandle()");
 
-            APlugin.Msg.sendConMsgTrue("time:" + (System.nanoTime() - time));
+            Msg.sendConMsgTrue("time:" + (System.nanoTime() - time));
         }
 
         public Object getNmsEntity(Entity entity) {
@@ -759,9 +760,9 @@ public enum Currency implements ci, ni, coi, ei {
      */
     private static void lm(Object nmscls, String objectName) {
         if (Cls.C.ex(nmscls, false)) {
-            APlugin.Msg.sendConMsgFalse("Failed to load " + objectName + "");
+            Msg.sendConMsgFalse("Failed to load " + objectName + "");
         } else {
-            APlugin.Msg.sendConMsgTrue("Loading " + objectName + " succeeded");
+            Msg.sendConMsgTrue("Loading " + objectName + " succeeded");
         }
     }
 
@@ -769,7 +770,7 @@ public enum Currency implements ci, ni, coi, ei {
      * 初始化所有项目
      */
     public static void il() {
-        for (Currency currency : Currency.values()) {
+        for (cur currency : cur.values()) {
             currency.init();
         }
     }
