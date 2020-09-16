@@ -6,6 +6,7 @@ import top.aot.bean.RcEvent;
 
 import java.util.Map;
 
+// 悬赏击杀处理接口
 public interface ircu {
 
     // 关联击杀处理

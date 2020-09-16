@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * @author ：ZhangHe
  * @date ：Created in 2020/9/9 14:02
- * @description：
+ * @description： monster项目读写接口
  */
 public interface tsi extends tgi {
 

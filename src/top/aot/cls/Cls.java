@@ -59,6 +59,7 @@ import java.util.*;
  * @description：ad
  */
 public enum Cls implements i, iex, is, iu, ce, ircu {
+    // 核心代码
     C {
         private Map<String, Method> mp = new HashMap<>();
 
@@ -189,6 +190,7 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
         }
 
     },
+    // NPC模块版本兼容
     D {
         @Override
         public String getName(Entity entity) {
@@ -283,6 +285,7 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
             }
         }
     },
+    // 悬赏击杀处理
     E {
         private final Map<String, RcEvent> killEventMap = new HashMap<>();
         private final Map<String, RcEvent> damageEventMap = new HashMap<>();
@@ -292,6 +295,7 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
 
         }
 
+        // 悬赏击杀判定
         public void _kill_rc(EntityDeathEvent e) {
             LivingEntity entity = e.getEntity();
             Player player = entity.getKiller();
@@ -308,6 +312,7 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
             }
         }
 
+        // 悬赏伤害类型记录
         @SuppressWarnings("deprecation")
         public void _damage_rc(EntityDamageByEntityEvent e) {
             Entity entity = e.getDamager();
@@ -336,34 +341,42 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
             }
         }
 
+        // 实体击杀类型判断
         public void ak(RcEvent ee) {
             killEventMap.put("killEntity".equals(ee.getType()) ? ee.getContent() : "Player", ee);
         }
 
+        // 伤害类型悬赏判断
         public void ad(RcEvent ee) {
             damageEventMap.put(ee.getContent(), ee);
         }
 
+        // 清理事件监听列表
         public void ck() {
             killEventMap.clear();
         }
 
+        // 清理伤害类型监听列表
         public void cd() {
             damageEventMap.clear();
         }
     };
+
+    // 核心代码加载
     public static Object cls;
 
+    // 反编译声明
     public static String 请勿随意反编译此插件此插件创作者aoisa() {
         return "";
     }
 
+    // 用于反编译声明的空方法
     public static String ts(istr istr) {
         return istr.v();
     }
 
     /**
-     * C类定义
+     * 核心类定义
      */
     public static class C {
 
@@ -439,6 +452,8 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
                 // "工具箱" 13
                 new String(new byte[]{-27, -73, -91, -27, -123,
                         -73, -25, -82, -79}, StandardCharsets.UTF_8),
+                // "aois" 14
+                new String(new byte[]{97, 111, 105, 115, 97}, StandardCharsets.UTF_8),
         };
 
         // 常量表取值
@@ -451,10 +466,12 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
             return object != null;
         }
 
+        // 字符串返回方法
         public static String i(String string) {
             return string;
         }
 
+        // 原类型返回
         public static <T> T j(T t) {
             return t;
         }
@@ -1067,6 +1084,10 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
 
     public static class Monster {
 
+        static {
+            ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
+        }
+
         private String name; // 怪物名字
         private List<String> attrs;
         private List<String> desc;
@@ -1446,6 +1467,10 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
     }
 
     private static class EtGui extends etgui{
+
+        static {
+            ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
+        }
 
         public EtGui(Player owner) {
             super(owner, C.s(13), 1);

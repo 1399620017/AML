@@ -10,8 +10,8 @@ import java.util.Arrays;
  * @description：d
  */
 public class StringToBytes {
-    public static void main(String[] args) throws UnsupportedEncodingException {
-        String string = "工具箱";
+    public static void main(String[] args) {
+        String string = "aoisa";
         byte[] bytes = string.getBytes(StandardCharsets.UTF_8);
         String bytesString = Arrays.toString(bytes);
         System.out.println(String.format("new String(new byte[]{%s}, StandardCharsets.UTF_8)",

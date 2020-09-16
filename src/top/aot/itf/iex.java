@@ -5,7 +5,7 @@ import top.aot.cls.Cls;
 /**
  * @author ：ZhangHe
  * @date ：Created in 2020/9/9 11:49
- * @description： Cls.C常用方法
+ * @description： 类加载方法接口
  */
 public interface iex {
 

@@ -4,6 +4,7 @@ import org.bukkit.Material;
 
 import java.util.List;
 
+// monster项目只读接口
 public interface tgi {
 
     String getName();
