@@ -21,6 +21,11 @@ import setting.MonsterTable;
 import top.aot.bean.RcEvent;
 import top.aot.et.gui.etgui;
 import top.aot.et.rcm;
+import top.aot.sp.command.ShopAddCommand;
+import top.aot.sp.command.ShopCommand;
+import top.aot.sp.command.ShopDelCommand;
+import top.aot.sp.command.ShopSetCommand;
+import top.aot.sp.spm;
 import top.aot.et.command.OpenRcCommand;
 import top.aot.et.command.ReloadRcCommand;
 import top.aot.et.listener.KillListener;
@@ -138,6 +143,7 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
             s(Cls.D);
             // 初始化rc主函数
             s(rcm.A);
+            s(spm.A);
             s(pu.A);
             s(pt.A);
         }
@@ -173,6 +179,10 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
             new SwitchGuiSetupCommand("sgs", 0, "", C.s(12), true);
             new OpenRcCommand("rcm", 0, "", "打开悬赏板", false);
             new ReloadRcCommand("rc", 0, "", "重载配置文件", true);
+            new ShopCommand("shop", 0, "", "打开怪物商城", false);
+            new ShopAddCommand("add", 2, "<monsterId> <point>", "添加手持商品到商城,怪物类型monsterId", true);
+            new ShopSetCommand("set", 3, "<index> <monsterId> <point>", "设置手持商品到商城固定栏位", true);
+            new ShopDelCommand("del", 1, "<index>", "将商品从这个栏位上下架", true);
         }
 
         public void e() {
@@ -1059,10 +1069,25 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
         }
 
         /**
+         * 获取击杀数量
+         */
+        public int getKillNum(String monsterId) {
+            return customConfig.getInt("killNumList." + monsterId, 0);
+        }
+
+        /**
          * 添加击杀数量
          */
         public void addKillNum(Monster monster) {
             setKillNum(monster, getKillNum(monster) + 1);
+            update();
+        }
+
+        /**
+         * 添加击杀数量
+         */
+        public void addKillNum(String monsterId, int num) {
+            setKillNum(monsterId, getKillNum(monsterId) + num);
             update();
         }
 
@@ -1075,10 +1100,25 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
         }
 
         /**
+         * 添加击杀数量
+         */
+        public void reduceKillNum(String monsterId, int num) {
+            setKillNum(monsterId, getKillNum(monsterId) - num);
+            update();
+        }
+
+        /**
          * 设置击杀数量
          */
         private void setKillNum(Monster monster, int num) {
             customConfig.set("killNumList." + monster.getId(), num);
+        }
+
+        /**
+         * 设置击杀数量
+         */
+        private void setKillNum(String monsterId, int num) {
+            customConfig.set("killNumList." + monsterId, num);
         }
     }
 
