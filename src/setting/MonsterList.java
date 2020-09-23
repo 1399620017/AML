@@ -83,6 +83,7 @@ public class MonsterList extends AsxConfig {
                     .setOnlyList(config.getStringList(key + ".only.list"))
                     .setRepeatList(config.getStringList(key + ".repeat.list"))
                     .setOnlyExplain(config.getString(key + ".only.explan", ""))
+                    .setOnlySlot(config.getInt(key + ".only.slot", 0))
                     .setRepeatExplain(config.getString(key + ".repeat.explan", ""))
                     .setCustomDesc(config.getStringList(key + ".customDesc"))
                     .setNpc(config.getBoolean(key + ".npc", false))

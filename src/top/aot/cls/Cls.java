@@ -21,6 +21,7 @@ import setting.MonsterTable;
 import top.aot.bean.RcEvent;
 import top.aot.et.gui.etgui;
 import top.aot.et.rcm;
+import top.aot.ml.command.*;
 import top.aot.sp.command.ShopAddCommand;
 import top.aot.sp.command.ShopCommand;
 import top.aot.sp.command.ShopDelCommand;
@@ -34,10 +35,6 @@ import top.aot.et.role.RcRoleList;
 import top.aot.et.submission.Submission;
 import top.aot.itf.*;
 import top.aot.ml.MListMain;
-import top.aot.ml.command.AMLCommand;
-import top.aot.ml.command.OpenCommand;
-import top.aot.ml.command.ReloadCommand;
-import top.aot.ml.command.SwitchGuiSetupCommand;
 import top.aot.ml.gui.Button;
 import top.aot.ml.listener.KillEntityListener;
 import top.aot.ml.listener.PlayerLoginListener;
@@ -175,6 +172,7 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
 
         public void co() {
             new OpenCommand("m", 0, "", C.s(2), false);
+            new ListCommand("list", 0, "", "查看所有已注册的图鉴id", true);
             new ReloadCommand("r", 0, "", C.s(3), true);
             new SwitchGuiSetupCommand("sgs", 0, "", C.s(12), true);
             new OpenRcCommand("rcm", 0, "", "打开悬赏板", false);
@@ -896,11 +894,16 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
                             monsterAssembly.setClickListener((LeftClickListener) () -> {
                                 List<String> onlyList = monster.getOnlyList();
                                 Player player = getOwner();
-                                role.receive(monster);
-                                if (player.isOp()) {
-                                    exeOp(player, onlyList);
+                                int slot = APlugin.Util.PlayerUtil.getNullSoltNumber(player);
+                                if (slot >= monster.getOnlySlot()) {
+                                    role.receive(monster);
+                                    if (player.isOp()) {
+                                        exeOp(player, onlyList);
+                                    } else {
+                                        exe(player, onlyList);
+                                    }
                                 } else {
-                                    exe(player, onlyList);
+                                    Msg.sendMsgFalse(player, "请将背包至少留出" + monster.getOnlySlot() + "个空位再进行领取！");
                                 }
                                 player.closeInventory();
                             });
@@ -1142,6 +1145,7 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
         private String onlyExplain; // 单次奖励的提示信息
         private List<String> repeatList; // 无限次奖励的命令列表
         private String repeatExplain; // 无限制奖励的提示信息
+        private int onlySlot;
 
         private List<String> customDesc; // 自定义提示
 
@@ -1278,6 +1282,15 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
 
         public Monster setItemId(int itemId) {
             this.itemId = itemId;
+            return this;
+        }
+
+        public int getOnlySlot() {
+            return onlySlot;
+        }
+
+        public Monster setOnlySlot(int onlySlot) {
+            this.onlySlot = onlySlot;
             return this;
         }
     }
