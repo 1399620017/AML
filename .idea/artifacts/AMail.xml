@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="AMail">
-    <output-path>$PROJECT_DIR$/classes/artifacts/AMail</output-path>
-    <root id="archive" name="AMail.jar">
-      <element id="module-output" name="AsxMail" />
-    </root>
-  </artifact>
-</component>
