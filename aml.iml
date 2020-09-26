@@ -47,15 +47,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
-      <library name="[基础-前置]PlaceholderAPI-2.10.4.jar">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../API/[基础-前置]PlaceholderAPI-2.10.4.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
       <library name="spigot-1.12.2-R0.1-SNAPSHOT.jar">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/../../API/spigot-1.12.2-R0.1-SNAPSHOT.jar!/" />
@@ -220,6 +211,23 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="library" name="hutool-all-5.3.7" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../API/[基础-前置]PlaceholderAPI-2.10.4.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../API/hutool-all-5.3.7.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

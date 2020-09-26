@@ -1,6 +1,6 @@
 name: AML
 main: top.aot.ml.MListMain
-version: 2.1.1
+version: 2.2.0
 softdepend: [PlaceholderAPI]
 
 commands:

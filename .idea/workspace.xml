@@ -2,11 +2,17 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="AML1.2.301" />
+      <artifact name="AML2.2.0" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="646b38d0-aa18-4c59-a466-178b1db13a8c" name="默认更改列表" comment="" />
+    <list default="true" id="646b38d0-aa18-4c59-a466-178b1db13a8c" name="默认更改列表" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/AML2_2_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/AML1_2_301.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aml.iml" beforeDir="false" afterPath="$PROJECT_DIR$/aml.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resource/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/resource/plugin.yml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +76,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resource" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../API/hutool-all-5.3.7.jar!/" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
@@ -79,16 +85,19 @@
     <property name="show.unlinked.gradle.project.popup" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="top.aot.ml.nms" />
-      <recent name="top.aot.ml.cls" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\src\eclipse-workspace\amlbuild\cn" />
+      <recent name="D:\src\eclipse-workspace\amlbuild" />
+      <recent name="D:\src\eclipse-workspace\amlbuild\resource" />
+      <recent name="D:\src\eclipse-workspace\amlbuild\src" />
+      <recent name="D:\src\eclipse-workspace\tjgwtjxt\src" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\src\eclipse-workspace\amlbuild\resource" />
       <recent name="D:\src\eclipse-workspace\AsxMail\src\top\aot\mail\plugin" />
       <recent name="D:\src\eclipse-workspace\AsxMail\resource" />
       <recent name="D:\src\eclipse-workspace\amlbuild\lib" />
       <recent name="D:\src\eclipse-workspace\amlbuild\src\lib" />
-      <recent name="D:\src\eclipse-workspace" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="top.aot.mail.plugin" />
@@ -96,12 +105,9 @@
       <recent name="top.aot.ml.variable" />
       <recent name="top.aot.ml.cls" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\src\eclipse-workspace\amlbuild\cn" />
-      <recent name="D:\src\eclipse-workspace\amlbuild" />
-      <recent name="D:\src\eclipse-workspace\amlbuild\resource" />
-      <recent name="D:\src\eclipse-workspace\amlbuild\src" />
-      <recent name="D:\src\eclipse-workspace\tjgwtjxt\src" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="top.aot.ml.nms" />
+      <recent name="top.aot.ml.cls" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -116,7 +122,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Test">
+  <component name="RunManager" selected="Application.R">
     <configuration name="R (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="source.R" />
       <extension name="coverage">
@@ -230,8 +236,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Test" />
         <item itemvalue="Application.R" />
+        <item itemvalue="Application.Test" />
         <item itemvalue="Application.StringToBytes" />
         <item itemvalue="Application.R (1)" />
         <item itemvalue="Application.T" />
@@ -317,8 +323,16 @@
       <workItem from="1594080139565" duration="5529000" />
       <workItem from="1594166195730" duration="3000" />
       <workItem from="1594166393533" duration="326000" />
-      <workItem from="1601079812523" duration="102000" />
+      <workItem from="1601079812523" duration="668000" />
     </task>
+    <task id="LOCAL-00001" summary="添加hutool依赖">
+      <created>1601080143235</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1601080143235</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -334,6 +348,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="添加hutool依赖" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加hutool依赖" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
