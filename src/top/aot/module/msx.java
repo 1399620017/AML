@@ -7,7 +7,7 @@ package top.aot.module;
  */
 public final class msx {
 
-    public interface sxmi {
+    interface sxmi {
 
     }
 

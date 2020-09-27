@@ -25,7 +25,7 @@ public class ShopDelCommand extends Command {
 
     @Override
     public boolean send(Player player, String[] args) {
-        int index = -1;
+        int index;
         try {
             index = Integer.parseInt(args[0]);
             if (index < 0 || index > 53) {

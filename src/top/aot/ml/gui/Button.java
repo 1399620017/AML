@@ -14,7 +14,7 @@ public abstract class Button<T> extends AssemblyDynamic<T>{
 		Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
 	}
 
-	public Button(T gui) {
+	protected Button(T gui) {
 		super(gui);
 	}
 	protected abstract String buttonName();

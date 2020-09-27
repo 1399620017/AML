@@ -14,5 +14,5 @@ public enum pt implements i, is {
         public void init() {
 
         }
-    };
+    }
 }
