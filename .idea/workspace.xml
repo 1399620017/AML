@@ -6,13 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="646b38d0-aa18-4c59-a466-178b1db13a8c" name="默认更改列表" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/ml/gui/Button.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/ml/gui/Button.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/ml/utils/pt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/ml/utils/pt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/module/msx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/module/msx.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/sp/command/ShopDelCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/sp/command/ShopDelCommand.java" afterDir="false" />
-    </list>
+    <list default="true" id="646b38d0-aa18-4c59-a466-178b1db13a8c" name="默认更改列表" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -325,6 +319,7 @@
       <workItem from="1594166393533" duration="326000" />
       <workItem from="1601079812523" duration="2903000" />
       <workItem from="1601173904553" duration="1687000" />
+      <workItem from="1601196585557" duration="327000" />
     </task>
     <task id="LOCAL-00001" summary="添加hutool依赖">
       <created>1601080143235</created>
@@ -347,7 +342,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601174375704</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="优化部分代码">
+      <created>1601196648587</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1601196648587</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -370,7 +372,8 @@
     <MESSAGE value="添加hutool依赖" />
     <MESSAGE value="添加hutool依赖版本修改至2.2.0" />
     <MESSAGE value="屏蔽因报错引起的GUI卡出物品" />
-    <option name="LAST_COMMIT_MESSAGE" value="屏蔽因报错引起的GUI卡出物品" />
+    <MESSAGE value="优化部分代码" />
+    <option name="LAST_COMMIT_MESSAGE" value="优化部分代码" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
