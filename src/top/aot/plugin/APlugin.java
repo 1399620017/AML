@@ -1062,44 +1062,48 @@ public final class APlugin {
                 Gui gui = Gui.getGui(e.getInventory()); // 获取这个GUI
                 int rslot = e.getRawSlot(); // 获取点击的原始坐标
                 if (Objects.equals(gui.getOwner(), (Player) e.getWhoClicked())) { // 点击者为GUI所有者
-                    if (gui.assemblyClick.containsKey(rslot)) {
-                        AssemblyClickListener assemblyClickListener = gui.assemblyClick.get(rslot);
-                        if (e.isLeftClick()) {
-                            if (e.isShiftClick()) {
-                                if (assemblyClickListener instanceof LeftShiftClickListener) {
-                                    ((LeftShiftClickListener) assemblyClickListener).leftShiftClick();
-                                }
-                                if (assemblyClickListener instanceof AllClickListener) {
-                                    ((AllClickListener) assemblyClickListener).leftShiftClick();
+                    try {
+                        if (gui.assemblyClick.containsKey(rslot)) {
+                            AssemblyClickListener assemblyClickListener = gui.assemblyClick.get(rslot);
+                            if (e.isLeftClick()) {
+                                if (e.isShiftClick()) {
+                                    if (assemblyClickListener instanceof LeftShiftClickListener) {
+                                        ((LeftShiftClickListener) assemblyClickListener).leftShiftClick();
+                                    }
+                                    if (assemblyClickListener instanceof AllClickListener) {
+                                        ((AllClickListener) assemblyClickListener).leftShiftClick();
+                                    }
+                                } else {
+                                    if (assemblyClickListener instanceof LeftClickListener) {
+                                        ((LeftClickListener) assemblyClickListener).leftClick();
+                                    }
+                                    if (assemblyClickListener instanceof AllClickListener) {
+                                        ((AllClickListener) assemblyClickListener).leftClick();
+                                    }
                                 }
                             } else {
-                                if (assemblyClickListener instanceof LeftClickListener) {
-                                    ((LeftClickListener) assemblyClickListener).leftClick();
-                                }
-                                if (assemblyClickListener instanceof AllClickListener) {
-                                    ((AllClickListener) assemblyClickListener).leftClick();
+                                if (e.isShiftClick()) {
+                                    if (assemblyClickListener instanceof RightShiftClickListener) {
+                                        ((RightShiftClickListener) assemblyClickListener).rightShiftClick();
+                                    }
+                                    if (assemblyClickListener instanceof AllClickListener) {
+                                        ((AllClickListener) assemblyClickListener).rightShiftClick();
+                                    }
+                                } else {
+                                    if (assemblyClickListener instanceof RightClickListener) {
+                                        ((RightClickListener) assemblyClickListener).rightClick();
+                                    }
+                                    if (assemblyClickListener instanceof AllClickListener) {
+                                        ((AllClickListener) assemblyClickListener).rightClick();
+                                    }
                                 }
                             }
+                            isCan = !gui.isCan();
                         } else {
-                            if (e.isShiftClick()) {
-                                if (assemblyClickListener instanceof RightShiftClickListener) {
-                                    ((RightShiftClickListener) assemblyClickListener).rightShiftClick();
-                                }
-                                if (assemblyClickListener instanceof AllClickListener) {
-                                    ((AllClickListener) assemblyClickListener).rightShiftClick();
-                                }
-                            } else {
-                                if (assemblyClickListener instanceof RightClickListener) {
-                                    ((RightClickListener) assemblyClickListener).rightClick();
-                                }
-                                if (assemblyClickListener instanceof AllClickListener) {
-                                    ((AllClickListener) assemblyClickListener).rightClick();
-                                }
-                            }
+                            isCan = !gui.clickRegion(rslot, e.getClick(), e.getCurrentItem()); // 无事件禁止点击
                         }
-                        isCan = !gui.isCan();
-                    } else {
-                        isCan = !gui.clickRegion(rslot, e.getClick(), e.getCurrentItem()); // 无事件禁止点击
+                    } catch (Exception e1) {
+                        e.setCancelled(true);
                     }
                 }
                 e.setCancelled(isCan);
