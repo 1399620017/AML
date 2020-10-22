@@ -1,19 +1,8 @@
 package top.aot.plugin;
 
-import java.io.DataInputStream;
-import java.io.File;
-import java.io.IOException;
-import java.util.*;
-import java.util.Map.Entry;
-
-import com.google.common.collect.Maps;
-import org.apache.commons.lang.Validate;
-import org.bukkit.Bukkit;
-import org.bukkit.Color;
-import org.bukkit.Effect;
-import org.bukkit.FireworkEffect;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import com.google.gson.Gson;
+import com.sun.istack.internal.NotNull;
+import org.bukkit.*;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -37,11 +26,49 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import top.aot.cls.Cls;
 
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.sql.*;
+import java.util.*;
+import java.util.Date;
+import java.util.Map.Entry;
+
 /**
- * APlugin V1.0.0 - 设计模块
+ * APlugin - 设计模块
  *
- * @version 1.0.4 添加Math.percentage() 用于按百分比返回boolean
+ * @version 1.0.6 添加DataBase 用于数据库连接
+ * 功能说明
+ * {@link Msg} 消息处理工具类
+ * @see Msg#sendMsgTrue(CommandSender, String) 给CommandSender发送绿色系统提示
+ * @see Msg#sendMsg(CommandSender, String) 给CommandSender发送白色系统提示
+ * @see Msg#sendMsgFalse(CommandSender, String) 给CommandSender发送红色系统提示
+ * @see Msg#sendConMsgTrue(String) 给后台发送绿色消息
+ * @see Msg#sendConMsgFalse(String) 给后台发送红色消息
+ * @see Msg#getPluginName() 获取插件名字
+ * @see Msg#getServerName() 获取服务器名字
+ * @see Msg#sendConPlugin(String) 以插件名义发送后台信息
+ * @see Msg#sendCs(CommandSender, String) 给CommandSender发送测试信息
+ * @see Msg#sendPluginBroad(String) 以插件名义发送公告
+ * @see Msg#sendServerBroad(String) 以服务器名义发送公告
+ * {@link Gui} 窗口类
+ * @see Gui#Gui(Player, String, int) 创建GUI
+ * @see Gui#Gui(Gui, Player, String, int) 创建带有父GUI的GUI
+ * {@link Util.Particle} 粒子类
+ * {@link AsxConfig} 配置保存类
+ * {@link DataBase} 数据库初始化类
+ * @see DataBase#setDBName(String) 设置数据库名
+ * @see DataBase#setIp(String) 设置数据库连接IP
+ * @see DataBase#setPassword(String) 设置连接密码
+ * @see DataBase#setPort(String) 设置连接端口
+ * @see DataBase#setUser(String) 设置用户名
+ * @see DataBase#setTable(String) 设置表（暂未使用）
+ * @see DataBase#setTableMap(TableMap) 设置自动建表sql
+ * @see DataBase#connection() 开始连接数据库(支持重复调用)
+ * {@link AsxDataBaseMap} 数据库保存配置类
+ * {@link TableMap} 数据库建表接口
  */
+@SuppressWarnings("all")
 public final class APlugin {
 
     /**
@@ -69,7 +96,6 @@ public final class APlugin {
 
         public Assembly(T gui) {
             this.gui = gui;
-            // TODO 此处不支持高版本
             setItemStack(itemId() > 0? new ItemStack(itemId(), 1):new ItemStack(material())); // 初始化物品
             itemMeta = getItemStack().getItemMeta();
             setSecondID(secondID());
@@ -1720,6 +1746,253 @@ public final class APlugin {
 
             public static String getEntityTypeName(String typeString) {
                 return map.getOrDefault(typeString, "天界奇物");
+            }
+        }
+    }
+
+    // 设置数据表
+    public interface TableMap {
+        Map<String, String> init(Map<String, String> map);
+    }
+
+    /**
+     * 数据库初始化类
+     */
+    public static abstract class DataBase {
+
+        private static String ip;
+        private static String port;
+        private static String dbName;
+        private static String user;
+        private static String password;
+        private static Connection conn;
+        private static BukkitRunnable br;
+        private static String sql;
+        private static String table;
+        private static TableMap tableMap;
+
+        @NotNull
+        public static DataBase setIp(String ip) {
+            DataBase.ip = ip;
+            return null;
+        }
+
+        @NotNull
+        public static DataBase setPort(String port) {
+            DataBase.port = port;
+            return null;
+        }
+
+        @NotNull
+        public static DataBase setDBName(String dbName) {
+            DataBase.dbName = dbName;
+            return null;
+        }
+
+        @NotNull
+        public static DataBase setUser(String user) {
+            DataBase.user = user;
+            return null;
+        }
+
+        @NotNull
+        public static DataBase setTableMap(TableMap tableMap) {
+            DataBase.tableMap = tableMap;
+            return null;
+        }
+
+        @NotNull
+        public static DataBase setPassword(String password) {
+            DataBase.password = password;
+            return null;
+        }
+
+        @NotNull
+        public static DataBase setTable(String tableName) {
+            DataBase.table = tableName;
+            return null;
+        }
+
+        @NotNull
+        public static boolean connection() {
+            try {
+
+                conn = DriverManager.getConnection(
+                        String.format("jdbc:mysql://%s:%s/%s?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC"
+                                , ip, port, dbName), user, password);
+
+                sql = "SELECT table_name as TABLENAME FROM information_schema.TABLES WHERE TABLE_SCHEMA = ?";
+                Map<String, String> map = tableMap.init(new HashMap<>());
+                if (br != null) {
+                    br.cancel();
+                }
+                if (conn != null) {
+                    PreparedStatement st = conn.prepareStatement(sql);
+                    st.setString(1, dbName);
+                    ResultSet resultSet = st.executeQuery();
+                    List<String> list = new ArrayList<>();
+                    while (resultSet.next()) {
+                        list.add(resultSet.getString("TABLENAME"));
+                    }
+                    for (Entry<String, String> entry : map.entrySet()) {
+                        if (!list.contains(entry.getKey())) {
+                            st.executeUpdate(entry.getValue());
+                        }
+                    }
+                }
+                br = new BukkitRunnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            if (conn != null) {
+                                PreparedStatement st = conn.prepareStatement(sql);
+                                st.setString(1, dbName);
+                                ResultSet resultSet = st.executeQuery();
+                                List<String> list = new ArrayList<>();
+                                while (resultSet.next()) {
+                                    list.add(resultSet.getString("TABLENAME"));
+                                }
+                                for (Entry<String, String> entry : map.entrySet()) {
+                                    if (!list.contains(entry.getKey())) {
+                                        st.executeUpdate(entry.getValue());
+                                    }
+                                }
+                            }
+                        } catch (Exception ignored) {
+                            try {
+                                conn = DriverManager.getConnection(
+                                        String.format("jdbc:mysql://%s:%s/%s?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC"
+                                                , ip, port, dbName), user, password);
+                            } catch (SQLException ignored2) {
+                                Msg.sendMsgFalse(APlugin.serverSender, "数据库连接已经断开,并且重连失败,等待6秒后尝试重连。");
+                            }
+                        }
+                    }
+                };
+                br.runTaskTimerAsynchronously(APlugin.plugin, 1200, 1200);
+                return true;
+            } catch (Exception e) {
+                return false;
+            }
+        }
+    }
+
+    public static class AsxDataBaseMap<T> {
+
+        private static Gson gson = new Gson();
+
+        private String tableName;
+        private final Class<T> type;
+
+        public AsxDataBaseMap(String tableName, Class<T> t) {
+            this.tableName = tableName;
+            this.type = t;
+        }
+
+        public String getTableName() {
+            return tableName;
+        }
+
+        public boolean put(String key, T t) {
+            if (containKey(key)) {
+                return update(key, t);
+            } else {
+                return insert(key, t);
+            }
+        }
+
+        public T get(String key) {
+            String json = select(key);
+            if (json != null && json.length() > 0) {
+                return gson.fromJson(json, type);
+            } else {
+                return null;
+            }
+        }
+
+        private String select(String key) {
+            try {
+                String sql = "SELECT asx_value AS ASXVALUE FROM " + tableName + " WHERE asx_key=?";
+                PreparedStatement st = DataBase.conn.prepareStatement(sql);
+                st.setString(1, key);
+                ResultSet resultSet = st.executeQuery();
+                if (resultSet.next()) {
+                    return resultSet.getString("ASXVALUE");
+                } else {
+                    return "";
+                }
+            } catch (Exception e) {
+                return "";
+            }
+        }
+
+        public boolean containKey(String key) {
+            try {
+                String sql = "SELECT COUNT(0) AS HASKEY FROM " + tableName + " WHERE asx_key=?";
+                PreparedStatement st = DataBase.conn.prepareStatement(sql);
+                st.setString(1, key);
+                ResultSet resultSet = st.executeQuery();
+                resultSet.next();
+                return 1 == resultSet.getInt("HASKEY");
+            } catch (Exception e) {
+                return false;
+            }
+        }
+
+        private boolean update(String key, T t) {
+            try {
+                String sql = "UPDATE " + tableName + " SET asx_value=? WHERE asx_key=?";
+                PreparedStatement st = DataBase.conn.prepareStatement(sql);
+                st.setString(1, gson.toJson(t));
+                st.setString(2, key);
+                int resultSet = st.executeUpdate();
+                return resultSet > 0;
+            } catch (Exception e) {
+                return false;
+            }
+        }
+
+        private boolean insert(String key, T t) {
+            try {
+                String sql = "INSERT INTO " + tableName + " (asx_key, asx_value) VALUES(?, ?)";
+                PreparedStatement st = DataBase.conn.prepareStatement(sql);
+                st.setString(1, key);
+                st.setString(2, gson.toJson(t));
+                int resultSet = st.executeUpdate();
+                return resultSet > 0;
+            } catch (Exception e) {
+                return false;
+            }
+        }
+
+        public Set<T> getItem() {
+            Set<T> set = new HashSet<>();
+            try {
+                String sql = "SELECT asx_value AS JSON FROM " + tableName;
+                PreparedStatement st = DataBase.conn.prepareStatement(sql);
+                ResultSet resultSet = st.executeQuery();
+                while (resultSet.next()) {
+                    String json = resultSet.getString("JSON");
+                    if (json != null && json.length() > 0) {
+                        T t = gson.fromJson(json, type);
+                        set.add(t);
+                    }
+                }
+            } catch (Exception ignored) {
+
+            }
+            return set;
+        }
+
+        public boolean remove(String id) {
+            try {
+                String sql = "DELETE FROM " + tableName + " WHERE asx_key = ?";
+                PreparedStatement st = DataBase.conn.prepareStatement(sql);
+                st.setString(1, id);
+                int result = st.executeUpdate();
+                return result > 0;
+            } catch (Exception ignored) {
+                return false;
             }
         }
     }

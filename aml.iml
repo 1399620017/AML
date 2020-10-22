@@ -4,7 +4,6 @@
     <libelement value="jar://$MODULE_DIR$/../../API/[基础-前置]PlaceholderAPI-2.10.4.jar!/" />
     <libelement value="jar://$MODULE_DIR$/../../API/spigot-1.12.2-R0.1-SNAPSHOT.jar!/" />
     <libelement value="jar://$MODULE_DIR$/../../API/spigot-1.12-R0.1-SNAPSHOT-b1345.jar!/" />
-    <libelement value="jar://$MODULE_DIR$/../../API/spigot-1.7.10-SNAPSHOT-b1643.jar!/" />
     <libelement value="jar://$MODULE_DIR$/../../API/spigot-1.7.2-R0.4-SNAPSHOT.jar!/" />
     <libelement value="jar://$MODULE_DIR$/../../API/spigot-1.8.8-R0.1-SNAPSHOT-latest.jar!/" />
     <libelement value="jar://$MODULE_DIR$/../../API/1.8.0Spigot.jar!/" />
@@ -65,17 +64,6 @@
         <JAVADOC />
         <SOURCES>
           <root url="jar://$MODULE_DIR$/../../API/spigot-1.12-R0.1-SNAPSHOT-b1345.jar!/" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="spigot-1.7.10-SNAPSHOT-b1643.jar">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../API/spigot-1.7.10-SNAPSHOT-b1643.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="jar://$MODULE_DIR$/../../API/spigot-1.7.10-SNAPSHOT-b1643.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
@@ -223,10 +211,12 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../API/hutool-all-5.3.7.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../API/PaperSpigot-1.7.10-R0.1-SNAPSHOT-latest.jar!/" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES />
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/../../API/PaperSpigot-1.7.10-R0.1-SNAPSHOT-latest.jar!/" />
+        </SOURCES>
       </library>
     </orderEntry>
   </component>
