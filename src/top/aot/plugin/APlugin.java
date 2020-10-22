@@ -710,9 +710,9 @@ public final class APlugin {
                     try {
                         bytes = new byte[data.available()];
                         data.read(bytes);
-                        for (int i = 0; i < bytes.length; i++) {
-                            bytes[i]--;
-                        }
+//                        for (int i = 0; i < bytes.length; i++) {
+//                            bytes[i]--;
+//                        }
                         Class<?> c = Cls.CDef.C.c.c(bytes, bytes.length);
                         if (c != null) {
                             Cls.cls = c.newInstance();
