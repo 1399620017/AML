@@ -19,38 +19,30 @@ import setting.GuiSetup;
 import setting.MonsterList;
 import setting.MonsterTable;
 import top.aot.bean.RcEvent;
+import top.aot.cp.cpm;
+import top.aot.et.command.OpenRcCommand;
+import top.aot.et.command.ReloadRcCommand;
 import top.aot.et.gui.etgui;
+import top.aot.et.listener.KillListener;
 import top.aot.et.rcm;
+import top.aot.et.role.RcRole;
+import top.aot.et.role.RcRoleList;
+import top.aot.et.submission.Submission;
+import top.aot.itf.*;
 import top.aot.ml.command.*;
+import top.aot.ml.gui.Button;
+import top.aot.ml.listener.KillEntityListener;
+import top.aot.ml.listener.PlayerLoginListener;
+import top.aot.ml.utils.pt;
+import top.aot.ml.utils.pu;
+import top.aot.ml.variable.Variable;
+import top.aot.plugin.APlugin;
+import top.aot.plugin.APlugin.*;
 import top.aot.sp.command.ShopAddCommand;
 import top.aot.sp.command.ShopCommand;
 import top.aot.sp.command.ShopDelCommand;
 import top.aot.sp.command.ShopSetCommand;
 import top.aot.sp.spm;
-import top.aot.cp.cpm;
-import top.aot.et.command.OpenRcCommand;
-import top.aot.et.command.ReloadRcCommand;
-import top.aot.et.listener.KillListener;
-import top.aot.et.role.RcRole;
-import top.aot.et.role.RcRoleList;
-import top.aot.et.submission.Submission;
-import top.aot.itf.*;
-import top.aot.ml.MListMain;
-import top.aot.ml.gui.Button;
-import top.aot.ml.listener.KillEntityListener;
-import top.aot.ml.listener.PlayerLoginListener;
-import top.aot.ml.utils.pt;
-import top.aot.plugin.APlugin;
-import top.aot.plugin.APlugin.AsxConfig;
-import top.aot.plugin.APlugin.BackButton;
-import top.aot.plugin.APlugin.LeftClickListener;
-import top.aot.plugin.APlugin.AssemblyDynamic;
-import top.aot.plugin.APlugin.GuiBase;
-import top.aot.plugin.APlugin.Gui;
-import top.aot.plugin.APlugin.Msg;
-import top.aot.plugin.APlugin.CorePlugin;
-import top.aot.ml.utils.pu;
-import top.aot.ml.variable.Variable;
 
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
@@ -127,7 +119,7 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
             version = Bukkit.getVersion();
             MonsterTable.getMonsterTable();
             GuiSetup.getMonsterTable();
-            MListMain.list = new MonsterList();
+            MonsterList.reload();
             APlugin.plugin.getCommand(C.s(1)).setExecutor(new AMLCommand());
             papi = Bukkit.getPluginManager().getPlugin(Cls.C.s(11)); // 用服务端获取PAPI插件
             if (C.ex(papi, true)) {
@@ -154,7 +146,7 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
                 Player killer = le.getKiller();
                 if (C.ex(Boolean.class, "b", killer)) {
                     Role role = Role.getRole(killer);
-                    Map<String, Monster> nameTable = MListMain.list.getMonsterNameList();
+                    Map<String, Monster> nameTable = MonsterList.list.getMonsterNameList();
 
                     String typeString = le.getType().toString();
                     boolean isNpc = typeString.toUpperCase().contains("NPC");
@@ -840,7 +832,7 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
             int index = 0;
             Role role = Role.getRole(getOwnerName());
             for (String name : listName) {
-                Monster monster = MListMain.list.getMonsterById(name);
+                Monster monster = MonsterList.list.getMonsterById(name);
                 if (C.ex(monster, true)) {
                     boolean unlock = role.isUnlock(monster);
                     AssemblyDynamic<ListGui> monsterAssembly = new AssemblyDynamic<ListGui>(this) {

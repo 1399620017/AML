@@ -6,30 +6,19 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="646b38d0-aa18-4c59-a466-178b1db13a8c" name="默认更改列表" comment="添加1.8.8服务端调试配置">
-      <change afterPath="$PROJECT_DIR$/src/setting/CopyList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/top/aot/cp/cpm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/AML2_2_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/AML2_2_0.xml" afterDir="false" />
+    <list default="true" id="646b38d0-aa18-4c59-a466-178b1db13a8c" name="默认更改列表" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/setting/EventList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/setting/EventList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/setting/GuiSetup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/setting/GuiSetup.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/setting/MLShop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/setting/MLShop.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/setting/MonsterList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/setting/MonsterList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/setting/MonsterTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/setting/MonsterTable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/source/R.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/source/R.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/source/StringToBytes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/source/StringToBytes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/source/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/source/Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/top/aot/cls/Cls.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/cls/Cls.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/et/rcm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/et/rcm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/et/role/RcRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/et/role/RcRole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/et/role/RcRoleList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/et/role/RcRoleList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/itf/i.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/itf/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/itf/ircu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/itf/ircu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/itf/iu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/itf/iu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/ml/utils/pt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/ml/utils/pt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/ml/utils/pu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/ml/utils/pu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/ml/MListMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/ml/MListMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/ml/command/AMLCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/ml/command/AMLCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/ml/command/ListCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/ml/command/ListCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/ml/command/ReloadCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/ml/command/ReloadCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/ml/variable/Variable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/ml/variable/Variable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/sp/command/ShopAddCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/sp/command/ShopAddCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/sp/command/ShopSetCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/sp/command/ShopSetCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/top/aot/sp/gui/ShopGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/sp/gui/ShopGui.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/sp/spm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/sp/spm.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -375,7 +364,8 @@
       <workItem from="1603346962970" duration="2681000" />
       <workItem from="1603349669169" duration="3331000" />
       <workItem from="1603371500108" duration="5848000" />
-      <workItem from="1603411585388" duration="990000" />
+      <workItem from="1603411585388" duration="1418000" />
+      <workItem from="1603413435566" duration="1083000" />
     </task>
     <task id="LOCAL-00001" summary="添加hutool依赖">
       <created>1601080143235</created>
@@ -426,7 +416,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603372186671</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="代码优化">
+      <created>1603412656426</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1603412656426</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -446,6 +443,8 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="添加hutool依赖" />
     <MESSAGE value="添加hutool依赖版本修改至2.2.0" />
     <MESSAGE value="屏蔽因报错引起的GUI卡出物品" />
@@ -453,6 +452,7 @@
     <MESSAGE value="c" />
     <MESSAGE value="添加数据库支持" />
     <MESSAGE value="添加1.8.8服务端调试配置" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加1.8.8服务端调试配置" />
+    <MESSAGE value="代码优化" />
+    <option name="LAST_COMMIT_MESSAGE" value="代码优化" />
   </component>
 </project>

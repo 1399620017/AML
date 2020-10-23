@@ -3,7 +3,7 @@ package top.aot.ml.variable;
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.PlaceholderHook;
 import org.bukkit.entity.Player;
-import top.aot.ml.MListMain;
+import setting.MonsterList;
 import top.aot.cls.Cls;
 
 import java.util.Objects;
@@ -28,12 +28,12 @@ public class Variable extends PlaceholderHook {
                     if (Objects.equals(variables[1], "num")) {
                         return String.valueOf(role.getUnlockNum());
                     } else if (Objects.equals(variables[1], "sum")) {
-                        return String.valueOf(MListMain.list.getMonsterNum());
+                        return String.valueOf(MonsterList.list.getMonsterNum());
                     }
                     return "0";
                 case "num":
                     // 获取玩家击杀的某类型怪物数量
-                    Cls.Monster monster = MListMain.list.getMonsterById(variables[1]);
+                    Cls.Monster monster = MonsterList.list.getMonsterById(variables[1]);
                     if (Cls.C.ex(monster, false)) {
                         return "0";
                     }
@@ -41,7 +41,7 @@ public class Variable extends PlaceholderHook {
                     return String.valueOf(role.getKillNum(monster));
                 case "state":
                     // 获取玩家击杀的某类型怪物数量
-                    monster = MListMain.list.getMonsterById(variables[1]);
+                    monster = MonsterList.list.getMonsterById(variables[1]);
                     if (Cls.C.ex(monster, false)) {
                         return "false";
                     }
@@ -52,7 +52,7 @@ public class Variable extends PlaceholderHook {
             }
         } else if (variables.length == 3) {
             if ("pay".equals(variables[0])) {
-                Cls.Monster monster = MListMain.list.getMonsterById(variables[1]);
+                Cls.Monster monster = MonsterList.list.getMonsterById(variables[1]);
                 if (Cls.C.ex(monster, false)) {
                     return "false";
                 }

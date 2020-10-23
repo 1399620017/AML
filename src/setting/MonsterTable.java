@@ -1,12 +1,11 @@
 package setting;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.bukkit.configuration.file.FileConfiguration;
-
 import top.aot.cls.Cls;
 import top.aot.plugin.APlugin.AsxConfig;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MonsterTable extends AsxConfig {
 
@@ -18,7 +17,7 @@ public class MonsterTable extends AsxConfig {
 
     public static MonsterTable getMonsterTable() {
         if (Cls.C.ex(table, false)) {
-            table = new MonsterTable();
+            reloadMonsterTable();
         }
         return table;
     }

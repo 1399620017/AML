@@ -1,8 +1,8 @@
 package top.aot.ml.command;
 
 import org.bukkit.entity.Player;
+import setting.MonsterList;
 import top.aot.cls.Cls.Monster;
-import top.aot.ml.MListMain;
 import top.aot.plugin.APlugin.Command;
 
 import java.util.Map;
@@ -28,7 +28,7 @@ public class ListCommand extends Command {
 
     @Override
     public boolean send(Player player, String[] args) {
-        Map<String, Monster> monsterMap = MListMain.list.getMonsterNameList();
+        Map<String, Monster> monsterMap = MonsterList.list.getMonsterNameList();
         sendTrueMsg(player, "已经注册的怪物列表：");
         String[] strings = new String[monsterMap.size()];
         int i = 0;

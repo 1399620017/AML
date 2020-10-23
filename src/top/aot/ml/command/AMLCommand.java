@@ -5,11 +5,10 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import top.aot.ml.MListMain;
+import setting.MonsterList;
 import top.aot.cls.Cls;
-import top.aot.plugin.APlugin.Msg;
 import top.aot.plugin.APlugin.GuiBase;
+import top.aot.plugin.APlugin.Msg;
 
 import java.util.Objects;
 
@@ -43,7 +42,7 @@ public class AMLCommand implements CommandExecutor {
                         Player player = Bukkit.getPlayer(arg3[1]);
                         if (Cls.C.ex(player, true) && player.isOnline()) {
                             String monsterKey = arg3[2];
-                            Cls.Monster monster = MListMain.list.getMonsterById(monsterKey);
+                            Cls.Monster monster = MonsterList.list.getMonsterById(monsterKey);
                             if (Cls.C.ex(monster, false)) {
                                 Msg.sendMsgFalse(arg0, "monsterId不存在");
                                 return true;

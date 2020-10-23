@@ -1,7 +1,6 @@
 package top.aot.ml;
 
 import org.bukkit.command.ConsoleCommandSender;
-import setting.MonsterList;
 import top.aot.cls.Cls;
 import top.aot.plugin.APlugin.CorePlugin;
 
@@ -10,8 +9,6 @@ public class MListMain extends CorePlugin {
     static {
         Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
     }
-
-    public static MonsterList list;
 
     @Override
     public void start() {

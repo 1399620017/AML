@@ -7,14 +7,14 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import setting.MLShop;
 import setting.MLShop.Commodity;
+import setting.MonsterList;
 import top.aot.cls.Cls.Monster;
-import top.aot.ml.MListMain;
+import top.aot.cls.Cls.Role;
 import top.aot.plugin.APlugin.AssemblyDynamic;
 import top.aot.plugin.APlugin.Gui;
+import top.aot.plugin.APlugin.LeftClickListener;
 import top.aot.plugin.APlugin.Msg;
 import top.aot.plugin.APlugin.Util.PlayerUtil;
-import top.aot.plugin.APlugin.LeftClickListener;
-import top.aot.cls.Cls.Role;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,7 +62,7 @@ public class ShopGui extends Gui {
 
                     @Override
                     protected void init(ShopGui gui, ItemMeta itemMeta) {
-                        Monster monster = MListMain.list.getMonsterById(commodity.getMonsterId());
+                        Monster monster = MonsterList.list.getMonsterById(commodity.getMonsterId());
                         int rolePoint = role.getKillNum(commodity.getMonsterId());
                         setTitle(rawName + " §e售价:" + monster.getName() + "[" + commodity.getPoint() + "]");
                         setLevel(rawItemStack.getAmount());
@@ -94,7 +94,7 @@ public class ShopGui extends Gui {
                         Msg.sendMsgFalse(owner, "背包至少保留一个空位！");
                         return;
                     }
-                    Monster monster = MListMain.list.getMonsterById(commodity.getMonsterId());
+                    Monster monster = MonsterList.list.getMonsterById(commodity.getMonsterId());
                     String monsterId = monster.getId();
                     if (commodity.getPoint() > role.getKillNum(monsterId)) {
                         Msg.sendMsgFalse(owner, "剩余点数不足！");

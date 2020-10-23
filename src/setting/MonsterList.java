@@ -9,16 +9,19 @@ import org.bukkit.configuration.file.FileConfiguration;
 
 import top.aot.cls.Cls;
 import top.aot.cls.Cls.Monster;
+import top.aot.plugin.APlugin;
 import top.aot.plugin.APlugin.AsxConfig;
 
 public class MonsterList extends AsxConfig {
+
+    public static MonsterList list;
 
     static {
         Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
     }
 
-    private Map<String, Monster> aMap;
-    private Map<String, Monster> bMap;
+    private static final Map<String, Monster> aMap = new HashMap<>();
+    private static final Map<String, Monster> bMap = new HashMap<>();
 
     public MonsterList() {
         super("MonsterList");
@@ -26,6 +29,11 @@ public class MonsterList extends AsxConfig {
 
     public int getMonsterNum() {
         return aMap.size();
+    }
+
+    public static void reload() {
+        list = new MonsterList();
+        APlugin.Msg.sendConMsgTrue("加载怪物图鉴数量:" + aMap.size());
     }
 
     @Override
@@ -68,8 +76,8 @@ public class MonsterList extends AsxConfig {
 
     @Override
     protected void loadConfig(FileConfiguration config) {
-        aMap = new HashMap<>();
-        bMap = new HashMap<>();
+        aMap.clear();
+        bMap.clear();
         for (String key : config.getKeys(false)) {
             Monster monster;
             aMap.put(key, monster = new Monster(key)

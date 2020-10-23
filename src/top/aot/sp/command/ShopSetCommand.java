@@ -4,8 +4,8 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import setting.MLShop;
+import setting.MonsterList;
 import top.aot.cls.Cls.Monster;
-import top.aot.ml.MListMain;
 import top.aot.plugin.APlugin.Command;
 
 /**
@@ -42,7 +42,7 @@ public class ShopSetCommand extends Command {
         }
         index--;
         try {
-            Monster monster = MListMain.list.getMonsterById(args[1]);
+            Monster monster = MonsterList.list.getMonsterById(args[1]);
             if (monster == null) {
                 sendFalseMsg(player, "无此类型怪物！");
                 return true;
