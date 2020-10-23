@@ -13,6 +13,7 @@ import java.io.IOException;
  * @date ：Created in 2020/5/16 13:05
  * @description：as
  */
+@SuppressWarnings("all")
 public class R {
 
     public static void main(String[] args) throws IOException {

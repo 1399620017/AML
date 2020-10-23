@@ -24,7 +24,7 @@ public class RcRole extends AsxConfig {
 		reset();
 	}
 	
-	private boolean reset() {
+	private void reset() {
 		if (!Objects.equals(DateTool.getDateString(), date)) {
 			for (String id : rcm.setting.geteList()) {
 				customConfig.set("event." + id, 0);
@@ -33,9 +33,7 @@ public class RcRole extends AsxConfig {
 			boxList = new ArrayList<>();
 			date = DateTool.getDateString();
 			update();
-			return true;
 		}
-		return false;
 	}
 
 	@Override

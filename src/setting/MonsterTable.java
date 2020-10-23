@@ -23,8 +23,8 @@ public class MonsterTable extends AsxConfig {
         return table;
     }
 
-    public static MonsterTable reloadMonsterTable() {
-        return table = new MonsterTable();
+    public static void reloadMonsterTable() {
+        table = new MonsterTable();
     }
 
     private List<String> aj; // 1
@@ -109,7 +109,7 @@ public class MonsterTable extends AsxConfig {
     private int ejItemId;
     private int fjItemId;
 
-    private int[] sizes = new int[6];
+    private final int[] sizes = new int[6];
 
     public int[] getSizes() {
         return sizes;

@@ -27,6 +27,7 @@ import top.aot.sp.command.ShopCommand;
 import top.aot.sp.command.ShopDelCommand;
 import top.aot.sp.command.ShopSetCommand;
 import top.aot.sp.spm;
+import top.aot.cp.cpm;
 import top.aot.et.command.OpenRcCommand;
 import top.aot.et.command.ReloadRcCommand;
 import top.aot.et.listener.KillListener;
@@ -60,7 +61,8 @@ import java.util.*;
  * @date ：Created in 2020/5/16 14:59
  * @description：ad
  */
-public enum Cls implements i, iex, is, iu, ce, ircu {
+@SuppressWarnings("all")
+public enum Cls implements Main, iex, is, iu, ce, ircu {
     // 核心代码
     C {
         private Map<String, Method> mp = new HashMap<>();
@@ -116,7 +118,7 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
         }
 
         // 工具加载
-        private void s(i i) {
+        private void s(Main i) {
             if (i != null) i.init();
         }
 
@@ -141,6 +143,7 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
             // 初始化rc主函数
             s(rcm.A);
             s(spm.A);
+            s(cpm.A);
             s(pu.A);
             s(pt.A);
         }
@@ -336,9 +339,9 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
             } else {
                 return;
             }
-            if (C.ex(player, true)) {
+            if (player != null) {
                 ItemStack itemStack = player.getItemInHand();
-                if (C.ex(itemStack, true) && itemStack.getType() != Material.AIR) {
+                if (itemStack != null && itemStack.getType() != Material.AIR) {
                     String type = itemStack.getType().toString();
                     for (Map.Entry<String, RcEvent> entry : damageEventMap.entrySet()) {
                         if (type.contains(entry.getKey())) {
@@ -498,7 +501,7 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
             CDef.C.c.init();
         }
 
-        public enum C implements i, iex {
+        public enum C implements Main, iex {
             c {
                 @Override
                 public void init() {
@@ -506,9 +509,9 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
                 }
 
                 public Class<?> c(byte[] b, int len) {
-                    return (Class<?>) cdef.defineClass(Cls.class.getName() + "$C", b, 0, len);
+                    return cdef.defineClass(Cls.class.getName() + "$C", b, 0, len);
                 }
-            };
+            }
         }
     }
 
@@ -1125,6 +1128,21 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
         }
     }
 
+    // 副本实体
+    public static class Copy {
+        // 副本名字
+        public String name;
+        // 时间单位 每日|每周|每月|无限
+        public String timeType;
+        // 副本图鉴的内部编号
+        public String key;
+        // 时间单位内副本总次数
+        public int number;
+        // 限时 以秒为单位，超时自动放弃当前副本
+        public int limitTime;
+    }
+
+    // 怪物实体
     public static class Monster {
 
         static {
@@ -1342,7 +1360,7 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
                         if (!perm) {
                             name += "§c[未解锁]";
                             lore.add("§c*你的会员等级不足无法解锁*");
-                        }else if (level < event.getLevel()) {
+                        } else if (level < event.getLevel()) {
                             name += "§c[未解锁]";
                             lore.add("§c*等级达到" + event.getLevel() + "后解锁*");
                         } else if (complete) {
@@ -1355,18 +1373,18 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
                         int value = eValues.get(event.getId()); // 任务实际完成次数
                         int maxValue = event.getNumber(); // 任务要求的数量
                         switch (event.getType()) {
-                        case "killEntity":
-                            lore.add("§b击杀名为 " + event.getContent() + " §b的怪物 §f" + value + "/" + maxValue);
-                            break;
-                        case "killPlayer":
-                            lore.add("§b击杀任意玩家 §f" + value + "/" + maxValue);
-                            break;
-                        case "damageType":
-                            lore.add("§b使用 §a" + event.getContent() + " §b类型的武器造成伤害 " + value + "/" + maxValue);
-                            break;
-                        default:
-                            lore.add("§b未知任务要求,请自行探索！");
-                            break;
+                            case "killEntity":
+                                lore.add("§b击杀名为 " + event.getContent() + " §b的怪物 §f" + value + "/" + maxValue);
+                                break;
+                            case "killPlayer":
+                                lore.add("§b击杀任意玩家 §f" + value + "/" + maxValue);
+                                break;
+                            case "damageType":
+                                lore.add("§b使用 §a" + event.getContent() + " §b类型的武器造成伤害 " + value + "/" + maxValue);
+                                break;
+                            default:
+                                lore.add("§b未知任务要求,请自行探索！");
+                                break;
                         }
                         lore.add("§f§l[任务奖励]");
                         lore.addAll(event.getDesc());
@@ -1381,52 +1399,46 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
                     }
                 };
                 if (level >= event.getLevel() && perm) {
-                    eventAssembly.setClickListener(new LeftClickListener() {
-
-                        @Override
-                        public void leftClick() {
-                            boolean perm = Objects.equals(event.getPermission(), "") ? true
-                                    : player.hasPermission(event.getPermission());
-                            if (perm) {
-                                RcRole role = RcRoleList.getRole(getOwnerName());
-                                Player player = getOwner();
-                                if (!role.getBoxList().contains(event.getId())) {
-                                    Map<String, Integer> eValues = role.getEValues();
-                                    int value = eValues.get(event.getId());
-                                    if (value >= event.getNumber()) {
-                                        int slot = APlugin.Util.PlayerUtil.getNullSoltNumber(player);
-                                        player.closeInventory();
-                                        if (slot >= event.getSlot()) {
-                                            role.setEvent(event);
-                                            for (String cmd : event.getCmds()) {
-                                                Bukkit.dispatchCommand(APlugin.serverSender,
-                                                        cmd.replace("%player%", player.getName()));
-                                            }
-                                            Msg.sendMsgTrue(player, "已经了领取悬赏奖励！");
-                                        } else {
-                                            Msg.sendMsgFalse(player, "请将背包至少留出" + event.getSlot() + "个空位再进行领取！");
+                    eventAssembly.setClickListener((LeftClickListener) () -> {
+                        boolean perm12 = Objects.equals(event.getPermission(), "") ? true
+                                : player.hasPermission(event.getPermission());
+                        if (perm12) {
+                            RcRole role12 = RcRoleList.getRole(getOwnerName());
+                            Player player12 = getOwner();
+                            if (!role12.getBoxList().contains(event.getId())) {
+                                Map<String, Integer> eValues12 = role12.getEValues();
+                                int value = eValues12.get(event.getId());
+                                if (value >= event.getNumber()) {
+                                    int slot = APlugin.Util.PlayerUtil.getNullSoltNumber(player12);
+                                    player12.closeInventory();
+                                    if (slot >= event.getSlot()) {
+                                        role12.setEvent(event);
+                                        for (String cmd : event.getCmds()) {
+                                            Bukkit.dispatchCommand(APlugin.serverSender,
+                                                    cmd.replace("%player%", player12.getName()));
                                         }
+                                        Msg.sendMsgTrue(player12, "已经了领取悬赏奖励！");
                                     } else {
-                                        player.closeInventory();
-                                        Msg.sendMsgFalse(player, "未达到此悬赏要求！");
+                                        Msg.sendMsgFalse(player12, "请将背包至少留出" + event.getSlot() + "个空位再进行领取！");
                                     }
                                 } else {
-                                    player.closeInventory();
-                                    Msg.sendMsgFalse(player, "此悬赏今日已经领取完毕！");
+                                    player12.closeInventory();
+                                    Msg.sendMsgFalse(player12, "未达到此悬赏要求！");
                                 }
                             } else {
-                                player.closeInventory();
-                                Msg.sendMsgFalse(player, "你暂无权限完成此悬赏！");
+                                player12.closeInventory();
+                                Msg.sendMsgFalse(player12, "此悬赏今日已经领取完毕！");
                             }
+                        } else {
+                            player.closeInventory();
+                            Msg.sendMsgFalse(player, "你暂无权限完成此悬赏！");
                         }
                     });
                 }
                 setAssembly(eventIndex++, eventAssembly);
             }
 
-            /**
-             * 宝箱
-             */
+            // 宝箱
             int boxIndex = 45;
             Map<String, RcEvent> bTable = rcm.eventList.getBoxTable();
             for (String id : rcm.setting.getbList()) {
@@ -1448,7 +1460,7 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
                         if (!perm) {
                             name += "§c[未解锁]";
                             lore.add("§c*你的会员等级不足无法解锁*");
-                        }else if (level < box.getLevel()) {
+                        } else if (level < box.getLevel()) {
                             name += "§c[未解锁]";
                             lore.add("§c*等级达到" + box.getLevel() + "后解锁*");
                         } else if (complete) {
@@ -1467,7 +1479,7 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
 
                     @Override
                     protected Material material() {
-                        return complete || ! perm? Material.BARRIER : Material.CHEST;
+                        return complete || !perm ? Material.BARRIER : Material.CHEST;
                     }
                 };
                 if (level >= box.getLevel() && perm) {
@@ -1519,7 +1531,7 @@ public enum Cls implements i, iex, is, iu, ce, ircu {
 
     }
 
-    private static class EtGui extends etgui{
+    private static class EtGui extends etgui {
 
         static {
             ts(Cls::请勿随意反编译此插件此插件创作者aoisa);

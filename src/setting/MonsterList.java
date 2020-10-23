@@ -8,6 +8,7 @@ import java.util.Map;
 import org.bukkit.configuration.file.FileConfiguration;
 
 import top.aot.cls.Cls;
+import top.aot.cls.Cls.Monster;
 import top.aot.plugin.APlugin.AsxConfig;
 
 public class MonsterList extends AsxConfig {
@@ -16,8 +17,8 @@ public class MonsterList extends AsxConfig {
         Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
     }
 
-    private Map<String, Cls.Monster> aMap;
-    private Map<String, Cls.Monster> bMap;
+    private Map<String, Monster> aMap;
+    private Map<String, Monster> bMap;
 
     public MonsterList() {
         super("MonsterList");
@@ -70,8 +71,8 @@ public class MonsterList extends AsxConfig {
         aMap = new HashMap<>();
         bMap = new HashMap<>();
         for (String key : config.getKeys(false)) {
-            Cls.Monster monster;
-            aMap.put(key, monster = new Cls.Monster(key)
+            Monster monster;
+            aMap.put(key, monster = new Monster(key)
                     .setName(config.getString(key + ".name"))
                     .setAttrs(config.getStringList(key + ".attrs"))
                     .setDesc(config.getStringList(key + ".desc"))
@@ -92,14 +93,14 @@ public class MonsterList extends AsxConfig {
         }
     }
 
-    public Cls.Monster getMonsterById(String id) {
+    public Monster getMonsterById(String id) {
         if (aMap.containsKey(id)) {
             return aMap.get(id);
         }
         return null;
     }
 
-    public Map<String, Cls.Monster> getMonsterNameList() {
+    public Map<String, Monster> getMonsterNameList() {
         return bMap;
     }
 

@@ -28,8 +28,8 @@ public class GuiSetup extends AsxConfig {
         return table;
     }
 
-    public static GuiSetup reloadMonsterTable() {
-        return table = new GuiSetup();
+    public static void reloadMonsterTable() {
+        table = new GuiSetup();
     }
 
     public GuiSetup() {
@@ -37,7 +37,6 @@ public class GuiSetup extends AsxConfig {
     }
 
     private Map<String, tgi> tgiMap;
-    private Set<String> typeNameSet;
 
     @Override
     protected void defaultValue() {
@@ -69,7 +68,7 @@ public class GuiSetup extends AsxConfig {
         enable = config.getBoolean("setting.enable", false);
         tgiMap = new HashMap<>();
         ConfigurationSection itemConfig = config.getConfigurationSection("item");
-        typeNameSet = itemConfig.getKeys(false);
+        Set<String> typeNameSet = itemConfig.getKeys(false);
         for (String typeName : typeNameSet) {
             tsi tsi = new ti();
             String name = itemConfig.getString(typeName + ".name");

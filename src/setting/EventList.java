@@ -22,9 +22,7 @@ public class EventList extends AsxConfig {
 
 	@Override
 	protected void defaultValue() {
-		/**
-		 * 普通任务
-		 */
+		// 普通任务
 		customConfig.set("event.1.name", "§e屠牛大师");
 		customConfig.set("event.1.type", "killEntity");
 		customConfig.set("event.1.content", "§a等级 1 家养牛");
@@ -59,9 +57,7 @@ public class EventList extends AsxConfig {
 		customConfig.set("event.3.slot", 0);
 		customConfig.set("event.3.level", 0);
 
-		/**
-		 * 积分宝箱
-		 */
+		// 积分宝箱
 		customConfig.set("box.b1.name", "§e60积分宝箱");
 		customConfig.set("box.b1.permission", "vip1");
 		customConfig.set("box.b1.type", "-");
@@ -76,9 +72,7 @@ public class EventList extends AsxConfig {
 		customConfig.set("box.b1.point", 0);
 		customConfig.set("box.b1.slot", 0);
 		customConfig.set("box.b1.level", 20);
-		/**
-		 * 积分宝箱
-		 */
+		// 积分宝箱
 		customConfig.set("box.b2.name", "§e60积分宝箱");
 		customConfig.set("box.b2.type", "-");
 		customConfig.set("box.b2.content", "-");

@@ -12,7 +12,7 @@ public class RcRoleList {
 		Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
 	}
 
-	private static Map<String, RcRole> roleList = new HashMap<>();
+	private static final Map<String, RcRole> roleList = new HashMap<>();
 	
 	public static RcRole getRole(Player player) {
 		return getRole(player.getName());

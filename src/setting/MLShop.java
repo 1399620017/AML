@@ -16,7 +16,7 @@ public class MLShop extends AsxConfig {
 
     private static MLShop bfShop;
 
-    private static Map<Integer, Commodity> map = new HashMap<>();
+    private static final Map<Integer, Commodity> map = new HashMap<>();
 
     public static MLShop getInstance() {
         return bfShop;
@@ -93,7 +93,7 @@ public class MLShop extends AsxConfig {
         return false;
     }
 
-    public boolean clearCommandity() {
+    public void clearCommandity() {
         map.clear();
         for (int i = 0; i < 54; i++) {
             customConfig.set(i + ".monsterId", null);
@@ -101,7 +101,6 @@ public class MLShop extends AsxConfig {
             customConfig.set(i + ".itemStack", null);
         }
         update();
-        return true;
     }
 
     public Map<Integer, Commodity> getMap() {

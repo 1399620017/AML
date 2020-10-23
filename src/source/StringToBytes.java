@@ -1,6 +1,5 @@
 package source;
 
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
@@ -11,7 +10,7 @@ import java.util.Arrays;
  */
 public class StringToBytes {
     public static void main(String[] args) {
-        String string = "aoisa";
+        String string = "org.bukkit.permissions.ServerOperator";
         byte[] bytes = string.getBytes(StandardCharsets.UTF_8);
         String bytesString = Arrays.toString(bytes);
         System.out.println(String.format("new String(new byte[]{%s}, StandardCharsets.UTF_8)",

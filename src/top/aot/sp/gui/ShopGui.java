@@ -28,7 +28,7 @@ import java.util.Map;
 public class ShopGui extends Gui {
 
     private Map<Integer, Commodity> map;
-    private Role role;
+    private final Role role;
 
     public ShopGui(Player owner, Role role) {
         super(owner, "§c§l怪物商店[使用击杀数购买商品]", 6);

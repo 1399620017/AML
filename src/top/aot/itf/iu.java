@@ -1,7 +1,6 @@
 package top.aot.itf;
 
 import org.bukkit.event.entity.EntityDeathEvent;
-import top.aot.ml.MListMain;
 import top.aot.cls.Cls;
 
 /**

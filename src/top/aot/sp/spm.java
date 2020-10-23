@@ -1,7 +1,7 @@
 package top.aot.sp;
 
 import setting.MLShop;
-import top.aot.itf.i;
+import top.aot.itf.Main;
 import top.aot.cls.Cls;
 
 /**
@@ -9,7 +9,7 @@ import top.aot.cls.Cls;
  * @date ：Created in 2020/9/21 12:50
  * @description：
  */
-public enum spm implements i {
+public enum spm implements Main {
 
     A{
         @Override

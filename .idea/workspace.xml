@@ -6,10 +6,30 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="646b38d0-aa18-4c59-a466-178b1db13a8c" name="默认更改列表" comment="">
+    <list default="true" id="646b38d0-aa18-4c59-a466-178b1db13a8c" name="默认更改列表" comment="添加1.8.8服务端调试配置">
+      <change afterPath="$PROJECT_DIR$/src/setting/CopyList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/top/aot/cp/cpm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/artifacts/AML2_2_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/AML2_2_0.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/plugin/APlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/plugin/APlugin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/setting/EventList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/setting/EventList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/setting/GuiSetup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/setting/GuiSetup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/setting/MLShop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/setting/MLShop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/setting/MonsterList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/setting/MonsterList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/setting/MonsterTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/setting/MonsterTable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/source/R.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/source/R.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/source/StringToBytes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/source/StringToBytes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/source/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/source/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/cls/Cls.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/cls/Cls.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/et/rcm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/et/rcm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/et/role/RcRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/et/role/RcRole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/et/role/RcRoleList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/et/role/RcRoleList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/itf/i.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/itf/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/itf/ircu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/itf/ircu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/itf/iu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/itf/iu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/ml/utils/pt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/ml/utils/pt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/ml/utils/pu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/ml/utils/pu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/sp/gui/ShopGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/sp/gui/ShopGui.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/sp/spm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/sp/spm.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -48,8 +68,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -65,6 +85,9 @@
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="NamedScopeManager">
+    <scope name="src" pattern="src:com..*||src:com.google..*||src:com.google.gson..*||src:com.google.gson.annotations..*||src:com.google.gson.internal..*||src:com.google.gson.internal.bind..*||src:com.google.gson.reflect..*||src:com.google.gson.stream..*||src:setting..*||src:source..*||src:top.aot.bean..*||src:top.aot.cls..*||src:top.aot.cp..*||src:top.aot.et..*||src:top.aot.et.command..*||src:top.aot.et.gui..*||src:top.aot.et.listener..*||src:top.aot.et.role..*||src:top.aot.et.submission..*||src:top.aot.itf..*||src:top.aot.ml..*||src:top.aot.ml.command..*||src:top.aot.ml.gui..*||src:top.aot.ml.listener..*||src:top.aot.ml.nms..*||src:top.aot.ml.utils..*||src:top.aot.ml.variable..*||src:top.aot.module..*||src:top.aot.plugin..*||src:top.aot.sp..*||src:top.aot.sp.command..*||src:top.aot.sp.gui..*" />
+  </component>
   <component name="ProjectId" id="1btBeKVzvSttfxdR4VsdCqO7sOc" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="添加" />
@@ -77,25 +100,29 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Server/plugins" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Server1.0/plugins" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="project.propCompiler" />
     <property name="show.unlinked.gradle.project.popup" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="top.aot.ml.nms" />
-      <recent name="top.aot.ml.cls" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\src\eclipse-workspace\amlbuild\cn" />
+      <recent name="D:\src\eclipse-workspace\amlbuild" />
+      <recent name="D:\src\eclipse-workspace\amlbuild\resource" />
+      <recent name="D:\src\eclipse-workspace\amlbuild\src" />
+      <recent name="D:\src\eclipse-workspace\tjgwtjxt\src" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\src\eclipse-workspace\amlbuild\Server" />
       <recent name="D:\src\eclipse-workspace\amlbuild\resource\com\google" />
       <recent name="D:\src\eclipse-workspace\amlbuild\resource" />
       <recent name="D:\src\eclipse-workspace\AsxMail\src\top\aot\mail\plugin" />
       <recent name="D:\src\eclipse-workspace\AsxMail\resource" />
-      <recent name="D:\src\eclipse-workspace\amlbuild\lib" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="top.aot.mail.plugin" />
@@ -103,12 +130,9 @@
       <recent name="top.aot.ml.variable" />
       <recent name="top.aot.ml.cls" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\src\eclipse-workspace\amlbuild\cn" />
-      <recent name="D:\src\eclipse-workspace\amlbuild" />
-      <recent name="D:\src\eclipse-workspace\amlbuild\resource" />
-      <recent name="D:\src\eclipse-workspace\amlbuild\src" />
-      <recent name="D:\src\eclipse-workspace\tjgwtjxt\src" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="top.aot.ml.nms" />
+      <recent name="top.aot.ml.cls" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -191,7 +215,7 @@
     <configuration name="Server" type="JarApplication">
       <option name="JAR_PATH" value="$PROJECT_DIR$/../../API/paperspigot-1.8.8.jar" />
       <option name="VM_PARAMETERS" value="-Dfile.encoding=UTF-8" />
-      <option name="WORKING_DIRECTORY" value="D:\src\eclipse-workspace\amlbuild\Server" />
+      <option name="WORKING_DIRECTORY" value="D:\src\eclipse-workspace\amlbuild\Server1.0" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <module name="aml" />
       <method v="2">
@@ -257,9 +281,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.StringToBytes" />
         <item itemvalue="Application.R" />
         <item itemvalue="Application.Test" />
-        <item itemvalue="Application.StringToBytes" />
         <item itemvalue="Application.R (1)" />
         <item itemvalue="Application.T" />
       </list>
@@ -350,7 +374,8 @@
       <workItem from="1601362532849" duration="88000" />
       <workItem from="1603346962970" duration="2681000" />
       <workItem from="1603349669169" duration="3331000" />
-      <workItem from="1603371500108" duration="631000" />
+      <workItem from="1603371500108" duration="5848000" />
+      <workItem from="1603411585388" duration="990000" />
     </task>
     <task id="LOCAL-00001" summary="添加hutool依赖">
       <created>1601080143235</created>
@@ -394,7 +419,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603351220623</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="添加1.8.8服务端调试配置">
+      <created>1603372186671</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1603372186671</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -420,18 +452,7 @@
     <MESSAGE value="优化部分代码" />
     <MESSAGE value="c" />
     <MESSAGE value="添加数据库支持" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加数据库支持" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-field">
-          <url>jar://$PROJECT_DIR$/../../API/spigot-1.8.8-R0.1-SNAPSHOT-latest.jar!/org/bukkit/craftbukkit/v1_8_R3/block/CraftBlock.class</url>
-          <line>41</line>
-          <properties field="chunk" class="org.bukkit.craftbukkit.v1_8_R3.block.CraftBlock" />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="添加1.8.8服务端调试配置" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加1.8.8服务端调试配置" />
   </component>
 </project>

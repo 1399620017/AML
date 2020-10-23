@@ -4,8 +4,6 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import top.aot.bean.RcEvent;
 
-import java.util.Map;
-
 // 悬赏击杀处理接口
 public interface ircu {
 
