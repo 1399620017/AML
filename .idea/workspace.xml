@@ -8,17 +8,14 @@
   <component name="ChangeListManager">
     <list default="true" id="646b38d0-aa18-4c59-a466-178b1db13a8c" name="默认更改列表" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/setting/MonsterList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/setting/MonsterList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/setting/MonsterTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/setting/MonsterTable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/setting/EventList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/setting/EventList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/setting/GuiSetup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/setting/GuiSetup.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/top/aot/cls/Cls.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/cls/Cls.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/ml/MListMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/ml/MListMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/ml/command/AMLCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/ml/command/AMLCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/ml/command/ListCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/ml/command/ListCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/et/command/ReloadRcCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/et/command/ReloadRcCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/et/rcm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/et/rcm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/et/role/RcRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/et/role/RcRole.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/top/aot/ml/command/ReloadCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/ml/command/ReloadCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/ml/variable/Variable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/ml/variable/Variable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/sp/command/ShopAddCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/sp/command/ShopAddCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/sp/command/ShopSetCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/sp/command/ShopSetCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/sp/gui/ShopGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/sp/gui/ShopGui.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/ml/command/SwitchGuiSetupCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/ml/command/SwitchGuiSetupCommand.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -365,7 +362,7 @@
       <workItem from="1603349669169" duration="3331000" />
       <workItem from="1603371500108" duration="5848000" />
       <workItem from="1603411585388" duration="1418000" />
-      <workItem from="1603413435566" duration="1083000" />
+      <workItem from="1603413435566" duration="2476000" />
     </task>
     <task id="LOCAL-00001" summary="添加hutool依赖">
       <created>1601080143235</created>
@@ -423,7 +420,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603412656426</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="代码优化">
+      <created>1603414542830</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1603414542830</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

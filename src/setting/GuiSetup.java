@@ -19,16 +19,9 @@ public class GuiSetup extends AsxConfig {
         Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
     }
 
-    private static GuiSetup table;
+    public static GuiSetup table;
 
-    public static GuiSetup getMonsterTable() {
-        if (Cls.C.ex(table, false)) {
-            table = new GuiSetup();
-        }
-        return table;
-    }
-
-    public static void reloadMonsterTable() {
+    public static void reload() {
         table = new GuiSetup();
     }
 

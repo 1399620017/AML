@@ -12,7 +12,7 @@ public enum rcm implements Main {
 		@Override
 		public void init() {
 			setting = new EventSetup();
-			eventList = new EventList();
+			EventList.reload();
 			APlugin.plugin.getCommand("arc").setExecutor(new ARCCommand());
 		}
 	};
@@ -20,6 +20,5 @@ public enum rcm implements Main {
 		Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
 	}
 	public static EventSetup setting;
-	public static EventList eventList;
 
 }

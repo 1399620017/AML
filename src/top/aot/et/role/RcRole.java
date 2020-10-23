@@ -1,6 +1,7 @@
 package top.aot.et.role;
 
 import org.bukkit.configuration.file.FileConfiguration;
+import setting.EventList;
 import top.aot.et.rcm;
 import top.aot.bean.RcEvent;
 import top.aot.cls.Cls;
@@ -63,7 +64,7 @@ public class RcRole extends AsxConfig {
 	public Map<String, Integer> getEValues() {
 		reset();
 		Map<String, Integer> map = new HashMap<>();
-		for (String key : rcm.eventList.getEventTable().keySet()) {
+		for (String key : EventList.list.getEventTable().keySet()) {
 			map.put(key, customConfig.getInt("event." + key, 0));
 		}
 		map.put("point", customConfig.getInt("point"));

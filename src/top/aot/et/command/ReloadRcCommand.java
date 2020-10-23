@@ -20,7 +20,7 @@ public class ReloadRcCommand extends Command {
 
 	@Override
 	public boolean send(Player player, String[] args) {
-		rcm.eventList = new EventList();
+		EventList.list = new EventList();
 		rcm.setting = new EventSetup();
 		Msg.sendMsgTrue(player, "重载插件配置完毕！");
 		return true;

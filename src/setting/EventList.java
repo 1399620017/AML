@@ -4,6 +4,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import top.aot.et.rcm;
 import top.aot.bean.RcEvent;
 import top.aot.cls.Cls;
+import top.aot.plugin.APlugin;
 import top.aot.plugin.APlugin.AsxConfig;
 
 import java.util.ArrayList;
@@ -13,8 +14,15 @@ import java.util.Map;
 
 public class EventList extends AsxConfig {
 
-	private Map<String, RcEvent> eMap;
-	private Map<String, RcEvent> bMap;
+	private static final Map<String, RcEvent> eMap = new HashMap<>();
+	private static final Map<String, RcEvent> bMap = new HashMap<>();
+
+	public static EventList list;
+
+	public static void reload() {
+		list = new EventList();
+		APlugin.Msg.sendConMsgTrue("加载悬赏数量:" + eMap.size());
+	}
 
 	public EventList() {
 		super("EventList");
@@ -96,7 +104,7 @@ public class EventList extends AsxConfig {
 	@Override
 	protected void loadConfig(FileConfiguration config) {
 		Cls.E.ck();
-		eMap = new HashMap<>();
+		eMap.clear();
 		for (String key : rcm.setting.geteList()) {
 			RcEvent ee = new RcEvent(key).setName(config.getString("event." + key + ".name"))
 					.setType(config.getString("event." + key + ".type"))
@@ -120,7 +128,7 @@ public class EventList extends AsxConfig {
 				break;
 			}
 		}
-		bMap = new HashMap<>();
+		bMap.clear();
 		for (String key : rcm.setting.getbList()) {
 			RcEvent eb = new RcEvent(key).setName(config.getString("box." + key + ".name"))
 					.setType(config.getString("box." + key + ".type"))

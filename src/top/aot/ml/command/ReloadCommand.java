@@ -22,7 +22,7 @@ public class ReloadCommand extends Command{
 	public boolean send(Player player, String[] args) {
 		MonsterList.reload();
 		MonsterTable.reloadMonsterTable();
-		GuiSetup.reloadMonsterTable();
+		GuiSetup.reload();
 		Msg.sendMsgTrue(player, "重载配置完成");
 		return true;
 	}

@@ -18,7 +18,7 @@ public class SwitchGuiSetupCommand extends Command{
 
 	@Override
 	public boolean send(Player player, String[] args) {
-		GuiSetup guiSetup = GuiSetup.getMonsterTable();
+		GuiSetup guiSetup = GuiSetup.table;
 		guiSetup.switchEnable();
 		if (guiSetup.isEnable()) {
 			Msg.sendMsgTrue(player, "已经开启新版GUI配置！");

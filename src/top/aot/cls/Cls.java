@@ -15,6 +15,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.projectiles.ProjectileSource;
+import setting.EventList;
 import setting.GuiSetup;
 import setting.MonsterList;
 import setting.MonsterTable;
@@ -118,7 +119,7 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
         public void d() {
             version = Bukkit.getVersion();
             MonsterTable.getMonsterTable();
-            GuiSetup.getMonsterTable();
+            GuiSetup.reload();
             MonsterList.reload();
             APlugin.plugin.getCommand(C.s(1)).setExecutor(new AMLCommand());
             papi = Bukkit.getPluginManager().getPlugin(Cls.C.s(11)); // 用服务端获取PAPI插件
@@ -526,7 +527,7 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
 
         @Override
         protected void initWindow() {
-            newTable = GuiSetup.getMonsterTable();
+            newTable = GuiSetup.table;
             if (newTable.isEnable()) {
                 listType = "";
             } else {
@@ -795,7 +796,7 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
 
         @Override
         protected void initWindow() {
-            newTable = GuiSetup.getMonsterTable();
+            newTable = GuiSetup.table;
             mlGui = (MLGui) getBeforeGui();
             if (newTable.isEnable()) {
                 listName = mlGui.getCurrentTgi().getMonsterList();
@@ -1330,7 +1331,7 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
             int eventIndex = 0;
             RcRole role = RcRoleList.getRole(getOwnerName());
             Map<String, Integer> eValues = role.getEValues();
-            Map<String, RcEvent> eTable = rcm.eventList.getEventTable();
+            Map<String, RcEvent> eTable = EventList.list.getEventTable();
             Player player = getOwner();
             int level = player.getLevel();
             for (String id : rcm.setting.geteList()) {
@@ -1432,7 +1433,7 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
 
             // 宝箱
             int boxIndex = 45;
-            Map<String, RcEvent> bTable = rcm.eventList.getBoxTable();
+            Map<String, RcEvent> bTable = EventList.list.getBoxTable();
             for (String id : rcm.setting.getbList()) {
                 RcEvent box = bTable.get(id);
                 boolean complete = role.getBoxList().contains(box.getId());
