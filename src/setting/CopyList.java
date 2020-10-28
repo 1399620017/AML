@@ -1,10 +1,12 @@
 package setting;
 
+import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
-import top.aot.cls.Cls.Copy;
-import top.aot.plugin.APlugin.Msg;
+import top.aot.cp.entity.Copy;
 import top.aot.plugin.APlugin.AsxConfig;
+import top.aot.plugin.APlugin.Msg;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,18 +37,139 @@ public class CopyList extends AsxConfig {
 
     @Override
     protected void loadConfig(FileConfiguration config) {
+        map.clear();
         for (String copyKey : config.getKeys(false)) {
             Copy copy = new Copy();
             copy.key = copyKey;
             copy.name = config.getString(copyKey + ".name");
-            copy.timeType = config.getString(copyKey + ".timeType");
+            copy.setTimeType(config.getString(copyKey + ".timeType"));
             copy.number = config.getInt(copyKey + ".number");
             copy.limitTime = config.getInt(copyKey + ".limitTime");
+            copy.desc = config.getStringList(copyKey + ".desc");
+            copy.minLevel = config.getInt(copyKey + ".minLevel");
+            copy.maxLevel = config.getInt(copyKey + ".maxLevel");
+            copy.permission = config.getString(copyKey + ".permission");
+            copy.items = config.getString(copyKey + ".items");
+            copy.world = config.getString(copyKey + ".world");
+            copy.x = config.getDouble(copyKey + ".x");
+            copy.y = config.getDouble(copyKey + ".y");
+            copy.z = config.getDouble(copyKey + ".z");
+            copy.yaw = (float) config.getDouble(copyKey + ".yaw");
+            copy.pitch = (float) config.getDouble(copyKey + ".pitch");
+            map.put(copyKey, copy);
         }
+    }
+
+    // 设置副本等级要求
+    public static void setLevel(Copy copy, int minLevel, int maxLevel) {
+        copy.minLevel = minLevel;
+        copy.maxLevel = maxLevel;
+        instance.customConfig.set(copy.key + ".minLevel", minLevel);
+        instance.customConfig.set(copy.key + ".maxLevel", maxLevel);
+        map.put(copy.key, copy);
+        instance.update();
+    }
+
+    // 设置副本权限要求
+    public static void setPermission(Copy copy, String permission) {
+        copy.permission = permission;
+        instance.customConfig.set(copy.key + ".permission", permission);
+        map.put(copy.key, copy);
+        instance.update();
+    }
+
+    // 设置手中物品固定数量为进入副本门票
+    public static void setItems(Copy copy, String items) {
+        copy.items = items;
+        instance.customConfig.set(copy.key + ".items", items);
+        map.put(copy.key, copy);
+        instance.update();
+    }
+
+    // 设置当前位置为副本传送点
+    public static void setLocation(Copy copy, Location location) {
+        copy.world = location.getWorld().getName();
+        copy.x = location.getX();
+        copy.y = location.getY();
+        copy.z = location.getZ();
+        copy.yaw = location.getYaw();
+        copy.pitch = location.getPitch();
+        instance.customConfig.set(copy.key + ".world", copy.world);
+        instance.customConfig.set(copy.key + ".x", copy.x);
+        instance.customConfig.set(copy.key + ".y", copy.y);
+        instance.customConfig.set(copy.key + ".z", copy.z);
+        instance.customConfig.set(copy.key + ".yaw", copy.yaw);
+        instance.customConfig.set(copy.key + ".pitch", copy.pitch);
+        map.put(copy.key, copy);
+        instance.update();
+    }
+
+    // 设置副本说明
+    public static void setDesc(Copy copy, String desc) {
+        copy.desc = new ArrayList<>();
+        copy.desc.add(desc.replaceAll("&", "§"));
+        instance.customConfig.set(copy.key + ".desc", copy.desc);
+        map.put(copy.key, copy);
+        instance.update();
     }
 
     @Override
     protected void saveConfig(FileConfiguration config) {
 
+    }
+
+    public static Copy create(String copyId, String copyName, String world, double x, double y,
+                              double z, float pitch, float yaw) {
+        Copy copy = new Copy();
+        copy.key = copyId;
+        copy.name = copyName;
+        instance.customConfig.set(copyId + ".name", copyName);
+        copy.world = world;
+        instance.customConfig.set(copyId + ".world", world);
+        copy.x = x;
+        instance.customConfig.set(copyId + ".x", x);
+        copy.y = y;
+        instance.customConfig.set(copyId + ".y", y);
+        copy.z = z;
+        instance.customConfig.set(copyId + ".z", z);
+        copy.pitch = pitch;
+        instance.customConfig.set(copyId + ".pitch", pitch);
+        copy.yaw = yaw;
+        instance.customConfig.set(copyId + ".yaw", yaw);
+        map.put(copy.key, copy);
+        instance.update();
+        return copy;
+    }
+
+    // 设置时副本次数刷新周期
+    public static void setType(Copy copy, String typeName) {
+        copy.setTimeType(typeName);
+        instance.customConfig.set(copy.key + ".timeType", typeName);
+        map.put(copy.key, copy);
+        instance.update();
+    }
+
+    // 设置副本进入次数
+    public static void setCount(Copy copy, int count) {
+        copy.number = count;
+        instance.customConfig.set(copy.key + ".number", count);
+        map.put(copy.key, copy);
+        instance.update();
+    }
+
+    // 设置副本时间限制
+    public static void setLimitTime(Copy copy, int limitTime) {
+        copy.limitTime = limitTime;
+        instance.customConfig.set(copy.key + ".limitTime", limitTime);
+        map.put(copy.key, copy);
+        instance.update();
+    }
+
+    public static boolean hasCopy(String copyId) {
+        return map.containsKey(copyId);
+    }
+
+    public static Copy getCopy(String copyId) {
+        return map.get(copyId);
     }
 }

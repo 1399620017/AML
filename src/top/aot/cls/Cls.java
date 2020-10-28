@@ -333,7 +333,7 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
                 return;
             }
             if (player != null) {
-                ItemStack itemStack = player.getItemInHand();
+                ItemStack itemStack = Util.PlayerUtil.getItemInHand(player);
                 if (itemStack != null && itemStack.getType() != Material.AIR) {
                     String type = itemStack.getType().toString();
                     for (Map.Entry<String, RcEvent> entry : damageEventMap.entrySet()) {
@@ -1119,20 +1119,6 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
         private void setKillNum(String monsterId, int num) {
             customConfig.set("killNumList." + monsterId, num);
         }
-    }
-
-    // 副本实体
-    public static class Copy {
-        // 副本名字
-        public String name;
-        // 时间单位 每日|每周|每月|无限
-        public String timeType;
-        // 副本图鉴的内部编号
-        public String key;
-        // 时间单位内副本总次数
-        public int number;
-        // 限时 以秒为单位，超时自动放弃当前副本
-        public int limitTime;
     }
 
     // 怪物实体

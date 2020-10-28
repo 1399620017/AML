@@ -7,6 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
@@ -96,7 +97,7 @@ public final class APlugin {
 
         public Assembly(T gui) {
             this.gui = gui;
-            setItemStack(itemId() > 0? new ItemStack(itemId(), 1):new ItemStack(material())); // 初始化物品
+            setItemStack(itemId() > 0 ? new ItemStack(itemId(), 1) : new ItemStack(material())); // 初始化物品
             itemMeta = getItemStack().getItemMeta();
             setSecondID(secondID());
             init(gui, itemMeta);
@@ -152,6 +153,13 @@ public final class APlugin {
          */
         public void setLore(List<String> lore) {
             itemMeta.setLore(lore);
+        }
+
+        /**
+         * 设置组件发光
+         */
+        public void setLight() {
+            itemMeta.addEnchant(Enchantment.DAMAGE_ALL, 1, true);
         }
 
         /**
@@ -769,6 +777,8 @@ public final class APlugin {
          */
         private boolean can;
 
+        protected Map<String, Object> data;
+
         private Map<Integer, AssemblyClickListener> assemblyClick = new HashMap<>(); // 动态组件 点击监听列表
         @SuppressWarnings("rawtypes")
         private Map<Integer, AssemblyFixed> assemblyMap = new HashMap<>(); // 固定组件 只做显示 不实现任何功能
@@ -779,6 +789,21 @@ public final class APlugin {
          * 创建窗口过程
          */
         public Gui(Gui beforeGui, Player owner, String title, int lv) {
+            data = Collections.EMPTY_MAP;
+            setBeforeGui(beforeGui);
+            setOwner(owner);
+            level = lv * 9;
+            i = Bukkit.createInventory(null, level, title);
+            invtable.put(i, this);
+            initWindow();
+            drawWindow();
+        }
+
+        /**
+         * 创建窗口过程
+         */
+        public Gui(Gui beforeGui, Player owner, String title, int lv, Map<String, Object> data) {
+            this.data = data;
             setBeforeGui(beforeGui);
             setOwner(owner);
             level = lv * 9;
@@ -792,6 +817,20 @@ public final class APlugin {
          * 创建窗口过程
          */
         public Gui(Player owner, String title, int lv) {
+            data = new HashMap<>();
+            setOwner(owner);
+            level = lv * 9;
+            i = Bukkit.createInventory(null, level, title);
+            invtable.put(i, this);
+            initWindow();
+            drawWindow();
+        }
+
+        /**
+         * 创建窗口过程
+         */
+        public Gui(Player owner, String title, int lv, Map<String, Object> data) {
+            this.data = data;
             setOwner(owner);
             level = lv * 9;
             i = Bukkit.createInventory(null, level, title);
@@ -1413,6 +1452,29 @@ public final class APlugin {
                 return String.format("%s%s%s", date.getYear(), date.getMonth(), date.getDate());
             }
 
+
+            public static final String getDayNumber() {
+                return String.valueOf(System.currentTimeMillis() / 86400000);
+            }
+
+            public static final String getWeekNumber() {
+                return String.valueOf(System.currentTimeMillis() / 604800000);
+            }
+
+            public static final String getMonthString() {
+                Date date = new Date();
+                return String.format("%s%s", date.getYear(), date.getMonth());
+            }
+
+            public static final String getYearString() {
+                Date date = new Date();
+                return String.valueOf(date.getYear());
+            }
+
+        }
+
+        public static void main(String[] args) {
+
         }
 
         /**
@@ -1668,6 +1730,19 @@ public final class APlugin {
                     }
                 }
                 return slot;
+            }
+
+            private static boolean hasInMainHand = true;
+
+            public static ItemStack getItemInHand(Player player) {
+                try {
+                    if (hasInMainHand) {
+                        return player.getEquipment().getItemInMainHand();
+                    }
+                } catch (Exception e) {
+                    hasInMainHand = false;
+                }
+                return player.getEquipment().getItemInHand();
             }
         }
 

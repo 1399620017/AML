@@ -28,7 +28,7 @@
     <facet type="minecraft" name="Minecraft">
       <configuration>
         <autoDetectTypes>
-          <platformType>SPIGOT</platformType>
+          <platformType>PAPER</platformType>
         </autoDetectTypes>
       </configuration>
     </facet>
@@ -41,6 +41,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/resource" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/Server1.0" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
@@ -216,6 +217,17 @@
         <JAVADOC />
         <SOURCES>
           <root url="jar://$MODULE_DIR$/../../API/PaperSpigot-1.7.10-R0.1-SNAPSHOT-latest.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../API/PaperSpigot1.15.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/../../API/PaperSpigot1.15.2.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>

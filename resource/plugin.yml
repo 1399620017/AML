@@ -10,3 +10,6 @@ commands:
    arc:
       description: open
       usage: /arc
+   acp:
+      description: open
+      usage: /acp

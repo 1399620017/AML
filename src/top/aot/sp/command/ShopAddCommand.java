@@ -7,6 +7,7 @@ import setting.MLShop;
 import setting.MLShop.Commodity;
 import setting.MonsterList;
 import top.aot.cls.Cls.Monster;
+import top.aot.plugin.APlugin;
 import top.aot.plugin.APlugin.Command;
 
 /**
@@ -37,8 +38,7 @@ public class ShopAddCommand extends Command {
                 return true;
             }
             int point = Integer.parseInt(args[1]);
-            @SuppressWarnings("all")
-            ItemStack itemStackInHand = player.getItemInHand();
+            ItemStack itemStackInHand = APlugin.Util.PlayerUtil.getItemInHand(player);
             if (itemStackInHand != null && itemStackInHand.getType() != Material.AIR) {
                 Commodity commodity = new Commodity(args[0], point, itemStackInHand);
                 int index = MLShop.getInstance().addCommodity(commodity);

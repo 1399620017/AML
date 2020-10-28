@@ -6,6 +6,7 @@ import org.bukkit.inventory.ItemStack;
 import setting.MLShop;
 import setting.MonsterList;
 import top.aot.cls.Cls.Monster;
+import top.aot.plugin.APlugin.Util.PlayerUtil;
 import top.aot.plugin.APlugin.Command;
 
 /**
@@ -48,8 +49,7 @@ public class ShopSetCommand extends Command {
                 return true;
             }
             int point = Integer.parseInt(args[2]);
-            @SuppressWarnings("all")
-            ItemStack itemStackInHand = player.getItemInHand();
+            ItemStack itemStackInHand = PlayerUtil.getItemInHand(player);
             if (itemStackInHand != null && itemStackInHand.getType() != Material.AIR) {
                 MLShop.Commodity commodity = new MLShop.Commodity(args[1], point, itemStackInHand);
                 boolean result = MLShop.getInstance().setCommandity(index, commodity);
