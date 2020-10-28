@@ -121,7 +121,6 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
             MonsterTable.getMonsterTable();
             GuiSetup.reload();
             MonsterList.reload();
-            APlugin.plugin.getCommand(C.s(1)).setExecutor(new AMLCommand());
             papi = Bukkit.getPluginManager().getPlugin(Cls.C.s(11)); // 用服务端获取PAPI插件
             if (C.ex(papi, true)) {
                 boolean b = Variable.register();
@@ -139,6 +138,8 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
             s(cpm.A);
             s(pu.A);
             s(pt.A);
+            // 设置各个模块命令
+            APlugin.plugin.getCommand(C.s(1)).setExecutor(new AMLCommand());
         }
 
         public void _kill(EntityDeathEvent e) {

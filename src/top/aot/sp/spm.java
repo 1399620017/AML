@@ -3,6 +3,8 @@ package top.aot.sp;
 import setting.MLShop;
 import top.aot.itf.Main;
 import top.aot.cls.Cls;
+import top.aot.plugin.APlugin;
+import top.aot.sp.command.ASPCommand;
 
 /**
  * @author ：ZhangHe
@@ -15,6 +17,7 @@ public enum spm implements Main {
         @Override
         public void init() {
             MLShop.reload();
+            APlugin.plugin.getCommand("asp").setExecutor(new ASPCommand());
         }
     };
     static {

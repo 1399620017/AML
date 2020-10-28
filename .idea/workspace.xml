@@ -7,19 +7,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="646b38d0-aa18-4c59-a466-178b1db13a8c" name="默认更改列表" comment="">
-      <change afterPath="$PROJECT_DIR$/src/top/aot/cp/command/ACPCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/top/aot/cp/entity/Copy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/top/aot/cp/gui/CopyGui.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/top/aot/cp/role/CpRole.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/top/aot/sp/command/ASPCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aml.iml" beforeDir="false" afterPath="$PROJECT_DIR$/aml.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resource/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/resource/plugin.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/setting/CopyList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/setting/CopyList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/top/aot/cls/Cls.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/cls/Cls.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/cp/cpm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/cp/cpm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/plugin/APlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/plugin/APlugin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/sp/command/ShopAddCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/sp/command/ShopAddCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/sp/command/ShopSetCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/sp/command/ShopSetCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/sp/spm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/sp/spm.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -100,12 +92,9 @@
     <property name="show.unlinked.gradle.project.popup" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\src\eclipse-workspace\amlbuild\cn" />
-      <recent name="D:\src\eclipse-workspace\amlbuild" />
-      <recent name="D:\src\eclipse-workspace\amlbuild\resource" />
-      <recent name="D:\src\eclipse-workspace\amlbuild\src" />
-      <recent name="D:\src\eclipse-workspace\tjgwtjxt\src" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="top.aot.ml.nms" />
+      <recent name="top.aot.ml.cls" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\src\eclipse-workspace\amlbuild\Server" />
@@ -115,14 +104,18 @@
       <recent name="D:\src\eclipse-workspace\AsxMail\resource" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="top.aot.sp.command" />
       <recent name="top.aot.mail.plugin" />
       <recent name="top.aot.ml.nms" />
       <recent name="top.aot.ml.variable" />
       <recent name="top.aot.ml.cls" />
     </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="top.aot.ml.nms" />
-      <recent name="top.aot.ml.cls" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\src\eclipse-workspace\amlbuild\cn" />
+      <recent name="D:\src\eclipse-workspace\amlbuild" />
+      <recent name="D:\src\eclipse-workspace\amlbuild\resource" />
+      <recent name="D:\src\eclipse-workspace\amlbuild\src" />
+      <recent name="D:\src\eclipse-workspace\tjgwtjxt\src" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -376,7 +369,7 @@
       <workItem from="1603843325351" duration="2578000" />
       <workItem from="1603870737262" duration="2278000" />
       <workItem from="1603885292018" duration="6260000" />
-      <workItem from="1603892253299" duration="238000" />
+      <workItem from="1603892253299" duration="641000" />
     </task>
     <task id="LOCAL-00001" summary="添加hutool依赖">
       <created>1601080143235</created>
@@ -448,7 +441,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603417910141</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="2.2.0第一次代码更新">
+      <created>1603892524585</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1603892524585</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -478,6 +478,7 @@
     <MESSAGE value="添加数据库支持" />
     <MESSAGE value="添加1.8.8服务端调试配置" />
     <MESSAGE value="代码优化" />
-    <option name="LAST_COMMIT_MESSAGE" value="代码优化" />
+    <MESSAGE value="2.2.0第一次代码更新" />
+    <option name="LAST_COMMIT_MESSAGE" value="2.2.0第一次代码更新" />
   </component>
 </project>
