@@ -2,7 +2,7 @@ package top.aot.ml.command;
 
 import org.bukkit.entity.Player;
 import setting.MonsterList;
-import top.aot.cls.Cls.Monster;
+import top.aot.bean.Monster;
 import top.aot.plugin.APlugin.Command;
 
 import java.util.Map;

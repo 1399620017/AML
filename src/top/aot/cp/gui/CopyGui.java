@@ -53,7 +53,7 @@ public class CopyGui extends Gui {
                 List<String> lore = new ArrayList<>();
                 int tempLevel = player.getLevel();
                 lore.add(String.format("§%sLv.%s - Lv.%s",
-                        (copy.minLevel >= tempLevel && copy.maxLevel <= tempLevel) ? "a" : "c",
+                        (tempLevel >= copy.minLevel && tempLevel <= copy.maxLevel) ? "a" : "c",
                         copy.minLevel, copy.maxLevel));
                 if (copy.permission != null) {
                     lore.add(player.hasPermission(copy.permission) ? "§a§l*你有权限进入" : "§c§lX你暂无权限进入");
@@ -71,7 +71,11 @@ public class CopyGui extends Gui {
                             cpRole.getNumber(copy), copy.number));
                 }
                 lore.addAll(copy.desc);
-                lore.add("§a§l>点击进入<");
+                if (cpRole.getCurrentCopyName() == null) {
+                    lore.add("§a§l>点击进入<");
+                } else {
+                    lore.add("§c§lX正在进行副本X");
+                }
                 if (copy.limitTime > 0) {
                     lore.add("§c :副本限时" + copy.limitTime + "秒");
                 }
@@ -90,17 +94,15 @@ public class CopyGui extends Gui {
             }
         };
         copyDetail.setClickListener((LeftClickListener) () -> {
+            Copy copyTemp = (Copy) data.get("copy");
             int tempLevel = player.getLevel();
             player.closeInventory();
-            if (copy.minLevel < tempLevel || copy.maxLevel > tempLevel) {
+            if (tempLevel < copyTemp.minLevel || tempLevel > copyTemp.maxLevel) {
                 Msg.sendMsgFalse(player, "你的等级未达到要求！");
-                return;
-            } else if (copy.permission != null && player.hasPermission(copy.permission)) {
+            } else if (copyTemp.permission != null && !player.hasPermission(copyTemp.permission)) {
                 Msg.sendMsgFalse(player, "你的权限未达到要求！");
-                return;
-            } else if (cpRole.getNumber(copy) >= copy.number) {
+            } else if (cpRole.getNumber(copyTemp) >= copyTemp.number) {
                 Msg.sendMsgFalse(player, "你的进入次数达到上限！");
-                return;
             } else {
                 String copyId = cpRole.getCurrentCopyName();
                 if (copyId != null) {
@@ -108,26 +110,28 @@ public class CopyGui extends Gui {
                     Msg.sendMsgFalse(player, "副本正在进行中!");
                     return;
                 }
-                World world = copy.getWorld();
+                World world = copyTemp.getWorld();
                 if (world == null) {
                     Msg.sendMsgFalse(player, "副本所在世界未知！");
                     return;
                 }
-                Location location = copy.getLocation();
+                Location location = copyTemp.getLocation();
                 if (location != null) {
-                    String[] strings = copy.items.split(" ");
-                    if (strings.length == 2) {
-                        try {
-                            if (!PlayerUtil.costItem(player, strings[0], Integer.parseInt(strings[1]))) {
-                                player.sendMessage("§c你的“" + strings[1] + "§c”剩余数量不足！");
-                                return;
-                            }
-                        } catch (Exception ignored) {
+                    if (copyTemp.items != null) {
+                        String[] strings = copyTemp.items.split(" ");
+                        if (strings.length == 2) {
+                            try {
+                                if (!PlayerUtil.costItem(player, strings[0], Integer.parseInt(strings[1]))) {
+                                    player.sendMessage("§c你的“" + strings[0] + "§c”剩余数量不足！");
+                                    return;
+                                }
+                            } catch (Exception ignored) {
 
+                            }
                         }
+                        cpRole.costNumber(copyTemp);
                     }
-                    cpRole.costNumber(copy);
-                    cpRole.start(copy);
+                    cpRole.start(copyTemp);
                     player.teleport(location);
                     Msg.sendMsgTrue(player, "已经开始副本，你随时可以打开副本页退出副本。");
                 } else {
@@ -136,6 +140,41 @@ public class CopyGui extends Gui {
             }
         });
         setAssembly(0, copyDetail);
+
+        String currentCopyName = cpRole.getCurrentCopyName();
+        if (currentCopyName != null) {
+            AssemblyDynamic<CopyGui> quitCopy = new AssemblyDynamic<CopyGui>(this) {
+                @Override
+                protected void init(CopyGui gui, ItemMeta itemMeta) {
+                    setTitle("§c§l退出副本[" + copy.name + "]");
+                    List<String> lore = new ArrayList<>();
+                    lore.add("§b正在进行的副本:" + copy.name);
+                    lore.addAll(copy.desc);
+                    lore.add("§a§l>点击退出副本<");
+                    lore.add("§c :退出副本无奖励，不返回次数！");
+                    setLore(lore);
+                }
+
+                @Override
+                protected Material material() {
+                    return Material.BARRIER;
+                }
+
+                @Override
+                protected short secondID() {
+                    return 0;
+                }
+            };
+            quitCopy.setClickListener((LeftClickListener) () -> {
+                String copyName = cpRole.getCurrentCopyName();
+                if (copyName != null) {
+                    cpRole.quitCopy();
+                    Msg.sendMsgFalse(player, "成功退出副本！");
+                }
+                player.closeInventory();
+            });
+            setAssembly(1, quitCopy);
+        }
     }
 
     @Override

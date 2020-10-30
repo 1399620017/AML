@@ -6,7 +6,7 @@ import org.bukkit.inventory.ItemStack;
 import setting.MLShop;
 import setting.MLShop.Commodity;
 import setting.MonsterList;
-import top.aot.cls.Cls.Monster;
+import top.aot.bean.Monster;
 import top.aot.plugin.APlugin;
 import top.aot.plugin.APlugin.Command;
 

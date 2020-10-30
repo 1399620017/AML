@@ -7,8 +7,8 @@ import java.util.Map;
 
 import org.bukkit.configuration.file.FileConfiguration;
 
+import top.aot.bean.Monster;
 import top.aot.cls.Cls;
-import top.aot.cls.Cls.Monster;
 import top.aot.plugin.APlugin;
 import top.aot.plugin.APlugin.AsxConfig;
 
@@ -106,6 +106,10 @@ public class MonsterList extends AsxConfig {
             return aMap.get(id);
         }
         return null;
+    }
+
+    public static Monster getMonster(String id) {
+        return aMap.getOrDefault(id, null);
     }
 
     public Map<String, Monster> getMonsterNameList() {

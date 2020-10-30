@@ -4,6 +4,7 @@ import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.PlaceholderHook;
 import org.bukkit.entity.Player;
 import setting.MonsterList;
+import top.aot.bean.Monster;
 import top.aot.cls.Cls;
 
 import java.util.Objects;
@@ -33,7 +34,7 @@ public class Variable extends PlaceholderHook {
                     return "0";
                 case "num":
                     // 获取玩家击杀的某类型怪物数量
-                    Cls.Monster monster = MonsterList.list.getMonsterById(variables[1]);
+                    Monster monster = MonsterList.list.getMonsterById(variables[1]);
                     if (Cls.C.ex(monster, false)) {
                         return "0";
                     }
@@ -52,7 +53,7 @@ public class Variable extends PlaceholderHook {
             }
         } else if (variables.length == 3) {
             if ("pay".equals(variables[0])) {
-                Cls.Monster monster = MonsterList.list.getMonsterById(variables[1]);
+                Monster monster = MonsterList.list.getMonsterById(variables[1]);
                 if (Cls.C.ex(monster, false)) {
                     return "false";
                 }

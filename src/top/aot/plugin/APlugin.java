@@ -1739,7 +1739,7 @@ public final class APlugin {
                     if (hasInMainHand) {
                         return player.getEquipment().getItemInMainHand();
                     }
-                } catch (Exception e) {
+                } catch (Error e) {
                     hasInMainHand = false;
                 }
                 return player.getEquipment().getItemInHand();

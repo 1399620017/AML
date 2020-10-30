@@ -3,8 +3,12 @@ package top.aot.cp.entity;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
+import top.aot.bean.Reward;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author ：ZhangHe
@@ -45,6 +49,10 @@ public class Copy {
 
     public float yaw;
 
+    private final Map<String, Integer> map = new HashMap<>();
+
+    private final Map<String, Reward> rewardMap = new HashMap<>();
+
     // 世界实例
     public World getWorld() {
         return Bukkit.getWorld(world);
@@ -66,5 +74,29 @@ public class Copy {
 
     public void setTimeType(String timeType) {
         this.timeType = timeType;
+    }
+
+    public void addMonster(String monsterId, int number) {
+        map.put(monsterId, number);
+    }
+
+    public Map<String, Integer> getMonsterMap() {
+        return map;
+    }
+
+    public void addReward(String name, Reward reward) {
+        rewardMap.put(name, reward);
+    }
+
+    public boolean hasReward(String name) {
+        return rewardMap.containsKey(name);
+    }
+
+    public void delReward(String name) {
+        rewardMap.remove(name);
+    }
+
+    public Map<String, Reward> getRewardMap() {
+        return rewardMap;
     }
 }

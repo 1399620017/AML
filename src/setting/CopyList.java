@@ -1,14 +1,15 @@
 package setting;
 
 import org.bukkit.Location;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
+import top.aot.bean.Monster;
+import top.aot.bean.Reward;
 import top.aot.cp.entity.Copy;
 import top.aot.plugin.APlugin.AsxConfig;
 import top.aot.plugin.APlugin.Msg;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author ：ZhangHe
@@ -56,8 +57,51 @@ public class CopyList extends AsxConfig {
             copy.z = config.getDouble(copyKey + ".z");
             copy.yaw = (float) config.getDouble(copyKey + ".yaw");
             copy.pitch = (float) config.getDouble(copyKey + ".pitch");
+            ConfigurationSection monsterListCofig = config.getConfigurationSection(copyKey + ".monster-list");
+            if (monsterListCofig != null) {
+                Set<String> monsterIdSet = monsterListCofig.getKeys(false);
+                for (String mid : monsterIdSet) {
+                    copy.addMonster(mid, monsterListCofig.getInt(mid));
+                }
+            }
+            ConfigurationSection rewardListCofig = config.getConfigurationSection(copyKey + ".reward-list");
+            if (rewardListCofig != null) {
+                Set<String> rewardIdSet = rewardListCofig.getKeys(false);
+                for (String rid : rewardIdSet) {
+                    Reward reward = new Reward();
+                    reward.setName(rid);
+                    String type = rewardListCofig.getString(rid + ".type");
+                    reward.setProbability(rewardListCofig.getInt(rid + ".probability"));
+                    reward.setType(type);
+                    if (Objects.equals(type, "command")) {
+                        reward.setCommand(rewardListCofig.getString(rid + ".command"));
+                    } else {
+                        reward.setItemStack(rewardListCofig.getItemStack(rid + ".itemStack"));
+                    }
+                    copy.addReward(rid, reward);
+                }
+            }
             map.put(copyKey, copy);
         }
+    }
+
+    // 添加副本奖励
+    public static void addReward(Copy copy, String name, Reward reward) {
+        copy.addReward(name, reward);
+        instance.customConfig.set(copy.key + ".reward-list." + name + ".type", reward.getType());
+        instance.customConfig.set(copy.key + ".reward-list." + name + ".probability", reward.getProbability());
+        instance.customConfig.set(copy.key + ".reward-list." + name + ".command", reward.getCommand());
+        instance.customConfig.set(copy.key + ".reward-list." + name + ".itemStack", reward.getItemStack());
+        map.put(copy.key, copy);
+        instance.update();
+    }
+
+    // 添加副本怪物
+    public static void addMonster(Copy copy, String monsterId, int number) {
+        copy.addMonster(monsterId, number);
+        instance.customConfig.set(copy.key + ".monster-list." + monsterId, number);
+        map.put(copy.key, copy);
+        instance.update();
     }
 
     // 设置副本等级要求

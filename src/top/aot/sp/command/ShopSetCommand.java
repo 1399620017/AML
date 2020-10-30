@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import setting.MLShop;
 import setting.MonsterList;
-import top.aot.cls.Cls.Monster;
+import top.aot.bean.Monster;
 import top.aot.plugin.APlugin.Util.PlayerUtil;
 import top.aot.plugin.APlugin.Command;
 

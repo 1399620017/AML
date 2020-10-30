@@ -2,7 +2,7 @@ package top.aot.cp.role;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-import top.aot.cls.Cls.Monster;
+import top.aot.bean.Monster;
 import top.aot.cp.entity.Copy;
 import top.aot.plugin.APlugin.Util.DateTool;
 import top.aot.plugin.APlugin.AsxConfig;
@@ -89,9 +89,14 @@ public class CpRole extends AsxConfig {
         customConfig.set("lastCopyEndTime", System.currentTimeMillis() + 1000 * copy.limitTime);
         // 设置正在执行的副本id
         customConfig.set("coyping", copy.key);
-        // 设置阶段为0
-        customConfig.set("stage", 0);
         // 保存数据
+        update();
+    }
+
+    // 退出副本
+    public void quitCopy() {
+        customConfig.set("lastCopyEndTime", 0);
+        customConfig.set("coyping", null);
         update();
     }
 
