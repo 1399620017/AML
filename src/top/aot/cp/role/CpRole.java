@@ -1,5 +1,6 @@
 package top.aot.cp.role;
 
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import top.aot.bean.Monster;
@@ -64,7 +65,7 @@ public class CpRole extends AsxConfig {
     }
 
     private String getCopying() {
-        return customConfig.getString("coyping");
+        return customConfig.getString("copying");
     }
 
     private long getLastCopyEndTime() {
@@ -88,7 +89,10 @@ public class CpRole extends AsxConfig {
         // 设置副本自动结束时间
         customConfig.set("lastCopyEndTime", System.currentTimeMillis() + 1000 * copy.limitTime);
         // 设置正在执行的副本id
-        customConfig.set("coyping", copy.key);
+        customConfig.set("copying", copy.key);
+        customConfig.set("killNumber", null);
+        customConfig.set("finish", false);
+        customConfig.set("finishName", null);
         // 保存数据
         update();
     }
@@ -96,30 +100,47 @@ public class CpRole extends AsxConfig {
     // 退出副本
     public void quitCopy() {
         customConfig.set("lastCopyEndTime", 0);
-        customConfig.set("coyping", null);
+        customConfig.set("copying", null);
+        customConfig.set("killNumber", null);
+        customConfig.set("finish", false);
+        customConfig.set("finishName", null);
         update();
     }
 
-    // 获取当前阶段 -1等于完成全部
+    // 获取当前阶段 -1等于完成全部（无用）
     public int getStage() {
         return customConfig.getInt("stage", -1);
     }
 
     // 获取当前进行的副本 null等于没有进行任何副本
-    public String getCurrentCopyName() {
+    public String getCurrentCopyId() {
         if (getLastCopyEndTime() < System.currentTimeMillis()) {
             return null;
         }
         return getCopying();
     }
 
-    // 传入击杀的生物
-    public boolean killMonster(Monster monster) {
-        String currentCopyName = getCurrentCopyName();
+    // 传入击杀的生物 返回数量
+    public int killMonster(Monster monster) {
+        String currentCopyName = getCurrentCopyId();
         if (currentCopyName != null) {
-            // TODO
+            int killNumber = getKillNumber(monster);
+            killNumber++;
+            setKillNubmer(monster, killNumber);
+            return killNumber;
         }
-        return false;
+        return 1;
+    }
+
+    // 获取当前副本击杀怪物计数
+    public int getKillNumber(Monster monster) {
+        return customConfig.getInt("killNumber." + monster.getId(), 0);
+    }
+
+    // 设置当前副本击杀怪物计数
+    public void setKillNubmer(Monster monster, int number) {
+        customConfig.set("killNumber." + monster.getId(), number);
+        update();
     }
 
     // 检查副本次数
@@ -160,5 +181,46 @@ public class CpRole extends AsxConfig {
             default:
                 break;
         }
+    }
+
+    public Map<String, Integer> getKillMap() {
+        Map<String, Integer> map = new HashMap<>();
+        if (customConfig.contains("killNumber")) {
+            ConfigurationSection killNumber = customConfig.getConfigurationSection("killNumber");
+            for (String key : killNumber.getKeys(false)) {
+                map.put(key, killNumber.getInt(key));
+            }
+        }
+        return map;
+    }
+
+    // 设置副本为完成
+    public void setFinish(Copy copy) {
+        customConfig.set("finish", true);
+        customConfig.set("finishName", copy.key);
+        customConfig.set("killNumber", null);
+        customConfig.set("copying", null);
+        customConfig.set("lastCopyEndTime", 0);
+        update();
+    }
+
+    // 领取奖励
+    public void reward() {
+        customConfig.set("finish", false);
+        customConfig.set("finishName", null);
+        customConfig.set("killNumber", null);
+        customConfig.set("copying", null);
+        customConfig.set("lastCopyEndTime", 0);
+        update();
+    }
+
+    // 当前是否有副本已经完成
+    public boolean hasFinish() {
+        return customConfig.getBoolean("finish", false);
+    }
+
+    // 获取当前完成的副本
+    public String getFinish() {
+        return customConfig.getString("finishName");
     }
 }

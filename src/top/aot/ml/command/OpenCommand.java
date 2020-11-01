@@ -3,6 +3,7 @@ package top.aot.ml.command;
 import org.bukkit.entity.Player;
 
 import top.aot.cls.Cls;
+import top.aot.ml.gui.MLGui;
 import top.aot.plugin.APlugin.Command;
 import top.aot.plugin.APlugin.GuiBase;
 
@@ -18,7 +19,7 @@ public class OpenCommand extends Command{
 
 	@Override
 	public boolean send(Player player, String[] args) {
-		GuiBase.openWindow(player, new Cls.MLGui(player));
+		GuiBase.openWindow(player, new MLGui(player));
 		return true;
 	}
 

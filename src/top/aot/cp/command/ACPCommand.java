@@ -45,6 +45,40 @@ public class ACPCommand implements CommandExecutor {
                     CopyList.reload();
                     Msg.sendMessage(commandSender, "重载成功！");
                     return true;
+                } else if (Objects.equals(strings[0], "open")) {
+                    if (commandSender instanceof Player) {
+                        Player player = (Player) commandSender;
+                        CpRole cpRole = CpRole.getRole(player.getName());
+                        // 如果玩家有完成的副本时
+                        if (cpRole.hasFinish()) {
+                            String copyId = cpRole.getFinish();
+                            if (CopyList.map.containsKey(copyId)) {
+                                Copy copy = CopyList.map.get(copyId);
+                                Map<String, Object> data = new HashMap<>();
+                                data.put("copy", copy);
+                                data.put("cpRole", cpRole);
+                                GuiBase.openWindow(player, new CopyGui(player, copy.name, data));
+                            } else {
+                                Msg.sendMsgFalse(player, "所选副本已经关闭");
+                            }
+                        } else {
+                            String copyId = cpRole.getCurrentCopyId();
+                            if (copyId == null) {
+                                Msg.sendMsgFalse(player, "你未进行任何副本！");
+                            } else if (CopyList.map.containsKey(copyId)) {
+                                Copy copy = CopyList.map.get(copyId);
+                                Map<String, Object> data = new HashMap<>();
+                                data.put("copy", copy);
+                                data.put("cpRole", cpRole);
+                                GuiBase.openWindow(player, new CopyGui(player, copy.name, data));
+                            } else {
+                                Msg.sendMsgFalse(player, "所选副本已经关闭");
+                            }
+                        }
+                        return true;
+                    } else {
+                        Msg.sendMsgFalse(commandSender, "请使用玩家输入此命令");
+                    }
                 }
             } else if (strings.length == 2) {
                 if (Objects.equals(strings[0], "show")) {
@@ -75,6 +109,16 @@ public class ACPCommand implements CommandExecutor {
                         Msg.sendMsgFalse(commandSender, "所选副本不存在！");
                     }
                     return true;
+                } else if (Objects.equals(strings[0], "delitems")) {
+                    String copyId = strings[1];
+                    Copy copy = CopyList.getCopy(copyId);
+                    if (copy != null) {
+                        CopyList.delItems(copy);
+                        Msg.sendMessage(commandSender, "副本ID:" + copy.key);
+                    } else {
+                        Msg.sendMsgFalse(commandSender, "所选副本不存在！");
+                    }
+                    return true;
                 }
             } else if (strings.length == 3) {
                 switch (strings[0]) {
@@ -82,17 +126,30 @@ public class ACPCommand implements CommandExecutor {
                         Player player = Bukkit.getPlayer(strings[1]);
                         if (player != null && player.isOnline() && !player.isDead()) {
                             CpRole cpRole = CpRole.getRole(player.getName());
-                            String copyId = cpRole.getCurrentCopyName();
-                            if (copyId == null) {
-                                copyId = strings[2];
-                            }
-                            if (CopyList.map.containsKey(copyId)) {
-                                Copy copy = CopyList.map.get(copyId);
-                                Map<String, Object> data = new HashMap<>();
-                                data.put("copy", copy);
-                                GuiBase.openWindow(player, new CopyGui(player, copy.name, data));
+                            // 如果玩家有完成的副本时
+                            if (cpRole.hasFinish()) {
+                                String copyId = cpRole.getFinish();
+                                if (CopyList.map.containsKey(copyId)) {
+                                    Copy copy = CopyList.map.get(copyId);
+                                    Map<String, Object> data = new HashMap<>();
+                                    data.put("copy", copy);
+                                    GuiBase.openWindow(player, new CopyGui(player, copy.name, data));
+                                } else {
+                                    Msg.sendMsgFalse(player, "所选副本已经关闭");
+                                }
                             } else {
-                                Msg.sendMsgFalse(player, "所选副本已经关闭");
+                                String copyId = cpRole.getCurrentCopyId();
+                                if (copyId == null) {
+                                    copyId = strings[2];
+                                }
+                                if (CopyList.map.containsKey(copyId)) {
+                                    Copy copy = CopyList.map.get(copyId);
+                                    Map<String, Object> data = new HashMap<>();
+                                    data.put("copy", copy);
+                                    GuiBase.openWindow(player, new CopyGui(player, copy.name, data));
+                                } else {
+                                    Msg.sendMsgFalse(player, "所选副本已经关闭");
+                                }
                             }
                         }
                         return true;
@@ -267,7 +324,7 @@ public class ACPCommand implements CommandExecutor {
                                 try {
                                     Monster monster = MonsterList.getMonster(monsters[0]);
                                     if (monster != null) {
-                                        CopyList.addMonster(copy, monsters[0], Integer.parseInt(monsters[1]));
+                                        CopyList.addMonster(copy, monster, Integer.parseInt(monsters[1]));
                                         Msg.sendMessage(commandSender, "已经添加副本怪物:" + strings[2]);
                                     } else {
                                         Msg.sendMsgFalse(commandSender, "ID为" + monsters[0] + "的怪物不存在！");
@@ -277,6 +334,25 @@ public class ACPCommand implements CommandExecutor {
                                 }
                             } else {
                                 Msg.sendMsgFalse(commandSender, "命令格式不正确,例: /acp addmonster a-3 代表添加击杀a怪物3次");
+                            }
+                        } else {
+                            Msg.sendMsgFalse(commandSender, "此ID的副本不存在！");
+                        }
+                        return true;
+                    case "setmaxreward":
+                        copyId = strings[1];
+                        if (CopyList.hasCopy(copyId)) {
+                            Copy copy = CopyList.getCopy(copyId);
+                            try {
+                                int maxreward = Integer.parseInt(strings[2]);
+                                if (maxreward > 0 && maxreward < 27) {
+                                    CopyList.setMaxNumber(copy, maxreward);
+                                    Msg.sendMessage(commandSender, "设置成功！");
+                                } else {
+                                    Msg.sendMsgFalse(commandSender, "最大奖励数量不能设置过大");
+                                }
+                            } catch (Exception e) {
+                                Msg.sendMsgFalse(commandSender, "命令格式错误,例: /acp setlevel 0-99");
                             }
                         } else {
                             Msg.sendMsgFalse(commandSender, "此ID的副本不存在！");
@@ -310,9 +386,21 @@ public class ACPCommand implements CommandExecutor {
                                     return true;
                                 }
                             } else {
-                                String cmd = strings[3].replaceAll("-", " ");
-                                reward.setType("command");
-                                reward.setCommand(cmd);
+                                if (commandSender instanceof Player) {
+                                    ItemStack itemStack = PlayerUtil.getItemInHand((Player) commandSender);
+                                    if (itemStack != null) {
+                                        String cmd = strings[3].replaceAll("-", " ");
+                                        reward.setType("command");
+                                        reward.setCommand(cmd);
+                                        reward.setItemStack(itemStack);
+                                    } else {
+                                        Msg.sendMsgFalse(commandSender, "必须手持物品才能使用此命令");
+                                        return true;
+                                    }
+                                } else {
+                                    Msg.sendMsgFalse(commandSender, "必须使用玩家输入此命令");
+                                    return true;
+                                }
                             }
                             CopyList.addReward(copy, strings[2], reward);
                             Msg.sendMessage(commandSender, "设置奖励成功!");
@@ -333,42 +421,82 @@ public class ACPCommand implements CommandExecutor {
             Msg.sendMessage(commandSender, "/acp setdesc <副本ID> <说明> 设置副本说明，颜色符号使用&，配置文件可设置多行。");
             Msg.sendMessage(commandSender, "/acp setloc <副本ID> <玩家名> 设置玩家当前位置为副本传送点。");
             Msg.sendMessage(commandSender, "/acp setitems <副本ID> <数量> 设置手持物品为副本的门票。");
+            Msg.sendMessage(commandSender, "/acp delitems <副本ID> 清除副本门票要求。");
             Msg.sendMessage(commandSender, "/acp setlevel <副本ID> <minLevel-maxLevel> 设置副本等级为minLevel到maxLevel之间，包括minLevel和maxLevel。");
             Msg.sendMessage(commandSender, "/acp setperm <副本ID> <权限|无> 设置进入副本的权限要求。");
             Msg.sendMessage(commandSender, "/acp addmonster <副本ID> <怪物ID-数量> 添加击杀怪物列表！");
             Msg.sendMessage(commandSender, "/acp addreward <副本ID> <rewardId> <item|command> <概率万分比> 添加奖励列表，item是手持物品|command是命令,玩家变量<p>,命令中的空格用-代替。");
+            Msg.sendMessage(commandSender, "/acp setmaxreward <副本ID> <数量> 设置这个副本随机到的奖励最大数。");
             Msg.sendMessage(commandSender, "/acp list 查看副本列表");
             Msg.sendMessage(commandSender, "/acp show <副本ID> 查看副本详情");
             Msg.sendMessage(commandSender, "/acp reload 手动更改配置后使用此命令重载配置");
         } else {
             if (commandSender instanceof Player) {
                 Player player = (Player) commandSender;
-                if (strings.length == 2) {
-                    switch (strings[0]) {
-                        case "open":
-                            if (player.isOnline() && !player.isDead()) {
-                                CpRole cpRole = CpRole.getRole(player.getName());
-                                String copyId = cpRole.getCurrentCopyName();
-                                if (copyId == null) {
-                                    copyId = strings[1];
-                                }
-                                if (CopyList.map.containsKey(copyId)) {
-                                    Copy copy = CopyList.map.get(copyId);
-                                    Map<String, Object> data = new HashMap<>();
-                                    data.put("copy", copy);
-                                    GuiBase.openWindow(player, new CopyGui(player, copy.name, data));
-                                } else {
-                                    Msg.sendMsgFalse(player, "所选副本已经关闭");
-                                }
+                if (strings.length == 1) {
+                    if (Objects.equals(strings[0], "open")) {
+                        CpRole cpRole = CpRole.getRole(player.getName());
+                        // 如果玩家有完成的副本时
+                        if (cpRole.hasFinish()) {
+                            String copyId = cpRole.getFinish();
+                            if (CopyList.map.containsKey(copyId)) {
+                                Copy copy = CopyList.map.get(copyId);
+                                Map<String, Object> data = new HashMap<>();
+                                data.put("copy", copy);
+                                data.put("cpRole", cpRole);
+                                GuiBase.openWindow(player, new CopyGui(player, copy.name, data));
+                            } else {
+                                Msg.sendMsgFalse(player, "所选副本已经关闭");
                             }
-                            break;
-                        case "":
-                            break;
-                        default:
-                            Msg.sendMessage(commandSender, "/acp open <副本ID> 打开副本首页");
-                            break;
+                        } else {
+                            String copyId = cpRole.getCurrentCopyId();
+                            if (copyId == null) {
+                                Msg.sendMsgFalse(player, "你未进行任何副本！");
+                            } else if (CopyList.map.containsKey(copyId)) {
+                                Copy copy = CopyList.map.get(copyId);
+                                Map<String, Object> data = new HashMap<>();
+                                data.put("copy", copy);
+                                data.put("cpRole", cpRole);
+                                GuiBase.openWindow(player, new CopyGui(player, copy.name, data));
+                            } else {
+                                Msg.sendMsgFalse(player, "所选副本已经关闭");
+                            }
+                        }
+                        return true;
+                    }
+                } else if (strings.length == 2) {
+                    if (Objects.equals(strings[0], "open")) {
+                        CpRole cpRole = CpRole.getRole(player.getName());
+                        // 如果玩家有完成的副本时
+                        if (cpRole.hasFinish()) {
+                            String copyId = cpRole.getFinish();
+                            if (CopyList.map.containsKey(copyId)) {
+                                Copy copy = CopyList.map.get(copyId);
+                                Map<String, Object> data = new HashMap<>();
+                                data.put("copy", copy);
+                                GuiBase.openWindow(player, new CopyGui(player, copy.name, data));
+                            } else {
+                                Msg.sendMsgFalse(player, "所选副本已经关闭");
+                            }
+                        } else {
+                            String copyId = cpRole.getCurrentCopyId();
+                            if (copyId == null) {
+                                copyId = strings[1];
+                            }
+                            if (CopyList.map.containsKey(copyId)) {
+                                Copy copy = CopyList.map.get(copyId);
+                                Map<String, Object> data = new HashMap<>();
+                                data.put("copy", copy);
+                                GuiBase.openWindow(player, new CopyGui(player, copy.name, data));
+                            } else {
+                                Msg.sendMsgFalse(player, "所选副本已经关闭");
+                            }
+                        }
+                        return true;
                     }
                 }
+                Msg.sendMessage(commandSender, "/acp open <副本ID> 打开副本首页");
+                Msg.sendMessage(commandSender, "/acp open 打开正在进行的副本");
             }
         }
         return true;

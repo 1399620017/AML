@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import setting.MonsterList;
 import top.aot.bean.Monster;
 import top.aot.cls.Cls;
+import top.aot.ml.gui.MLGui;
 import top.aot.plugin.APlugin.GuiBase;
 import top.aot.plugin.APlugin.Msg;
 
@@ -30,7 +31,7 @@ public class AMLCommand implements CommandExecutor {
             case 0:
                 if (arg0 instanceof Player) {
                     Player player = (Player) arg0;
-                    GuiBase.openWindow(player, new Cls.MLGui(player));
+                    GuiBase.openWindow(player, new MLGui(player));
                 } else {
                     if (arg0.isOp()) {
                         Msg.sendMsg(arg0, "/aml lock <player> <monsterKey> <true/false> 解锁player的monsterKey的怪物");

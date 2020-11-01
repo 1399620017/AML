@@ -3,9 +3,10 @@ package top.aot.cp.entity;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
+import top.aot.bean.Monster;
 import top.aot.bean.Reward;
+import top.aot.cp.role.CpRole;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +33,8 @@ public class Copy {
     public int minLevel;
     // 必填数据 最高等级要求
     public int maxLevel;
+    // 最大奖励数量 1 背包要有此数量的空位才可以领取奖励
+    public int maxNumber;
     // 需求权限 不需要可不填
     public String permission;
     // 进入条件 “name 数量”
@@ -50,6 +53,7 @@ public class Copy {
     public float yaw;
 
     private final Map<String, Integer> map = new HashMap<>();
+    private final Map<String, Integer> mapName = new HashMap<>();
 
     private final Map<String, Reward> rewardMap = new HashMap<>();
 
@@ -80,8 +84,16 @@ public class Copy {
         map.put(monsterId, number);
     }
 
+    public void addMonsterName(String monsterName, int number) {
+        mapName.put(monsterName, number);
+    }
+
     public Map<String, Integer> getMonsterMap() {
         return map;
+    }
+
+    public Map<String, Integer> getMapName() {
+        return mapName;
     }
 
     public void addReward(String name, Reward reward) {
@@ -98,5 +110,30 @@ public class Copy {
 
     public Map<String, Reward> getRewardMap() {
         return rewardMap;
+    }
+
+    // 判断此怪物是否是此副本的怪物
+    public boolean hasMonster(Monster monster) {
+        return map.containsKey(monster.getId());
+    }
+
+    // 获取此副本中此怪物的击杀数量要求
+    public int getKillNumber(Monster monster) {
+        return map.getOrDefault(monster.getId(), -1);
+    }
+
+    public boolean isFinish(CpRole cpRole) {
+        Map<String, Integer> pMap = cpRole.getKillMap();
+        // 判断是否完成全部击杀
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            if (entry.getValue() > pMap.getOrDefault(entry.getKey(), 0)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public int getMaxRewardNumber() {
+        return maxNumber;
     }
 }

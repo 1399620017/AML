@@ -7,23 +7,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="646b38d0-aa18-4c59-a466-178b1db13a8c" name="默认更改列表" comment="">
-      <change afterPath="$PROJECT_DIR$/src/top/aot/bean/Monster.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/top/aot/bean/Reward.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/top/aot/ml/gui/ListGui.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/top/aot/ml/gui/MLGui.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/setting/CopyList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/setting/CopyList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/setting/MonsterList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/setting/MonsterList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/top/aot/cls/Cls.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/cls/Cls.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/top/aot/cp/command/ACPCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/cp/command/ACPCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/top/aot/cp/entity/Copy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/cp/entity/Copy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/top/aot/cp/gui/CopyGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/cp/gui/CopyGui.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/top/aot/cp/role/CpRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/cp/role/CpRole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/et/role/RcRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/et/role/RcRole.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/top/aot/ml/command/AMLCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/ml/command/AMLCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/ml/command/ListCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/ml/command/ListCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/ml/variable/Variable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/ml/variable/Variable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/ml/command/OpenCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/ml/command/OpenCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/top/aot/plugin/APlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/plugin/APlugin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/sp/command/ShopAddCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/sp/command/ShopAddCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/sp/command/ShopSetCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/sp/command/ShopSetCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/sp/gui/ShopGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/sp/gui/ShopGui.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -385,7 +381,9 @@
       <workItem from="1603929669048" duration="632000" />
       <workItem from="1603931666816" duration="2273000" />
       <workItem from="1604016968233" duration="5395000" />
-      <workItem from="1604060509809" duration="6602000" />
+      <workItem from="1604060509809" duration="6738000" />
+      <workItem from="1604102428772" duration="615000" />
+      <workItem from="1604202934104" duration="18042000" />
     </task>
     <task id="LOCAL-00001" summary="添加hutool依赖">
       <created>1601080143235</created>
@@ -471,7 +469,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603893092449</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="acp副本模块完成70%">
+      <created>1604074316318</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1604074316318</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -503,6 +508,7 @@
     <MESSAGE value="代码优化" />
     <MESSAGE value="2.2.0第一次代码更新" />
     <MESSAGE value="支持/asp命令打开怪物商城" />
-    <option name="LAST_COMMIT_MESSAGE" value="支持/asp命令打开怪物商城" />
+    <MESSAGE value="acp副本模块完成70%" />
+    <option name="LAST_COMMIT_MESSAGE" value="acp副本模块完成70%" />
   </component>
 </project>

@@ -49,6 +49,7 @@ public class CopyList extends AsxConfig {
             copy.desc = config.getStringList(copyKey + ".desc");
             copy.minLevel = config.getInt(copyKey + ".minLevel");
             copy.maxLevel = config.getInt(copyKey + ".maxLevel");
+            copy.maxNumber = config.getInt(copyKey + ".maxNumber", 1);
             copy.permission = config.getString(copyKey + ".permission");
             copy.items = config.getString(copyKey + ".items");
             copy.world = config.getString(copyKey + ".world");
@@ -61,7 +62,9 @@ public class CopyList extends AsxConfig {
             if (monsterListCofig != null) {
                 Set<String> monsterIdSet = monsterListCofig.getKeys(false);
                 for (String mid : monsterIdSet) {
-                    copy.addMonster(mid, monsterListCofig.getInt(mid));
+                    int number = monsterListCofig.getInt(mid);
+                    copy.addMonster(mid, number);
+                    copy.addMonsterName(MonsterList.getMonster(mid).getName(), number);
                 }
             }
             ConfigurationSection rewardListCofig = config.getConfigurationSection(copyKey + ".reward-list");
@@ -73,16 +76,19 @@ public class CopyList extends AsxConfig {
                     String type = rewardListCofig.getString(rid + ".type");
                     reward.setProbability(rewardListCofig.getInt(rid + ".probability"));
                     reward.setType(type);
-                    if (Objects.equals(type, "command")) {
-                        reward.setCommand(rewardListCofig.getString(rid + ".command"));
-                    } else {
-                        reward.setItemStack(rewardListCofig.getItemStack(rid + ".itemStack"));
-                    }
+                    reward.setCommand(rewardListCofig.getString(rid + ".command"));
+                    reward.setItemStack(rewardListCofig.getItemStack(rid + ".itemStack"));
                     copy.addReward(rid, reward);
                 }
             }
             map.put(copyKey, copy);
         }
+    }
+
+
+    // 删除副本门票要求
+    public static void delItems(Copy copy) {
+        setItems(copy, null);
     }
 
     // 添加副本奖励
@@ -97,9 +103,18 @@ public class CopyList extends AsxConfig {
     }
 
     // 添加副本怪物
-    public static void addMonster(Copy copy, String monsterId, int number) {
-        copy.addMonster(monsterId, number);
-        instance.customConfig.set(copy.key + ".monster-list." + monsterId, number);
+    public static void addMonster(Copy copy, Monster monster, int number) {
+        copy.addMonster(monster.getId(), number);
+        copy.addMonsterName(monster.getName(), number);
+        instance.customConfig.set(copy.key + ".monster-list." + monster.getId(), number);
+        map.put(copy.key, copy);
+        instance.update();
+    }
+
+    // 设置副本最大奖励数量
+    public static void setMaxNumber(Copy copy, int maxNumber) {
+        copy.maxNumber = maxNumber;
+        instance.customConfig.set(copy.key + ".maxNumber", maxNumber);
         map.put(copy.key, copy);
         instance.update();
     }

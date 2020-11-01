@@ -1168,6 +1168,8 @@ public final class APlugin {
                             isCan = !gui.clickRegion(rslot, e.getClick(), e.getCurrentItem()); // 无事件禁止点击
                         }
                     } catch (Exception e1) {
+                        e1.printStackTrace();
+                        System.out.println("有此报错说明配置文件不正确！");
                         e.setCancelled(true);
                     }
                 }

@@ -15,13 +15,12 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.projectiles.ProjectileSource;
-import setting.EventList;
-import setting.GuiSetup;
-import setting.MonsterList;
-import setting.MonsterTable;
+import setting.*;
 import top.aot.bean.Monster;
 import top.aot.bean.RcEvent;
 import top.aot.cp.cpm;
+import top.aot.cp.entity.Copy;
+import top.aot.cp.role.CpRole;
 import top.aot.et.command.OpenRcCommand;
 import top.aot.et.command.ReloadRcCommand;
 import top.aot.et.gui.etgui;
@@ -32,7 +31,6 @@ import top.aot.et.role.RcRoleList;
 import top.aot.et.submission.Submission;
 import top.aot.itf.*;
 import top.aot.ml.command.*;
-import top.aot.ml.gui.Button;
 import top.aot.ml.listener.KillEntityListener;
 import top.aot.ml.listener.PlayerLoginListener;
 import top.aot.ml.utils.pt;
@@ -143,14 +141,14 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
             APlugin.plugin.getCommand(C.s(1)).setExecutor(new AMLCommand());
         }
 
+        // 玩家击杀怪物事件处理
         public void _kill(EntityDeathEvent e) {
             LivingEntity le = e.getEntity();
             if (!(le instanceof Player)) {
                 Player killer = le.getKiller();
-                if (C.ex(Boolean.class, "b", killer)) {
+                if (killer != null) {
                     Role role = Role.getRole(killer);
                     Map<String, Monster> nameTable = MonsterList.list.getMonsterNameList();
-
                     String typeString = le.getType().toString();
                     boolean isNpc = typeString.toUpperCase().contains("NPC");
                     String customName = isNpc ? Cls.D.getName(le) : le.getCustomName();
@@ -158,9 +156,45 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
                         Monster monster = nameTable.get(customName);
                         if (isNpc == monster.isNpc()) {
                             role.addKillNum(monster);
+                            // 判断击杀者是否解锁了怪物
                             if (!role.isUnlock(monster)) {
                                 role.unlockMonster(monster);
                                 Msg.sendMsgTrue(killer, C.s(5));
+                            }
+                            // 判断击杀者是否正在进行副本
+                            CpRole cpRole = CpRole.getRole(killer);
+                            // 如果玩家有副本已经完成，则不进行任何操作
+                            if (cpRole.hasFinish()) {
+                                return;
+                            }
+                            // 此处取出玩家正在进行的副本id
+                            String currCopyId = cpRole.getCurrentCopyId();
+                            if (currCopyId != null) {
+                                // 如果玩家正在进行副本
+                                Copy copy = CopyList.getCopy(currCopyId);
+                                int ckillNumber = copy.getKillNumber(monster);
+                                // 大于0则代表这个怪物属于这个副本
+                                if (ckillNumber > 0) {
+                                    // 执行玩家击杀此怪物计数 并返回击杀数量
+                                    int pkillNubmer = cpRole.killMonster(monster);
+                                    // 玩家击杀数量大于要求数量
+                                    if (pkillNubmer > ckillNumber) {
+                                        Msg.sendMsgTrue(killer, "此怪物的击杀数量已经足够！");
+                                    } else {
+                                        Msg.sendMessage(killer, String.format(
+                                                "你击杀了一只副本怪物 %s §a当前进度: %s/%s", monster.getName(),
+                                                pkillNubmer, ckillNumber));
+                                        if (pkillNubmer == ckillNumber) {
+                                            Msg.sendMessage(killer, "你完成了当前副本的一项击杀要求,请使用/acp open打开副本首页查看。");
+                                            // 判断玩家是否完成副本全部任务
+                                            if (copy.isFinish(cpRole)) {
+                                                // 如果完成了将玩家设置为完成副本状态
+                                                cpRole.setFinish(copy);
+                                                Msg.sendMessage(killer, "你已经完成当前副本,请使用/acp open打开副本首页领取奖励。");
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -510,462 +544,6 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
         }
     }
 
-    public static class MLGui extends Gui {
-
-        private MonsterTable table;
-        // 用于获取列表的Key
-        private String listType;
-        private GuiSetup newTable;
-        private tgi currentTgi;
-
-        public MLGui(Player owner) {
-            super(owner, Cls.C.f(), 6);
-        }
-
-        @Override
-        public boolean clickRegion(String clickedRegionName, ClickType clickType, ItemStack itemStack) {
-            return false;
-        }
-
-        @Override
-        protected void initWindow() {
-            newTable = GuiSetup.table;
-            if (newTable.isEnable()) {
-                listType = "";
-            } else {
-                listType = "aj";
-                setTable(MonsterTable.getMonsterTable());
-            }
-        }
-
-        @Override
-        public void updateWindow() {
-            if (newTable.isEnable()) {
-                for (Map.Entry<String, tgi> tgiEr : newTable.getTgiMap().entrySet()) {
-                    tgi tgi = tgiEr.getValue();
-                    AssemblyDynamic<MLGui> iAssembly = new AssemblyDynamic<MLGui>(this) {
-                        @Override
-                        protected void init(MLGui gui, ItemMeta itemMeta) {
-                            setTitle(tgi.getName());
-                            setLore(tgi.getDesc());
-                            setLevel(tgi.getNumber());
-                        }
-
-                        @Override
-                        protected Material material() {
-                            return tgi.getMaterial();
-                        }
-
-                        @Override
-                        protected short secondID() {
-                            return tgi.getDataId();
-                        }
-                    }.setClickListener((LeftClickListener) () -> {
-                        currentTgi = tgi;
-                        GuiBase.openWindow(getOwner(), new ListGui(MLGui.this, getOwner()));
-                    });
-                    setAssembly(tgi.getSlot(), iAssembly);
-                }
-            } else {
-                int[] sizes = table.getSizes();
-                if (sizes[0] > 0) {
-                    Button<MLGui> ajButton = new Button<MLGui>(this) {
-
-                        @Override
-                        protected String buttonName() {
-
-                            return C.ex(String.class, "i", table.getAjName());
-                        }
-
-                        @Override
-                        protected int itemId() {
-                            return table.getAjItemId();
-                        }
-
-                        @Override
-                        protected String explain() {
-                            return "§a查看" + C.ex(String.class, "i", table.getAjName());
-                        }
-
-                        @Override
-                        protected short secondID() {
-                            return (short) MLGui.this.table.getAjId();
-                        }
-                    };
-                    ajButton.setClickListener((LeftClickListener) () -> {
-                        setListType("aj");
-                        GuiBase.openWindow(getOwner(), new ListGui(MLGui.this, getOwner()));
-                    });
-                    setAssembly(table.getAjIndex(), ajButton);
-                }
-                if (sizes[1] > 0) {
-                    Button<MLGui> bjButton = new Button<MLGui>(this) {
-
-                        @Override
-                        protected String buttonName() {
-
-                            return C.ex(String.class, "i", table.getBjName());
-                        }
-
-                        @Override
-                        protected int itemId() {
-                            return table.getBjItemId();
-                        }
-
-                        @Override
-                        protected String explain() {
-                            return "§a查看" + C.ex(String.class, "i", table.getBjName());
-                        }
-
-                        @Override
-                        protected short secondID() {
-                            return (short) MLGui.this.table.getBjId();
-                        }
-                    };
-                    bjButton.setClickListener((LeftClickListener) () -> {
-                        setListType("bj");
-                        GuiBase.openWindow(getOwner(), new ListGui(MLGui.this, getOwner()));
-                    });
-                    setAssembly(table.getBjIndex(), bjButton);
-                }
-                if (sizes[2] > 0) {
-                    Button<MLGui> cjButton = new Button<MLGui>(this) {
-
-                        @Override
-                        protected String buttonName() {
-
-                            return C.ex(String.class, "i", table.getCjName());
-                        }
-
-                        @Override
-                        protected int itemId() {
-                            return table.getCjItemId();
-                        }
-
-                        @Override
-                        protected String explain() {
-                            return "§a查看" + C.ex(String.class, "i", table.getCjName());
-                        }
-
-                        @Override
-                        protected short secondID() {
-                            return (short) MLGui.this.table.getCjId();
-                        }
-
-                    };
-                    cjButton.setClickListener((LeftClickListener) () -> {
-                        setListType("cj");
-                        GuiBase.openWindow(getOwner(), new ListGui(MLGui.this, getOwner()));
-                    });
-                    setAssembly(table.getCjIndex(), cjButton);
-                }
-                if (sizes[3] > 0) {
-                    Button<MLGui> djButton = new Button<MLGui>(this) {
-
-                        @Override
-                        protected String buttonName() {
-
-                            return C.ex(String.class, "i", table.getDjName());
-                        }
-
-                        @Override
-                        protected int itemId() {
-                            return table.getDjItemId();
-                        }
-
-                        @Override
-                        protected String explain() {
-                            return "§a查看" + C.ex(String.class, "i", table.getDjName());
-                        }
-
-                        @Override
-                        protected short secondID() {
-                            return (short) MLGui.this.table.getDjId();
-                        }
-
-                    };
-                    djButton.setClickListener((LeftClickListener) () -> {
-                        setListType("dj");
-                        GuiBase.openWindow(getOwner(), new ListGui(MLGui.this, getOwner()));
-                    });
-                    setAssembly(table.getDjIndex(), djButton);
-                }
-
-                if (sizes[4] > 0) {
-                    Button<MLGui> ejButton = new Button<MLGui>(this) {
-
-                        @Override
-                        protected String buttonName() {
-
-                            return C.ex(String.class, "i", table.getEjName());
-                        }
-
-                        @Override
-                        protected int itemId() {
-                            return table.getEjItemId();
-                        }
-
-                        @Override
-                        protected String explain() {
-                            return "§a查看" + C.ex(String.class, "i", table.getEjName());
-                        }
-
-                        @Override
-                        protected short secondID() {
-                            return (short) MLGui.this.table.getEjId();
-                        }
-                    };
-                    ejButton.setClickListener((LeftClickListener) () -> {
-                        setListType("ej");
-                        GuiBase.openWindow(getOwner(), new ListGui(MLGui.this, getOwner()));
-                    });
-                    setAssembly(table.getEjIndex(), ejButton);
-                }
-                if (sizes[5] > 0) {
-                    Button<MLGui> fjButton = new Button<MLGui>(this) {
-
-                        @Override
-                        protected String buttonName() {
-
-                            return C.ex(String.class, "i", table.getFjName());
-                        }
-
-                        @Override
-                        protected int itemId() {
-                            return table.getFjItemId();
-                        }
-
-                        @Override
-                        protected String explain() {
-                            return "§a查看" + C.ex(String.class, "i", table.getFjName());
-                        }
-
-                        @Override
-                        protected short secondID() {
-                            return (short) MLGui.this.table.getFjId();
-                        }
-
-                    };
-                    fjButton.setClickListener((LeftClickListener) () -> {
-                        setListType("fj");
-                        GuiBase.openWindow(getOwner(), new ListGui(MLGui.this, getOwner()));
-                    });
-                    setAssembly(table.getFjIndex(), fjButton);
-                }
-            }
-        }
-
-        @Override
-        public boolean closeEvent() {
-            return false;
-        }
-
-        public String getListType() {
-            return listType;
-        }
-
-        public void setListType(String listType) {
-            this.listType = listType;
-        }
-
-        public MonsterTable getTable() {
-            return table;
-        }
-
-        public void setTable(MonsterTable table) {
-            this.table = table;
-        }
-
-        public tgi getCurrentTgi() {
-            return currentTgi;
-        }
-    }
-
-    public static class ListGui extends Gui {
-
-        MLGui mlGui;
-        List<String> listName;
-        private GuiSetup newTable;
-
-        public ListGui(Gui beforeGui, Player owner) {
-            super(beforeGui, owner, "§e怪物列表", 6);
-        }
-
-        @Override
-        public boolean clickRegion(String clickedRegionName, ClickType clickType, ItemStack itemStack) {
-            return false;
-        }
-
-        @Override
-        protected void initWindow() {
-            newTable = GuiSetup.table;
-            mlGui = (MLGui) getBeforeGui();
-            if (newTable.isEnable()) {
-                listName = mlGui.getCurrentTgi().getMonsterList();
-            } else {
-                switch (mlGui.getListType()) {
-                    case "aj":
-                        listName = mlGui.getTable().getAj();
-                        break;
-                    case "bj":
-                        listName = mlGui.getTable().getBj();
-                        break;
-                    case "cj":
-                        listName = mlGui.getTable().getCj();
-                        break;
-                    case "dj":
-                        listName = mlGui.getTable().getDj();
-                        break;
-                    case "ej":
-                        listName = mlGui.getTable().getEj();
-                        break;
-                    case "fj":
-                        listName = mlGui.getTable().getFj();
-                        break;
-
-                    default:
-                        break;
-                }
-            }
-        }
-
-        @Override
-        public void updateWindow() {
-            setAssembly(9, 6, BackButton.getButton(this));
-            int index = 0;
-            Role role = Role.getRole(getOwnerName());
-            for (String name : listName) {
-                Monster monster = MonsterList.list.getMonsterById(name);
-                if (C.ex(monster, true)) {
-                    boolean unlock = role.isUnlock(monster);
-                    AssemblyDynamic<ListGui> monsterAssembly = new AssemblyDynamic<ListGui>(this) {
-
-                        @Override
-                        protected short secondID() {
-                            return (short) (unlock ? monster.getTouId() : 0);
-                        }
-
-                        @Override
-                        protected void init(ListGui gui, ItemMeta itemMeta) {
-                            itemMeta.setDisplayName(monster.getName() + "§a§l【图鉴】");
-                            List<String> lore = new ArrayList<>();
-                            lore.add("");
-                            if (role.isUnlock(monster)) {
-                                List<String> customDesc = monster.getCustomDesc();
-                                if (customDesc.size() > 0) {
-                                    lore.addAll(customDesc);
-                                } else {
-                                    lore.add("§f§l[怪物介绍]");
-                                    lore.addAll(monster.getDesc());
-                                    lore.add("§f§l[怪物属性]");
-                                    lore.addAll(monster.getAttrs());
-                                    lore.add("§a生命值 " + monster.getHealth());
-                                    lore.add("§f§l[怪物掉落]");
-                                    lore.addAll(monster.getDrops());
-                                    lore.add("§d§l[所在地点:" + monster.getLocation() + "]");
-                                }
-                                if (monster.getOnlyList().size() > 0 && !role.isReceive(monster)) {
-                                    lore.add(monster.getOnlyExplain());
-                                    lore.add("§a§l>左键点击领取奖励<§b 可领取一次");
-                                } else if (monster.getRepeatList().size() > 0) {
-                                    lore.add(monster.getRepeatExplain());
-                                    lore.add("§a§l>左键点击执行<§b 图鉴解锁功能");
-                                }
-                            } else {
-                                lore.add("§c*击杀一次此怪物后解锁此图鉴*");
-                            }
-                            itemMeta.setLore(lore);
-                        }
-
-                        @Override
-                        protected Material material() {
-                            return unlock ? Material.SKULL_ITEM : (C.is17Version() ? Material.ARROW : Material.BARRIER);
-                        }
-
-                        @Override
-                        protected int itemId() {
-                            return unlock ? monster.getItemId() : (C.is17Version() ? 262 : 166);
-                        }
-                    };
-                    if (role.isUnlock(monster)) {
-                        if (monster.getOnlyList().size() > 0 && !role.isReceive(monster)) {
-                            monsterAssembly.setClickListener((LeftClickListener) () -> {
-                                List<String> onlyList = monster.getOnlyList();
-                                Player player = getOwner();
-                                int slot = APlugin.Util.PlayerUtil.getNullSoltNumber(player);
-                                if (slot >= monster.getOnlySlot()) {
-                                    role.receive(monster);
-                                    if (player.isOp()) {
-                                        exeOp(player, onlyList);
-                                    } else {
-                                        exe(player, onlyList);
-                                    }
-                                } else {
-                                    Msg.sendMsgFalse(player, "请将背包至少留出" + monster.getOnlySlot() + "个空位再进行领取！");
-                                }
-                                player.closeInventory();
-                            });
-                        } else if (monster.getRepeatList().size() > 0) {
-                            monsterAssembly.setClickListener((LeftClickListener) () -> {
-                                List<String> repeatList = monster.getRepeatList();
-                                Player player = getOwner();
-                                if (player.isOp()) {
-                                    exeOp(player, repeatList);
-                                } else {
-                                    exe(player, repeatList);
-                                }
-                                getOwner().closeInventory();
-                            });
-                        }
-                    }
-                    setAssembly(index++, monsterAssembly);
-                }
-            }
-        }
-
-        private void exe(Player player, List<String> onlyList) {
-            Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
-            try {
-                pu.a(player);
-                for (String cmd : onlyList) {
-                    if (cmd.substring(0, 1).equals("/")) {
-                        Bukkit.dispatchCommand(player, cmd.substring(1));
-                    } else {
-                        Bukkit.dispatchCommand(APlugin.serverSender,
-                                cmd.replaceAll("<p>", player.getName()));
-                    }
-                }
-            } catch (Exception ignored) {
-
-            } finally {
-                pu.b(player);
-            }
-        }
-
-        private void exeOp(Player player, List<String> onlyList) {
-            Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
-            try {
-                for (String cmd : onlyList) {
-                    if (cmd.substring(0, 1).equals("/")) {
-                        Bukkit.dispatchCommand(player, cmd.substring(1));
-                    } else {
-                        Bukkit.dispatchCommand(APlugin.serverSender,
-                                cmd.replaceAll("<p>", player.getName()));
-                    }
-                }
-            } catch (Exception ignored) {
-
-            }
-        }
-
-        @Override
-        public boolean closeEvent() {
-
-            return false;
-        }
-
-    }
-
     public static class Role extends AsxConfig {
 
         private static Map<String, Role> roleList = new HashMap<>();
@@ -1292,7 +870,7 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
 
                     @Override
                     protected Material material() {
-                        return complete || !perm ? Material.BARRIER : Material.CHEST;
+                        return complete || !perm ? Material.REDSTONE_TORCH_ON : Material.CHEST;
                     }
                 };
                 if (level >= box.getLevel() && perm) {
