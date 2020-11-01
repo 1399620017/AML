@@ -39,8 +39,8 @@ public class ACPCommand implements CommandExecutor {
                     for (Map.Entry<String, Copy> entry : CopyList.map.entrySet()) {
                         Msg.sendMessage(commandSender, "ID: " + entry.getKey() +
                                 " 名字： " + entry.getValue().name + " 所在世界： " + entry.getValue().world);
-                        return true;
                     }
+                    return true;
                 } else if (Objects.equals(strings[0], "reload")) {
                     CopyList.reload();
                     Msg.sendMessage(commandSender, "重载成功！");
