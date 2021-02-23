@@ -2,6 +2,7 @@ package top.aot.cp;
 
 import setting.CopyList;
 import top.aot.cp.command.ACPCommand;
+import top.aot.cp.command.ACPTCommand;
 import top.aot.itf.Main;
 import top.aot.plugin.APlugin;
 
@@ -33,6 +34,7 @@ public enum cpm implements Main {
             // 重载副本列表
             CopyList.reload();
             APlugin.plugin.getCommand("acp").setExecutor(new ACPCommand());
+            APlugin.plugin.getCommand("acpt").setExecutor(new ACPTCommand());
         }
     }
 }

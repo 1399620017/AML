@@ -91,17 +91,6 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="1.8.0Spigot.jar">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../API/1.8.0Spigot.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="jar://$MODULE_DIR$/../../API/1.8.0Spigot.jar!/" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
       <library name="craftbukkit-1.10-R0.1-SNAPSHOT-latest.jar">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/../../API/craftbukkit-1.10-R0.1-SNAPSHOT-latest.jar!/" />
@@ -203,15 +192,6 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../API/[基础-前置]PlaceholderAPI-2.10.4.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
           <root url="jar://$MODULE_DIR$/../../API/PaperSpigot-1.7.10-R0.1-SNAPSHOT-latest.jar!/" />
         </CLASSES>
         <JAVADOC />
@@ -228,6 +208,26 @@
         <JAVADOC />
         <SOURCES>
           <root url="jar://$MODULE_DIR$/../../API/PaperSpigot1.15.2.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../API/PlaceholderAPI-2.10.4.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../API/Spigot1.8.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/../../API/Spigot1.8.0.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>

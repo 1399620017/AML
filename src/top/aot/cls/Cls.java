@@ -21,8 +21,8 @@ import top.aot.bean.RcEvent;
 import top.aot.cp.cpm;
 import top.aot.cp.entity.Copy;
 import top.aot.cp.role.CpRole;
-import top.aot.et.command.OpenRcCommand;
-import top.aot.et.command.ReloadRcCommand;
+import top.aot.et.command.MOpenRcCommand;
+import top.aot.et.command.MReloadRcCommand;
 import top.aot.et.gui.etgui;
 import top.aot.et.listener.KillListener;
 import top.aot.et.rcm;
@@ -207,8 +207,8 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
             new ListCommand("list", 0, "", "查看所有已注册的图鉴id", true);
             new ReloadCommand("r", 0, "", C.s(3), true);
             new SwitchGuiSetupCommand("sgs", 0, "", C.s(12), true);
-            new OpenRcCommand("rcm", 0, "", "打开悬赏板", false);
-            new ReloadRcCommand("rc", 0, "", "重载配置文件", true);
+            new MOpenRcCommand("rcm", 0, "", "打开悬赏板", false);
+            new MReloadRcCommand("rc", 0, "", "重载配置文件", true);
             new ShopCommand("shop", 0, "", "打开怪物商城", false);
             new ShopAddCommand("add", 2, "<monsterId> <point>", "添加手持商品到商城,怪物类型monsterId", true);
             new ShopSetCommand("set", 3, "<index> <monsterId> <point>", "设置手持商品到商城固定栏位", true);
@@ -729,7 +729,7 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
             int eventIndex = 0;
             RcRole role = RcRoleList.getRole(getOwnerName());
             Map<String, Integer> eValues = role.getEValues();
-            Map<String, RcEvent> eTable = EventList.list.getEventTable();
+            Map<String, RcEvent> eTable = MLEventList.list.getEventTable();
             Player player = getOwner();
             int level = player.getLevel();
             for (String id : rcm.setting.geteList()) {
@@ -831,7 +831,7 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
 
             // 宝箱
             int boxIndex = 45;
-            Map<String, RcEvent> bTable = EventList.list.getBoxTable();
+            Map<String, RcEvent> bTable = MLEventList.list.getBoxTable();
             for (String id : rcm.setting.getbList()) {
                 RcEvent box = bTable.get(id);
                 boolean complete = role.getBoxList().contains(box.getId());

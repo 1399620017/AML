@@ -7,12 +7,15 @@ commands:
    aml:
       description: open
       usage: /aml
-   arc:
+   amrc:
       description: open
-      usage: /arc
+      usage: /amrc
    asp:
       description: open
       usage: /asp
    acp:
       description: open
       usage: /acp
+   acpt:
+      description: open
+      usage: /acpt

@@ -23,7 +23,7 @@ public class MLShop extends AsxConfig {
     }
 
     public static void reload() {
-        bfShop = new MLShop("BFShopList");
+        bfShop = new MLShop("怪物商城设置");
     }
 
     public MLShop(String fileName) {

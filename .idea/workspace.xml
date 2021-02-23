@@ -2,14 +2,36 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="AML2.2.0" />
+      <artifact name="aml" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="646b38d0-aa18-4c59-a466-178b1db13a8c" name="默认更改列表" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/amlbuild.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/setting/MLEventList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/setting/MLEventSetup.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/top/aot/cp/command/ACPTCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/AML2_2_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/aml.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/hutool_all_5_3_7.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/cp/command/ACPCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/cp/command/ACPCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aml.iml" beforeDir="false" afterPath="$PROJECT_DIR$/aml.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resource/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/resource/plugin.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/setting/CopyList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/setting/CopyList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/setting/EventList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/setting/EventSetup.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/setting/MLShop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/setting/MLShop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/cls/Cls.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/cls/Cls.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/top/aot/cp/cpm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/cp/cpm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/cp/entity/Copy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/cp/entity/Copy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/cp/gui/CopyGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/cp/gui/CopyGui.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/et/command/ARCCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/et/command/MARCCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/et/command/OpenRcCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/et/command/MOpenRcCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/et/command/ReloadRcCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/et/command/MReloadRcCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/et/rcm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/et/rcm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/et/role/RcRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/et/role/RcRole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/et/role/RcRoleList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/et/role/RcRoleList.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -80,7 +102,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../swytxm/swytBm" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../API/Spigot1.8.0.jar!/" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="模块" />
     <property name="project.structure.proportion" value="0.15" />
@@ -90,9 +112,12 @@
     <property name="show.unlinked.gradle.project.popup" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="top.aot.ml.nms" />
-      <recent name="top.aot.ml.cls" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\src\eclipse-workspace\amlbuild\cn" />
+      <recent name="D:\src\eclipse-workspace\amlbuild" />
+      <recent name="D:\src\eclipse-workspace\amlbuild\resource" />
+      <recent name="D:\src\eclipse-workspace\amlbuild\src" />
+      <recent name="D:\src\eclipse-workspace\tjgwtjxt\src" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\src\eclipse-workspace\amlbuild\Server" />
@@ -102,18 +127,15 @@
       <recent name="D:\src\eclipse-workspace\AsxMail\resource" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="top.aot.cp.command" />
       <recent name="top.aot.sp.command" />
       <recent name="top.aot.mail.plugin" />
       <recent name="top.aot.ml.nms" />
       <recent name="top.aot.ml.variable" />
-      <recent name="top.aot.ml.cls" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\src\eclipse-workspace\amlbuild\cn" />
-      <recent name="D:\src\eclipse-workspace\amlbuild" />
-      <recent name="D:\src\eclipse-workspace\amlbuild\resource" />
-      <recent name="D:\src\eclipse-workspace\amlbuild\src" />
-      <recent name="D:\src\eclipse-workspace\tjgwtjxt\src" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="top.aot.ml.nms" />
+      <recent name="top.aot.ml.cls" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -129,6 +151,53 @@
     </option>
   </component>
   <component name="RunManager" selected="JAR Application.Server">
+    <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <module name="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType" factoryName="Kotlin script">
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <module name="" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="APlugin$Util" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="top.aot.plugin.APlugin$Util" />
       <module name="aml" />
@@ -201,55 +270,8 @@
       <module name="aml" />
       <method v="2">
         <option name="BuildArtifacts" enabled="true">
-          <artifact name="AML2.2.0" />
+          <artifact name="aml" />
         </option>
-      </method>
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
-      <module name="" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType" factoryName="Kotlin script">
-      <option name="filePath" />
-      <option name="vmParameters" />
-      <option name="alternativeJrePath" />
-      <option name="programParameters" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" />
-      <option name="isAlternativeJrePathEnabled" value="false" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
-      <module name="" />
-      <option name="filePath" />
-      <option name="vmParameters" />
-      <option name="alternativeJrePath" />
-      <option name="programParameters" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" />
-      <option name="isAlternativeJrePathEnabled" value="false" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
-      <method v="2">
-        <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
@@ -373,7 +395,22 @@
       <workItem from="1604016968233" duration="5395000" />
       <workItem from="1604060509809" duration="6738000" />
       <workItem from="1604102428772" duration="615000" />
-      <workItem from="1604202934104" duration="19854000" />
+      <workItem from="1604202934104" duration="20506000" />
+      <workItem from="1604276009043" duration="605000" />
+      <workItem from="1604749760618" duration="1711000" />
+      <workItem from="1604795202230" duration="12000" />
+      <workItem from="1604826942365" duration="2778000" />
+      <workItem from="1604880222920" duration="180000" />
+      <workItem from="1604881097159" duration="42000" />
+      <workItem from="1604884658552" duration="2635000" />
+      <workItem from="1604922268022" duration="907000" />
+      <workItem from="1604936621651" duration="268000" />
+      <workItem from="1604966220824" duration="125000" />
+      <workItem from="1605147179438" duration="513000" />
+      <workItem from="1606090613608" duration="15000" />
+      <workItem from="1613609961841" duration="957000" />
+      <workItem from="1613699780688" duration="2000" />
+      <workItem from="1614064475293" duration="584000" />
     </task>
     <task id="LOCAL-00001" summary="添加hutool依赖">
       <created>1601080143235</created>
@@ -473,7 +510,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604231270149</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="acp副本图鉴完成">
+      <created>1604235471956</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1604235471956</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

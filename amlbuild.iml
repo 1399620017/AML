@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="minecraft" name="Minecraft">
+      <configuration>
+        <autoDetectTypes>
+          <platformType>PAPER</platformType>
+        </autoDetectTypes>
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
+    <output url="file://$MODULE_DIR$/classes" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="paperspigot-1.8.8" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../API/spigot-1.11.2-R0.1-SNAPSHOT.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../API/PaperSpigot1.15.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../API/spigot-1.12-R0.1-SNAPSHOT-b1345.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../API/spigot-1.7.2-R0.4-SNAPSHOT.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../API/spigot-1.7.5-R0.1-SNAPSHOT-1387.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../API/spigot-1.11-R0.1-SNAPSHOT-latest.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../API/spigot-1.8.8-R0.1-SNAPSHOT-latest.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../API/spigot-1.9-R0.1-SNAPSHOT-latest.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../API/spigot-1.8.4-R0.1-SNAPSHOT-latest.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../API/spigot-1.12.2-R0.1-SNAPSHOT.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../API/spigot-1.9.2-R0.1-SNAPSHOT-latest.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../API/spigot-1.7.10-SNAPSHOT-b1657.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../API/PaperSpigot-1.8.7-R0.1-SNAPSHOT-latest.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../API/PaperSpigot-1.7.10-R0.1-SNAPSHOT-latest.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../API/craftbukkit-1.10-R0.1-SNAPSHOT-latest.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../API/craftbukkit-1.11.2-R0.1-SNAPSHOT.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../API/craftbukkit-1.8.3-R0.1-SNAPSHOT.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../API/craftbukkit-1.9-R0.1-SNAPSHOT-latest.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/../../API/spigot-1.11.2-R0.1-SNAPSHOT.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../API/PaperSpigot1.15.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../API/spigot-1.12-R0.1-SNAPSHOT-b1345.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../API/spigot-1.7.2-R0.4-SNAPSHOT.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../API/spigot-1.7.5-R0.1-SNAPSHOT-1387.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../API/spigot-1.11-R0.1-SNAPSHOT-latest.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../API/spigot-1.8.8-R0.1-SNAPSHOT-latest.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../API/spigot-1.9-R0.1-SNAPSHOT-latest.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../API/spigot-1.8.4-R0.1-SNAPSHOT-latest.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../API/spigot-1.12.2-R0.1-SNAPSHOT.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../API/spigot-1.9.2-R0.1-SNAPSHOT-latest.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../API/spigot-1.7.10-SNAPSHOT-b1657.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../API/PaperSpigot-1.8.7-R0.1-SNAPSHOT-latest.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../API/PaperSpigot-1.7.10-R0.1-SNAPSHOT-latest.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../API/craftbukkit-1.10-R0.1-SNAPSHOT-latest.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../API/craftbukkit-1.11.2-R0.1-SNAPSHOT.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../API/craftbukkit-1.8.3-R0.1-SNAPSHOT.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../API/craftbukkit-1.9-R0.1-SNAPSHOT-latest.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+  </component>
+</module>

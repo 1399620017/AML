@@ -28,7 +28,7 @@ public class CopyList extends AsxConfig {
     }
 
     private CopyList() {
-        super("CopyList");
+        super("副本列表");
     }
 
     @Override

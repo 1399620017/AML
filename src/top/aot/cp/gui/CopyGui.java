@@ -143,8 +143,8 @@ public class CopyGui extends Gui {
 
                             }
                         }
-                        cpRole.costNumber(copyTemp);
                     }
+                    cpRole.costNumber(copyTemp);
                     cpRole.start(copyTemp);
                     player.teleport(location);
                     Msg.sendMsgTrue(player, "已经开始副本，你随时可以打开副本页退出副本。");
@@ -235,7 +235,7 @@ public class CopyGui extends Gui {
                             Map<String, Reward> rewardMap = finishCopy.getRewardMap();
                             int num = 0;
                             for (Map.Entry<String, Reward> entry : rewardMap.entrySet()) {
-                                if (num < maxNumber) {
+                                if (num <= maxNumber) {
                                     Reward reward = entry.getValue();
                                     if (Math.random() * 10000 < reward.getProbability()) {
                                         num++;

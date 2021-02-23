@@ -19,7 +19,7 @@ import java.util.Map;
 public class Copy {
     // 副本名字
     public String name;
-    // 时间单位 每日|每周|每月|无限
+    // 时间单位 日|周|月|无
     private String timeType;
     // 副本图鉴的内部编号
     public String key;
