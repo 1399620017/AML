@@ -10,6 +10,7 @@ import setting.MLShop.Commodity;
 import setting.MonsterList;
 import top.aot.bean.Monster;
 import top.aot.cls.Cls.Role;
+import top.aot.constant.IntegerConstant;
 import top.aot.plugin.APlugin.AssemblyDynamic;
 import top.aot.plugin.APlugin.Gui;
 import top.aot.plugin.APlugin.LeftClickListener;
@@ -47,7 +48,7 @@ public class ShopGui extends Gui {
 
     @Override
     public void updateWindow() {
-        for (int i = 0; i < 54; i++) {
+        for (int i = 0; i < IntegerConstant.INV_MAX_SLOT_LINE_6; i++) {
             if (map.containsKey(i)) {
                 Commodity commodity = map.get(i);
                 ItemStack rawItemStack = commodity.getItemStack();

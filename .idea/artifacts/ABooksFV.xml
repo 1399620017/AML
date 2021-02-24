@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ABooksFV">
+    <output-path>D:/ServerTest/天界生存娱乐201219维护档/plugins</output-path>
+    <root id="archive" name="ABooksFV.jar">
+      <element id="module-output" name="ABooksFV" />
+    </root>
+  </artifact>
+</component>

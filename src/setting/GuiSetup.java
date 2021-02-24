@@ -4,13 +4,17 @@ import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import top.aot.cls.Cls;
-import top.aot.itf.tgi;
-import top.aot.itf.tsi;
+import top.aot.constant.StringConstant;
+import top.aot.itf.Tgi;
+import top.aot.itf.Tsi;
 import top.aot.plugin.APlugin.Msg;
 import top.aot.plugin.APlugin.AsxConfig;
 
 import java.util.*;
 
+/**
+ * @author root
+ */
 public class GuiSetup extends AsxConfig {
 
     private boolean enable;
@@ -25,11 +29,11 @@ public class GuiSetup extends AsxConfig {
         table = new GuiSetup();
     }
 
-    public GuiSetup() {
-        super("monsterTableGuiSetup");
+    private GuiSetup() {
+        super(StringConstant.MONSTER_GUI_SETUP_FILE_NAME);
     }
 
-    private Map<String, tgi> tgiMap;
+    private Map<String, Tgi> tgiMap;
 
     @Override
     protected void defaultValue() {
@@ -59,11 +63,11 @@ public class GuiSetup extends AsxConfig {
     @Override
     protected void loadConfig(FileConfiguration config) {
         enable = config.getBoolean("setting.enable", false);
-        tgiMap = new HashMap<>();
         ConfigurationSection itemConfig = config.getConfigurationSection("item");
         Set<String> typeNameSet = itemConfig.getKeys(false);
+        tgiMap = new HashMap<>((int) (typeNameSet.size() * 1.25 + 1));
         for (String typeName : typeNameSet) {
-            tsi tsi = new ti();
+            Tsi tsi = new Ti();
             String name = itemConfig.getString(typeName + ".name");
             if (Cls.C.ex(name, true) && name.length() > 0) {
                 tsi.setName(name);
@@ -94,7 +98,7 @@ public class GuiSetup extends AsxConfig {
         }
     }
 
-    public Map<String, tgi> getTgiMap() {
+    public Map<String, Tgi> getTgiMap() {
         return tgiMap;
     }
 
@@ -107,7 +111,13 @@ public class GuiSetup extends AsxConfig {
         update();
     }
 
-    private static final class ti implements tsi{
+    /**
+     * NEWGUI设置
+     *
+     * @author aoisa
+     * @date 2021/2/24 9:11
+     */
+    private static final class Ti implements Tsi {
 
         private String name;
         private int itemId;

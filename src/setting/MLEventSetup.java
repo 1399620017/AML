@@ -1,6 +1,7 @@
 package setting;
 
 import org.bukkit.configuration.file.FileConfiguration;
+import top.aot.constant.StringConstant;
 import top.aot.plugin.APlugin.AsxConfig;
 
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class MLEventSetup extends AsxConfig {
     }
 
     public MLEventSetup() {
-        super("悬赏设置");
+        super(StringConstant.EVNETSETUP_FILE_NAME);
     }
 
     @Override

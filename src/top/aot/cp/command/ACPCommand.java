@@ -36,7 +36,7 @@ public class ACPCommand implements CommandExecutor {
             if (strings.length == 1) {
                 if (Objects.equals(strings[0], "list")) {
                     Msg.sendMessage(commandSender, "列表如下：");
-                    for (Map.Entry<String, Copy> entry : CopyList.map.entrySet()) {
+                    for (Map.Entry<String, Copy> entry : CopyList.COPY_MAP.entrySet()) {
                         Msg.sendMessage(commandSender, "ID: " + entry.getKey() +
                                 " 名字： " + entry.getValue().name + " 所在世界： " + entry.getValue().world);
                     }
@@ -52,8 +52,8 @@ public class ACPCommand implements CommandExecutor {
                         // 如果玩家有完成的副本时
                         if (cpRole.hasFinish()) {
                             String copyId = cpRole.getFinish();
-                            if (CopyList.map.containsKey(copyId)) {
-                                Copy copy = CopyList.map.get(copyId);
+                            if (CopyList.COPY_MAP.containsKey(copyId)) {
+                                Copy copy = CopyList.COPY_MAP.get(copyId);
                                 Map<String, Object> data = new HashMap<>();
                                 data.put("copy", copy);
                                 data.put("cpRole", cpRole);
@@ -65,8 +65,8 @@ public class ACPCommand implements CommandExecutor {
                             String copyId = cpRole.getCurrentCopyId();
                             if (copyId == null) {
                                 Msg.sendMsgFalse(player, "你未进行任何副本！");
-                            } else if (CopyList.map.containsKey(copyId)) {
-                                Copy copy = CopyList.map.get(copyId);
+                            } else if (CopyList.COPY_MAP.containsKey(copyId)) {
+                                Copy copy = CopyList.COPY_MAP.get(copyId);
                                 Map<String, Object> data = new HashMap<>();
                                 data.put("copy", copy);
                                 data.put("cpRole", cpRole);
@@ -158,8 +158,8 @@ public class ACPCommand implements CommandExecutor {
                             // 如果玩家有完成的副本时
                             if (cpRole.hasFinish()) {
                                 String copyId = cpRole.getFinish();
-                                if (CopyList.map.containsKey(copyId)) {
-                                    Copy copy = CopyList.map.get(copyId);
+                                if (CopyList.COPY_MAP.containsKey(copyId)) {
+                                    Copy copy = CopyList.COPY_MAP.get(copyId);
                                     Map<String, Object> data = new HashMap<>();
                                     data.put("copy", copy);
                                     GuiBase.openWindow(player, new CopyGui(player, copy.name, data));
@@ -171,8 +171,8 @@ public class ACPCommand implements CommandExecutor {
                                 if (copyId == null) {
                                     copyId = strings[2];
                                 }
-                                if (CopyList.map.containsKey(copyId)) {
-                                    Copy copy = CopyList.map.get(copyId);
+                                if (CopyList.COPY_MAP.containsKey(copyId)) {
+                                    Copy copy = CopyList.COPY_MAP.get(copyId);
                                     Map<String, Object> data = new HashMap<>();
                                     data.put("copy", copy);
                                     GuiBase.openWindow(player, new CopyGui(player, copy.name, data));
@@ -491,8 +491,8 @@ public class ACPCommand implements CommandExecutor {
                         // 如果玩家有完成的副本时
                         if (cpRole.hasFinish()) {
                             String copyId = cpRole.getFinish();
-                            if (CopyList.map.containsKey(copyId)) {
-                                Copy copy = CopyList.map.get(copyId);
+                            if (CopyList.COPY_MAP.containsKey(copyId)) {
+                                Copy copy = CopyList.COPY_MAP.get(copyId);
                                 Map<String, Object> data = new HashMap<>();
                                 data.put("copy", copy);
                                 data.put("cpRole", cpRole);
@@ -504,8 +504,8 @@ public class ACPCommand implements CommandExecutor {
                             String copyId = cpRole.getCurrentCopyId();
                             if (copyId == null) {
                                 Msg.sendMsgFalse(player, "你未进行任何副本！");
-                            } else if (CopyList.map.containsKey(copyId)) {
-                                Copy copy = CopyList.map.get(copyId);
+                            } else if (CopyList.COPY_MAP.containsKey(copyId)) {
+                                Copy copy = CopyList.COPY_MAP.get(copyId);
                                 Map<String, Object> data = new HashMap<>();
                                 data.put("copy", copy);
                                 data.put("cpRole", cpRole);
@@ -522,8 +522,8 @@ public class ACPCommand implements CommandExecutor {
                         // 如果玩家有完成的副本时
                         if (cpRole.hasFinish()) {
                             String copyId = cpRole.getFinish();
-                            if (CopyList.map.containsKey(copyId)) {
-                                Copy copy = CopyList.map.get(copyId);
+                            if (CopyList.COPY_MAP.containsKey(copyId)) {
+                                Copy copy = CopyList.COPY_MAP.get(copyId);
                                 Map<String, Object> data = new HashMap<>();
                                 data.put("copy", copy);
                                 GuiBase.openWindow(player, new CopyGui(player, copy.name, data));
@@ -535,8 +535,8 @@ public class ACPCommand implements CommandExecutor {
                             if (copyId == null) {
                                 copyId = strings[1];
                             }
-                            if (CopyList.map.containsKey(copyId)) {
-                                Copy copy = CopyList.map.get(copyId);
+                            if (CopyList.COPY_MAP.containsKey(copyId)) {
+                                Copy copy = CopyList.COPY_MAP.get(copyId);
                                 Map<String, Object> data = new HashMap<>();
                                 data.put("copy", copy);
                                 GuiBase.openWindow(player, new CopyGui(player, copy.name, data));

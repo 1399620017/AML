@@ -8,7 +8,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import setting.GuiSetup;
 import setting.MonsterTable;
 import top.aot.cls.Cls;
-import top.aot.itf.tgi;
+import top.aot.itf.Tgi;
 import top.aot.plugin.APlugin;
 
 import java.util.Map;
@@ -24,7 +24,7 @@ public class MLGui extends APlugin.Gui {
     // 用于获取列表的Key
     private String listType;
     private GuiSetup newTable;
-    private tgi currentTgi;
+    private Tgi currentTgi;
 
     public MLGui(Player owner) {
         super(owner, Cls.C.f(), 6);
@@ -49,8 +49,8 @@ public class MLGui extends APlugin.Gui {
     @Override
     public void updateWindow() {
         if (newTable.isEnable()) {
-            for (Map.Entry<String, tgi> tgiEr : newTable.getTgiMap().entrySet()) {
-                tgi tgi = tgiEr.getValue();
+            for (Map.Entry<String, Tgi> tgiEr : newTable.getTgiMap().entrySet()) {
+                Tgi tgi = tgiEr.getValue();
                 APlugin.AssemblyDynamic<MLGui> iAssembly = new APlugin.AssemblyDynamic<MLGui>(this) {
                     @Override
                     protected void init(MLGui gui, ItemMeta itemMeta) {
@@ -284,7 +284,7 @@ public class MLGui extends APlugin.Gui {
         this.table = table;
     }
 
-    public tgi getCurrentTgi() {
+    public Tgi getCurrentTgi() {
         return currentTgi;
     }
 }

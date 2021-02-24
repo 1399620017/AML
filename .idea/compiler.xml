@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
-      <module name="aml" target="8" />
+      <module name="ABooksFV" target="8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

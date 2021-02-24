@@ -1,6 +1,6 @@
-name: AML
+name: ABooksFV
 main: top.aot.ml.MListMain
-version: 2.2.0
+version: 3.0.0
 softdepend: [PlaceholderAPI]
 
 commands:

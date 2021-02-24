@@ -2,11 +2,15 @@ package setting;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import top.aot.cls.Cls;
+import top.aot.constant.StringConstant;
 import top.aot.plugin.APlugin.AsxConfig;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author aoisa
+ */
 public class MonsterTable extends AsxConfig {
 
     static {
@@ -26,23 +30,23 @@ public class MonsterTable extends AsxConfig {
         table = new MonsterTable();
     }
 
-    private List<String> aj; // 1
-    private String ajName; // 1
+    private List<String> aj;
+    private String ajName;
     private int ajId;
-    private List<String> bj; // 2
-    private String bjName; // 2
+    private List<String> bj;
+    private String bjName;
     private int bjId;
-    private List<String> cj; // 3
-    private String cjName; // 3
+    private List<String> cj;
+    private String cjName;
     private int cjId;
-    private List<String> dj; // 4
-    private String djName; // 4
+    private List<String> dj;
+    private String djName;
     private int djId;
-    private List<String> ej; // 5
-    private String ejName; // 5
+    private List<String> ej;
+    private String ejName;
     private int ejId;
-    private List<String> fj; // 6
-    private String fjName; // 6
+    private List<String> fj;
+    private String fjName;
     private int fjId;
 
     private int ajIndex;
@@ -118,8 +122,8 @@ public class MonsterTable extends AsxConfig {
         return fj;
     }
 
-    public MonsterTable() {
-        super("table");
+    private MonsterTable() {
+        super(StringConstant.OLD_MONSTER_GUI_SETUP_FILE_NAME);
         sizes[0] = this.getAj().size();
         sizes[1] = this.getBj().size();
         sizes[2] = this.getCj().size();
@@ -130,13 +134,13 @@ public class MonsterTable extends AsxConfig {
 
     @Override
     protected void defaultValue() {
-        aj = new ArrayList<>(); // 1
+        aj = new ArrayList<>();
         aj.add("a");
-        bj = new ArrayList<>(); // 2
-        cj = new ArrayList<>(); // 3
-        dj = new ArrayList<>(); // 4
-        ej = new ArrayList<>(); // 5
-        fj = new ArrayList<>(); // 6
+        bj = new ArrayList<>();
+        cj = new ArrayList<>();
+        dj = new ArrayList<>();
+        ej = new ArrayList<>();
+        fj = new ArrayList<>();
         ajId = 1;
         bjId = 1;
         cjId = 1;

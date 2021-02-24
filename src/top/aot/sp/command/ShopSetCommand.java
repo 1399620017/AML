@@ -6,6 +6,7 @@ import org.bukkit.inventory.ItemStack;
 import setting.MLShop;
 import setting.MonsterList;
 import top.aot.bean.Monster;
+import top.aot.constant.IntegerConstant;
 import top.aot.plugin.APlugin.Util.PlayerUtil;
 import top.aot.plugin.APlugin.Command;
 
@@ -33,7 +34,7 @@ public class ShopSetCommand extends Command {
         int index;
         try {
             index = Integer.parseInt(args[0]);
-            if (index < 1 || index > 54) {
+            if (index < 1 || index > IntegerConstant.INV_MAX_SLOT_LINE_6) {
                 sendFalseMsg(player, "栏位<index>只允许输入1-54的数字");
                 return true;
             }

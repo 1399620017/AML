@@ -6,14 +6,31 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="646b38d0-aa18-4c59-a466-178b1db13a8c" name="默认更改列表" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+    <list default="true" id="646b38d0-aa18-4c59-a466-178b1db13a8c" name="默认更改列表" comment="增加副本额外进入次数功能">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/ABooksFV.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/top/aot/constant/IntegerConstant.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/top/aot/constant/StringConstant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/aml.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aml.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ABooksFV.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resource/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/resource/plugin.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/setting/CopyList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/setting/CopyList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/setting/GuiSetup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/setting/GuiSetup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/setting/MLEventList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/setting/MLEventList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/setting/MLEventSetup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/setting/MLEventSetup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/setting/MLShop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/setting/MLShop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/setting/MonsterList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/setting/MonsterList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/setting/MonsterTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/setting/MonsterTable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/top/aot/cp/command/ACPCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/cp/command/ACPCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/cp/entity/Copy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/cp/entity/Copy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/cp/gui/CopyGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/cp/gui/CopyGui.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/cp/role/CpRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/cp/role/CpRole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/itf/tgi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/itf/Tgi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/itf/tsi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/itf/Tsi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/ml/gui/MLGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/ml/gui/MLGui.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/sp/command/ShopSetCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/sp/command/ShopSetCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/sp/gui/ShopGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/sp/gui/ShopGui.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -84,13 +101,13 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../API/Spigot1.8.0.jar!/" />
+    <property name="last_opened_file_path" value="D:/ServerTest/天界生存娱乐201219维护档/paperspigot-1.8.8.jar" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="模块" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="show.unlinked.gradle.project.popup" value="true" />
   </component>
   <component name="RecentsManager">
@@ -100,6 +117,10 @@
       <recent name="D:\src\eclipse-workspace\amlbuild\resource" />
       <recent name="D:\src\eclipse-workspace\amlbuild\src" />
       <recent name="D:\src\eclipse-workspace\tjgwtjxt\src" />
+    </key>
+    <key name="IntroduceConstantDialog.RECENTS_KEY">
+      <recent name="top.aot.constant.StringConstant" />
+      <recent name="setting.MonsterList" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\src\eclipse-workspace\amlbuild\Server" />
@@ -182,7 +203,7 @@
     </configuration>
     <configuration name="APlugin$Util" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="top.aot.plugin.APlugin$Util" />
-      <module name="aml" />
+      <module name="ABooksFV" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="top.aot.plugin.*" />
@@ -207,7 +228,7 @@
     </configuration>
     <configuration name="R" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="source.R" />
-      <module name="aml" />
+      <module name="ABooksFV" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="source.*" />
@@ -220,7 +241,7 @@
     </configuration>
     <configuration name="StringToBytes" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="source.StringToBytes" />
-      <module name="aml" />
+      <module name="ABooksFV" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="source.*" />
@@ -233,7 +254,7 @@
     </configuration>
     <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="source.Test" />
-      <module name="aml" />
+      <module name="ABooksFV" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="source.*" />
@@ -245,14 +266,14 @@
       </method>
     </configuration>
     <configuration name="Server" type="JarApplication">
-      <option name="JAR_PATH" value="$PROJECT_DIR$/../../API/paperspigot-1.8.8.jar" />
+      <option name="JAR_PATH" value="D:/ServerTest/天界生存娱乐201219维护档/paperspigot-1.8.8.jar" />
       <option name="VM_PARAMETERS" value="-Dfile.encoding=UTF-8" />
-      <option name="WORKING_DIRECTORY" value="D:\src\eclipse-workspace\amlbuild\Server1.0" />
+      <option name="WORKING_DIRECTORY" value="D:\ServerTest\天界生存娱乐201219维护档" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <module name="aml" />
+      <module name="ABooksFV" />
       <method v="2">
         <option name="BuildArtifacts" enabled="true">
-          <artifact name="aml" />
+          <artifact name="ABooksFV" />
         </option>
       </method>
     </configuration>
@@ -395,7 +416,8 @@
       <workItem from="1614064475293" duration="1270000" />
       <workItem from="1614071420105" duration="4322000" />
       <workItem from="1614088167773" duration="11000" />
-      <workItem from="1614125732277" duration="387000" />
+      <workItem from="1614125732277" duration="5508000" />
+      <workItem from="1614131578660" duration="1272000" />
     </task>
     <task id="LOCAL-00001" summary="添加hutool依赖">
       <created>1601080143235</created>
@@ -509,7 +531,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614065130727</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="增加副本额外进入次数功能">
+      <created>1614126248940</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1614126248940</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -518,6 +547,81 @@
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
+        <entry key="1">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="roots">
+                    <value>
+                      <list>
+                        <option value="$PROJECT_DIR$" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+        <entry key="2">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="roots">
+                    <value>
+                      <list>
+                        <option value="$PROJECT_DIR$" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+        <entry key="3">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="roots">
+                    <value>
+                      <list>
+                        <option value="$PROJECT_DIR$" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State>
@@ -526,6 +630,13 @@
           </value>
         </entry>
       </map>
+    </option>
+    <option name="OPEN_TABS">
+      <set>
+        <option value="1" />
+        <option value="2" />
+        <option value="3" />
+      </set>
     </option>
   </component>
   <component name="VcsManagerConfiguration">
@@ -544,6 +655,7 @@
     <MESSAGE value="acp副本模块完成70%" />
     <MESSAGE value="acp副本图鉴完成" />
     <MESSAGE value="兼容arc插件的日程列表" />
-    <option name="LAST_COMMIT_MESSAGE" value="兼容arc插件的日程列表" />
+    <MESSAGE value="增加副本额外进入次数功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加副本额外进入次数功能" />
   </component>
 </project>

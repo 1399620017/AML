@@ -9,9 +9,13 @@ import org.bukkit.configuration.file.FileConfiguration;
 
 import top.aot.bean.Monster;
 import top.aot.cls.Cls;
+import top.aot.constant.StringConstant;
 import top.aot.plugin.APlugin;
 import top.aot.plugin.APlugin.AsxConfig;
 
+/**
+ * @author aoisa
+ */
 public class MonsterList extends AsxConfig {
 
     public static MonsterList list;
@@ -20,20 +24,20 @@ public class MonsterList extends AsxConfig {
         Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
     }
 
-    private static final Map<String, Monster> aMap = new HashMap<>();
-    private static final Map<String, Monster> bMap = new HashMap<>();
+    private static final Map<String, Monster> A_MAP = new HashMap<>();
+    private static final Map<String, Monster> B_MAP = new HashMap<>();
 
     public MonsterList() {
-        super("MonsterList");
+        super(StringConstant.MONSTERLIST_FILE_NAME);
     }
 
     public int getMonsterNum() {
-        return aMap.size();
+        return A_MAP.size();
     }
 
     public static void reload() {
         list = new MonsterList();
-        APlugin.Msg.sendConMsgTrue("加载怪物图鉴数量:" + aMap.size());
+        APlugin.Msg.sendConMsgTrue(StringConstant.MONSTERLIST_LOAD_TIPS + A_MAP.size());
     }
 
     @Override
@@ -76,11 +80,11 @@ public class MonsterList extends AsxConfig {
 
     @Override
     protected void loadConfig(FileConfiguration config) {
-        aMap.clear();
-        bMap.clear();
+        A_MAP.clear();
+        B_MAP.clear();
         for (String key : config.getKeys(false)) {
             Monster monster;
-            aMap.put(key, monster = new Monster(key)
+            A_MAP.put(key, monster = new Monster(key)
                     .setName(config.getString(key + ".name"))
                     .setAttrs(config.getStringList(key + ".attrs"))
                     .setDesc(config.getStringList(key + ".desc"))
@@ -97,23 +101,23 @@ public class MonsterList extends AsxConfig {
                     .setCustomDesc(config.getStringList(key + ".customDesc"))
                     .setNpc(config.getBoolean(key + ".npc", false))
             );
-            bMap.put(monster.getName(), monster);
+            B_MAP.put(monster.getName(), monster);
         }
     }
 
     public Monster getMonsterById(String id) {
-        if (aMap.containsKey(id)) {
-            return aMap.get(id);
+        if (A_MAP.containsKey(id)) {
+            return A_MAP.get(id);
         }
         return null;
     }
 
     public static Monster getMonster(String id) {
-        return aMap.getOrDefault(id, null);
+        return A_MAP.getOrDefault(id, null);
     }
 
     public Map<String, Monster> getMonsterNameList() {
-        return bMap;
+        return B_MAP;
     }
 
 }
