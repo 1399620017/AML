@@ -10,7 +10,6 @@ import java.lang.reflect.Method;
  * NMS接口
  */
 public interface ni {
-    String s = Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
 
     default String getNmsVersion() {
         return null;

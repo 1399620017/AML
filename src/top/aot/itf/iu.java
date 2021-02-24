@@ -10,8 +10,6 @@ import top.aot.cls.Cls;
  */
 public interface iu {
 
-    String s = Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
-
     // 关联onEnable()
     default void d() {
     }

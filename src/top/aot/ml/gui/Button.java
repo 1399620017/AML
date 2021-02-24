@@ -10,10 +10,6 @@ import top.aot.plugin.APlugin.AssemblyDynamic;
 
 public abstract class Button<T> extends AssemblyDynamic<T>{
 
-	static {
-		Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
-	}
-
 	protected Button(T gui) {
 		super(gui);
 	}

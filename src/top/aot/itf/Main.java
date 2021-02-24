@@ -9,8 +9,6 @@ import top.aot.cls.Cls;
  */
 public interface Main {
 
-    String s = Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
-
     void init();
 
 }

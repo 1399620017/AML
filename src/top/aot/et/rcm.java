@@ -17,10 +17,6 @@ public enum rcm implements Main {
         }
     };
 
-    static {
-        Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
-    }
-
     public static MLEventSetup setting;
 
 }

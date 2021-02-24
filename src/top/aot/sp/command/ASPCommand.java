@@ -10,10 +10,6 @@ import top.aot.sp.gui.ShopGui;
 
 public class ASPCommand implements CommandExecutor {
 
-	static {
-		Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
-	}
-
 	@Override
 	public boolean onCommand(CommandSender arg0, Command arg1, String arg2, String[] arg3) {
 		if (arg0 instanceof Player) {

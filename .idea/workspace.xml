@@ -6,31 +6,44 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="646b38d0-aa18-4c59-a466-178b1db13a8c" name="默认更改列表" comment="增加副本额外进入次数功能">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/ABooksFV.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/top/aot/constant/IntegerConstant.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/top/aot/constant/StringConstant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/aml.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="646b38d0-aa18-4c59-a466-178b1db13a8c" name="默认更改列表" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aml.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ABooksFV.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/resource/plugin.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/setting/CopyList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/setting/CopyList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/setting/GuiSetup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/setting/GuiSetup.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/setting/MLEventList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/setting/MLEventList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/setting/MLEventSetup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/setting/MLEventSetup.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/setting/MLShop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/setting/MLShop.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/setting/MonsterList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/setting/MonsterList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/setting/MonsterTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/setting/MonsterTable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/cp/command/ACPCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/cp/command/ACPCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/itf/tgi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/itf/Tgi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/itf/tsi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/itf/Tsi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/ml/gui/MLGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/ml/gui/MLGui.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/sp/command/ShopSetCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/sp/command/ShopSetCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/sp/gui/ShopGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/sp/gui/ShopGui.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/bean/Monster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/bean/Monster.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/bean/RcEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/bean/RcEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/cls/Cls.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/cls/Cls.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/et/command/MARCCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/et/command/MARCCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/et/command/MOpenRcCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/et/command/MOpenRcCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/et/command/MReloadRcCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/et/command/MReloadRcCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/et/listener/KillListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/et/listener/KillListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/et/rcm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/et/rcm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/et/role/RcRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/et/role/RcRole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/et/role/RcRoleList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/et/role/RcRoleList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/et/submission/Submission.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/et/submission/Submission.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/itf/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/itf/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/itf/ci.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/itf/ci.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/itf/coi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/itf/coi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/itf/ei.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/itf/ei.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/itf/iex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/itf/iex.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/itf/is.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/itf/is.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/itf/iu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/itf/iu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/itf/ni.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/itf/ni.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/ml/MListMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/ml/MListMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/ml/command/AMLCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/ml/command/AMLCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/ml/command/OpenCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/ml/command/OpenCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/ml/command/ReloadCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/ml/command/ReloadCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/ml/command/SwitchGuiSetupCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/ml/command/SwitchGuiSetupCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/ml/gui/Button.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/ml/gui/Button.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/ml/gui/ListGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/ml/gui/ListGui.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/ml/listener/KillEntityListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/ml/listener/KillEntityListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/ml/listener/PlayerLoginListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/ml/listener/PlayerLoginListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/ml/nms/cur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/ml/nms/cur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/ml/variable/Variable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/ml/variable/Variable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/plugin/APlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/plugin/APlugin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/sp/command/ASPCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/sp/command/ASPCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/sp/spm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/sp/spm.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -417,7 +430,7 @@
       <workItem from="1614071420105" duration="4322000" />
       <workItem from="1614088167773" duration="11000" />
       <workItem from="1614125732277" duration="5508000" />
-      <workItem from="1614131578660" duration="1272000" />
+      <workItem from="1614131578660" duration="1892000" />
     </task>
     <task id="LOCAL-00001" summary="添加hutool依赖">
       <created>1601080143235</created>
@@ -538,7 +551,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614126248940</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="项目改名、优化setting类代码">
+      <created>1614132897770</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1614132897770</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -656,6 +676,7 @@
     <MESSAGE value="acp副本图鉴完成" />
     <MESSAGE value="兼容arc插件的日程列表" />
     <MESSAGE value="增加副本额外进入次数功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加副本额外进入次数功能" />
+    <MESSAGE value="项目改名、优化setting类代码" />
+    <option name="LAST_COMMIT_MESSAGE" value="项目改名、优化setting类代码" />
   </component>
 </project>

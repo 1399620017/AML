@@ -704,10 +704,6 @@ public final class APlugin {
 
         }
 
-        static {
-            Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
-        }
-
         public enum P implements i {
             // 动态类载入
             P {
@@ -2110,7 +2106,6 @@ public final class APlugin {
  *
  */
 interface i {
-    String s = Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
 
     void s();
 }

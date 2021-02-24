@@ -12,10 +12,6 @@ import java.util.*;
 
 public class RcRole extends AsxConfig {
 
-    static {
-        Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
-    }
-
     private String date;
     private List<String> boxList;
     private int point;

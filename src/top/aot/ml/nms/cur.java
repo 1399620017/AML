@@ -19,9 +19,6 @@ public enum cur implements ci, ni, coi, ei {
      * nms工具类
      */
     A {
-        {
-            Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
-        }
         private final String[] nmsVersionList = {
                 "v1_7_R4",
                 "v1_7_R3",
@@ -190,9 +187,6 @@ public enum cur implements ci, ni, coi, ei {
      * compound工具类
      */
     c {
-        {
-            Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
-        }
         private Class<?> nmsNBTBaseCls;
 
         private Class<?> nmsNBTTagByteCls;
@@ -648,9 +642,6 @@ public enum cur implements ci, ni, coi, ei {
      * entity工具类
      */
     e {
-        {
-            Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
-        }
 
         private Class<?> nmsEntityCls;
 
@@ -751,10 +742,6 @@ public enum cur implements ci, ni, coi, ei {
 
     ;
 
-    static {
-        Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
-    }
-
     /**
      * 显示载入类、方法、字段的结果信息
      */
@@ -779,9 +766,6 @@ public enum cur implements ci, ni, coi, ei {
      * 通用NBTCompound类
      */
     public static class cco {
-        static {
-            Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
-        }
 
         private static coi compound = c;
 
@@ -859,9 +843,6 @@ public enum cur implements ci, ni, coi, ei {
      * 通用NBTEntity类
      */
     public static class cee {
-        static {
-            Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
-        }
 
         private static ei ne = e;
 

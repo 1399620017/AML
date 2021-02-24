@@ -13,10 +13,6 @@ import java.util.List;
  */
 public class MonsterTable extends AsxConfig {
 
-    static {
-        Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
-    }
-
     private static MonsterTable table;
 
     public static MonsterTable getMonsterTable() {

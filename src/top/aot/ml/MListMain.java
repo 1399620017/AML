@@ -6,10 +6,6 @@ import top.aot.plugin.APlugin.CorePlugin;
 
 public class MListMain extends CorePlugin {
 
-    static {
-        Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
-    }
-
     @Override
     public void start() {
         Cls.C.d();

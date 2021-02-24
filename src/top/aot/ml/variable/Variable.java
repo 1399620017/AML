@@ -11,10 +11,6 @@ import java.util.Objects;
 
 public class Variable extends PlaceholderHook {
 
-    static {
-        Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
-    }
-
     public static boolean register() {
         return PlaceholderAPI.registerPlaceholderHook(Cls.C.s(1), new Variable());
     }

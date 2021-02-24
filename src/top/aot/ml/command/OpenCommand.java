@@ -9,10 +9,6 @@ import top.aot.plugin.APlugin.GuiBase;
 
 public class OpenCommand extends Command{
 
-	static {
-		Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
-	}
-
 	public OpenCommand(String name, int len, String usage, String desc, boolean op) {
 		super(name, len, usage, desc, op);
 	}

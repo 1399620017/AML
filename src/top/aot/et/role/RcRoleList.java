@@ -8,10 +8,6 @@ import java.util.Map;
 
 public class RcRoleList {
 
-    static {
-        Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
-    }
-
     private static final Map<String, RcRole> roleList = new HashMap<>();
 
     public static RcRole getRole(Player player) {

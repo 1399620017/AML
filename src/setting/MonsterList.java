@@ -1,17 +1,15 @@
 package setting;
 
+import org.bukkit.configuration.file.FileConfiguration;
+import top.aot.bean.Monster;
+import top.aot.constant.StringConstant;
+import top.aot.plugin.APlugin;
+import top.aot.plugin.APlugin.AsxConfig;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.bukkit.configuration.file.FileConfiguration;
-
-import top.aot.bean.Monster;
-import top.aot.cls.Cls;
-import top.aot.constant.StringConstant;
-import top.aot.plugin.APlugin;
-import top.aot.plugin.APlugin.AsxConfig;
 
 /**
  * @author aoisa
@@ -19,10 +17,6 @@ import top.aot.plugin.APlugin.AsxConfig;
 public class MonsterList extends AsxConfig {
 
     public static MonsterList list;
-
-    static {
-        Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
-    }
 
     private static final Map<String, Monster> A_MAP = new HashMap<>();
     private static final Map<String, Monster> B_MAP = new HashMap<>();

@@ -20,7 +20,4 @@ public enum spm implements Main {
             APlugin.plugin.getCommand("asp").setExecutor(new ASPCommand());
         }
     };
-    static {
-        Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
-    }
 }

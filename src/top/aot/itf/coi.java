@@ -10,7 +10,6 @@ import java.util.Set;
  * Compound接口
  */
 public interface coi {
-    String s = Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
 
     default Object createByteNBT(byte num) {
         return null;

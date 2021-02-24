@@ -9,8 +9,6 @@ import top.aot.cls.Cls;
  */
 public interface iex {
 
-    String s = Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
-
     default <T> T ex(Class<T> z, String n, Object... o) {
         return null;
     }

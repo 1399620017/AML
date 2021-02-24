@@ -19,10 +19,6 @@ public class GuiSetup extends AsxConfig {
 
     private boolean enable;
 
-    static {
-        Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
-    }
-
     public static GuiSetup table;
 
     public static void reload() {

@@ -8,7 +8,6 @@ import top.aot.ml.nms.cur;
  * 实体接口
  */
 public interface ei {
-    String s = Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
 
     default Object getNmsEntity(Entity entity) {
         return null;

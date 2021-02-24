@@ -706,10 +706,6 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
 
     public static class RcGui extends etgui {
 
-        static {
-            ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
-        }
-
         public RcGui(Player owner, int point) {
             super(owner, "§e§l悬赏榜|每日刷新§b§l[悬赏点:" + point + "]", 6);
         }
@@ -923,10 +919,6 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
     }
 
     private static class EtGui extends etgui {
-
-        static {
-            ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
-        }
 
         public EtGui(Player owner) {
             super(owner, C.s(13), 1);

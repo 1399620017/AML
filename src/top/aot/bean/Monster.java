@@ -11,29 +11,31 @@ import java.util.List;
  */
 public class Monster {
 
-    static {
-        Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
-    }
-
-    private String name; // 怪物名字
+    /** 怪物名字 */
+    private String name;
     private List<String> attrs;
     private List<String> desc;
     private List<String> drops;
     private String location;
-    private int itemId; // 物品id
-    private int touId; // 头id
+    /** 物品id */
+    private int itemId;
+    /** 子ID */
+    private int touId;
     private final String id;
     private String health;
 
-    private List<String> onlyList; // 单次执行的命令列表
-    private String onlyExplain; // 单次奖励的提示信息
-    private List<String> repeatList; // 无限次奖励的命令列表
-    private String repeatExplain; // 无限制奖励的提示信息
+    /** 单次执行的命令列表 */
+    private List<String> onlyList;
+    private String onlyExplain;
+    /** 无限次奖励的命令列表 */
+    private List<String> repeatList;
+    /** 无限制奖励的提示信息 */
+    private String repeatExplain;
     private int onlySlot;
-
-    private List<String> customDesc; // 自定义提示
-
-    private boolean npc; // 是否为npc
+    /** 自定义提示 */
+    private List<String> customDesc;
+    /** 是否为npc */
+    private boolean npc;
 
     public Monster(String key) {
         this.id = key;

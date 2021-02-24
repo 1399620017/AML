@@ -164,7 +164,6 @@ public class ListGui extends APlugin.Gui {
     }
 
     private void exe(Player player, List<String> onlyList) {
-        Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
         try {
             pu.a(player);
             for (String cmd : onlyList) {
@@ -183,7 +182,6 @@ public class ListGui extends APlugin.Gui {
     }
 
     private void exeOp(Player player, List<String> onlyList) {
-        Cls.ts(Cls::请勿随意反编译此插件此插件创作者aoisa);
         try {
             for (String cmd : onlyList) {
                 if (cmd.substring(0, 1).equals("/")) {
