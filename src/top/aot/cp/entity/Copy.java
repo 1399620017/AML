@@ -3,6 +3,7 @@ package top.aot.cp.entity;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.entity.Player;
 import top.aot.bean.Monster;
 import top.aot.bean.Reward;
 import top.aot.cp.role.CpRole;
@@ -17,14 +18,16 @@ import java.util.Map;
  * @description：
  */
 public class Copy {
-    // 副本名字
+    /** 副本名字 */
     public String name;
-    // 时间单位 日|周|月|无
+    /** 时间单位 日|周|月|无 */
     private String timeType;
-    // 副本图鉴的内部编号
+    /** 副本图鉴的内部编号 */
     public String key;
-    // 时间单位内副本总次数
+    /** 时间单位内副本总次数 */
     public int number;
+    /** 时间单位内副本次数上限提升 */
+    public List<String> numberMaxList;
     // 限时 以秒为单位，超时自动放弃当前副本
     public int limitTime;
     // 副本说明
@@ -135,5 +138,26 @@ public class Copy {
 
     public int getMaxRewardNumber() {
         return maxNumber;
+    }
+
+    public int getMaxNumber(Player player) {
+        return number + getAdditionalNumber(player);
+    }
+
+    public int getAdditionalNumber(Player player) {
+        for (String numberMaxStr : numberMaxList) {
+            String[] strings = numberMaxStr.split(":");
+            if (strings.length != 2) {
+                continue;
+            }
+            if (player.hasPermission(strings[1])) {
+                try {
+                    return Integer.parseInt(strings[1]);
+                } catch (Exception ignored) {
+
+                }
+            }
+        }
+        return 0;
     }
 }

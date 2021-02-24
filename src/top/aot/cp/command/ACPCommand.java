@@ -94,6 +94,11 @@ public class ACPCommand implements CommandExecutor {
                         Msg.sendMessage(commandSender, " - 坐标z:" + copy.z);
                         Msg.sendMessage(commandSender, "等级要求:" + copy.minLevel + "-" + copy.maxLevel);
                         Msg.sendMessage(commandSender, "权限要求:" + (copy.permission == null ? "" : copy.permission));
+                        Msg.sendMessage(commandSender, "进入次数:" + copy.number);
+                        Msg.sendMessage(commandSender, "副本 " + copy.key + " §a额外进入次数:");
+                        for (String str : copy.numberMaxList) {
+                            Msg.sendMessage(commandSender, " - " + str);
+                        }
                         Msg.sendMessage(commandSender, "怪物列表:");
                         for (Map.Entry<String, Integer> entry : copy.getMonsterMap().entrySet()) {
                             Msg.sendMessage(commandSender, " - " + entry.getKey() + " *" + entry.getValue());
@@ -114,7 +119,31 @@ public class ACPCommand implements CommandExecutor {
                     Copy copy = CopyList.getCopy(copyId);
                     if (copy != null) {
                         CopyList.delItems(copy);
-                        Msg.sendMessage(commandSender, "副本ID:" + copy.key);
+                        Msg.sendMessage(commandSender, "已经清除副本进入要求,副本ID:" + copy.key);
+                    } else {
+                        Msg.sendMsgFalse(commandSender, "所选副本不存在！");
+                    }
+                    return true;
+                } else if (Objects.equals(strings[0], "clearnum")) {
+                    // 清除副本额外进入次数
+                    String copyId = strings[1];
+                    Copy copy = CopyList.getCopy(copyId);
+                    if (copy != null) {
+                        CopyList.clearPermNum(copy);
+                        Msg.sendMessage(commandSender, "已经清除副本额外进入次数，副本ID:" + copy.key);
+                    } else {
+                        Msg.sendMsgFalse(commandSender, "所选副本不存在！");
+                    }
+                    return true;
+                } else if (Objects.equals(strings[0], "numlist")) {
+                    // 查看副本额外进入次数列表
+                    String copyId = strings[1];
+                    Copy copy = CopyList.getCopy(copyId);
+                    if (copy != null) {
+                        Msg.sendMessage(commandSender, "副本 " + copy.key + " §a额外进入次数:");
+                        for (String str : copy.numberMaxList) {
+                            Msg.sendMessage(commandSender, str);
+                        }
                     } else {
                         Msg.sendMsgFalse(commandSender, "所选副本不存在！");
                     }
@@ -193,6 +222,26 @@ public class ACPCommand implements CommandExecutor {
                                 CopyList.setType(copy, "无");
                             }
                             Msg.sendMessage(commandSender, "已经设置副本刷新周期：" + strings[2]);
+                        } else {
+                            Msg.sendMsgFalse(commandSender, "此ID的副本不存在！");
+                        }
+                        return true;
+                    case "addnum":
+                        // 副本添加根据权限提升的次数
+                        copyId = strings[1];
+                        if (CopyList.hasCopy(copyId)) {
+                            Copy copy = CopyList.getCopy(copyId);
+                            String[] nums = strings[2].split(":");
+                            if (nums.length == 2) {
+                                try {
+                                    CopyList.addPermNum(copy, nums[0], Integer.parseInt(nums[1]));
+                                    Msg.sendMessage(commandSender, "已经添加副本额外次数：" + strings[2]);
+                                } catch (Exception e) {
+                                    Msg.sendMsgFalse(commandSender, "你必须输入一个整数！");
+                                }
+                            } else {
+                                Msg.sendMsgFalse(commandSender, "命令错误,格式:/acp addnum copy001 vips.vip1:10");
+                            }
                         } else {
                             Msg.sendMsgFalse(commandSender, "此ID的副本不存在！");
                         }
@@ -367,7 +416,7 @@ public class ACPCommand implements CommandExecutor {
                     if (CopyList.hasCopy(copyId)) {
                         Copy copy = CopyList.getCopy(copyId);
                         try {
-                            int gl =  Integer.parseInt(strings[4]);
+                            int gl = Integer.parseInt(strings[4]);
                             Reward reward = new Reward();
                             reward.setName(strings[2]);
                             reward.setProbability(gl);
@@ -417,6 +466,9 @@ public class ACPCommand implements CommandExecutor {
             Msg.sendMessage(commandSender, "/acp create <副本ID> <副本名字> 从当前所站位置创建副本点,颜色符号使用&");
             Msg.sendMessage(commandSender, "/acp settype <副本ID> <日|周|月|年|无> 设置副本进入次数刷新周期，无周期的不限制次数。");
             Msg.sendMessage(commandSender, "/acp setcount <副本ID> <次数> 设置副本刷新周期内最大进入次数。");
+            Msg.sendMessage(commandSender, "/acp addnum <副本ID> <权限:次数> 添加一个权限的副本额外进入次数。");
+            Msg.sendMessage(commandSender, "/acp clearnum <副本ID> 清除副本额外今入次数列表。");
+            Msg.sendMessage(commandSender, "/acp numlist <副本ID> 查看副本额外进入次数列表。");
             Msg.sendMessage(commandSender, "/acp settime <副本ID> <时间> 设置每次副本使用的最大时间，单位秒");
             Msg.sendMessage(commandSender, "/acp setdesc <副本ID> <说明> 设置副本说明，颜色符号使用&，配置文件可设置多行。");
             Msg.sendMessage(commandSender, "/acp setloc <副本ID> <玩家名> 设置玩家当前位置为副本传送点。");

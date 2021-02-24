@@ -44,6 +44,7 @@ public class CopyList extends AsxConfig {
             copy.key = copyKey;
             copy.name = config.getString(copyKey + ".name");
             copy.setTimeType(config.getString(copyKey + ".timeType"));
+            copy.numberMaxList = config.getStringList(copyKey + ".numberMaxList");
             copy.number = config.getInt(copyKey + ".number");
             copy.limitTime = config.getInt(copyKey + ".limitTime");
             copy.desc = config.getStringList(copyKey + ".desc");
@@ -212,6 +213,19 @@ public class CopyList extends AsxConfig {
     public static void setCount(Copy copy, int count) {
         copy.number = count;
         instance.customConfig.set(copy.key + ".number", count);
+        map.put(copy.key, copy);
+        instance.update();
+    }
+
+    public static void addPermNum(Copy copy, String permStr, int num) {
+        copy.numberMaxList.add(permStr + ":" + num);
+        instance.customConfig.set(copy.key + ".numberMaxList", copy.numberMaxList);
+        map.put(copy.key, copy);
+        instance.update();
+    }
+
+    public static void clearPermNum(Copy copy) {
+        instance.customConfig.set(copy.key + ".numberMaxList", null);
         map.put(copy.key, copy);
         instance.update();
     }

@@ -7,31 +7,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="646b38d0-aa18-4c59-a466-178b1db13a8c" name="默认更改列表" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/amlbuild.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/setting/MLEventList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/setting/MLEventSetup.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/top/aot/cp/command/ACPTCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/AML2_2_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/aml.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/hutool_all_5_3_7.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aml.iml" beforeDir="false" afterPath="$PROJECT_DIR$/aml.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/resource/plugin.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/setting/CopyList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/setting/CopyList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/setting/EventList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/setting/EventSetup.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/setting/MLShop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/setting/MLShop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/cls/Cls.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/cls/Cls.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/cp/cpm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/cp/cpm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/cp/command/ACPCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/cp/command/ACPCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/top/aot/cp/entity/Copy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/cp/entity/Copy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/top/aot/cp/gui/CopyGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/cp/gui/CopyGui.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/et/command/ARCCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/et/command/MARCCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/et/command/OpenRcCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/et/command/MOpenRcCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/et/command/ReloadRcCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/et/command/MReloadRcCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/et/rcm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/et/rcm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/et/role/RcRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/et/role/RcRole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/aot/et/role/RcRoleList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/et/role/RcRoleList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/aot/cp/role/CpRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/aot/cp/role/CpRole.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -108,7 +90,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="project.propCompiler" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
     <property name="show.unlinked.gradle.project.popup" value="true" />
   </component>
   <component name="RecentsManager">
@@ -410,7 +392,10 @@
       <workItem from="1606090613608" duration="15000" />
       <workItem from="1613609961841" duration="957000" />
       <workItem from="1613699780688" duration="2000" />
-      <workItem from="1614064475293" duration="584000" />
+      <workItem from="1614064475293" duration="1270000" />
+      <workItem from="1614071420105" duration="4322000" />
+      <workItem from="1614088167773" duration="11000" />
+      <workItem from="1614125732277" duration="387000" />
     </task>
     <task id="LOCAL-00001" summary="添加hutool依赖">
       <created>1601080143235</created>
@@ -517,7 +502,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604235471956</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="兼容arc插件的日程列表">
+      <created>1614065130727</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1614065130727</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -551,6 +543,7 @@
     <MESSAGE value="支持/asp命令打开怪物商城" />
     <MESSAGE value="acp副本模块完成70%" />
     <MESSAGE value="acp副本图鉴完成" />
-    <option name="LAST_COMMIT_MESSAGE" value="acp副本图鉴完成" />
+    <MESSAGE value="兼容arc插件的日程列表" />
+    <option name="LAST_COMMIT_MESSAGE" value="兼容arc插件的日程列表" />
   </component>
 </project>

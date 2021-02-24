@@ -132,7 +132,7 @@ public class CpRole extends AsxConfig {
         return 1;
     }
 
-    // 获取当前副本击杀怪物计数
+    /** 获取当前副本击杀怪物计数 */
     public int getKillNumber(Monster monster) {
         return customConfig.getInt("killNumber." + monster.getId(), 0);
     }

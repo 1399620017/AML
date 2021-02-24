@@ -71,10 +71,12 @@ public class CopyGui extends Gui {
                         lore.add("§f :" + strings[0] + " §f" + strings[1] + "个消耗");
                     }
                 }
+                int additionalNumber = copy.getAdditionalNumber(player);
                 if (!Objects.equals(copy.getTimeType(), "无")) {
-                    lore.add(String.format("§a本%s进入次数: %s/%s",
+                    lore.add(String.format("§a本%s进入次数: %s/%s %s",
                             copy.getTimeType(),
-                            cpRole.getNumber(copy), copy.number));
+                            cpRole.getNumber(copy), copy.number + additionalNumber,
+                            (additionalNumber > 0 ? "§a(+" + additionalNumber + ")" : "")));
                 }
                 lore.addAll(copy.desc);
                 if (cpRole.getFinish() != null) {
@@ -88,7 +90,7 @@ public class CopyGui extends Gui {
                     lore.add("§c :副本限时" + copy.limitTime + "秒");
                 }
                 setLore(lore);
-//                setLight();
+                //                setLight();
             }
 
             @Override
@@ -105,11 +107,12 @@ public class CopyGui extends Gui {
             Copy copyTemp = (Copy) data.get("copy");
             int tempLevel = player.getLevel();
             player.closeInventory();
+            int numberMax = copyTemp.getMaxNumber(player);
             if (tempLevel < copyTemp.minLevel || tempLevel > copyTemp.maxLevel) {
                 Msg.sendMsgFalse(player, "你的等级未达到要求！");
             } else if (copyTemp.permission != null && !player.hasPermission(copyTemp.permission)) {
                 Msg.sendMsgFalse(player, "你的权限未达到要求！");
-            } else if (cpRole.getNumber(copyTemp) >= copyTemp.number) {
+            } else if (cpRole.getNumber(copyTemp) >= numberMax) {
                 Msg.sendMsgFalse(player, "你的进入次数达到上限！");
             } else {
                 String finishCopy = cpRole.getFinish();
