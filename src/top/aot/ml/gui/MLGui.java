@@ -9,19 +9,19 @@ import setting.GuiSetup;
 import setting.MonsterTable;
 import top.aot.cls.Cls;
 import top.aot.itf.Tgi;
-import top.aot.plugin.APlugin;
+import top.aot.plugin.aml.APlugin;
 
 import java.util.Map;
 
 /**
- * @author ：ZhangHe
+ * @author ：aoisa
  * @date ：Created in 2020/11/1 12:42
  * @description：
  */
 public class MLGui extends APlugin.Gui {
 
     private MonsterTable table;
-    // 用于获取列表的Key
+    /** 用于获取列表的Key */
     private String listType;
     private GuiSetup newTable;
     private Tgi currentTgi;
@@ -65,7 +65,7 @@ public class MLGui extends APlugin.Gui {
                     }
 
                     @Override
-                    protected short secondID() {
+                    protected short secondId() {
                         return tgi.getDataId();
                     }
                 }.setClickListener((APlugin.LeftClickListener) () -> {
@@ -77,7 +77,7 @@ public class MLGui extends APlugin.Gui {
         } else {
             int[] sizes = table.getSizes();
             if (sizes[0] > 0) {
-                Button<MLGui> ajButton = new Button<MLGui>(this) {
+                BaseButton<MLGui> ajButton = new BaseButton<MLGui>(this) {
 
                     @Override
                     protected String buttonName() {
@@ -96,7 +96,7 @@ public class MLGui extends APlugin.Gui {
                     }
 
                     @Override
-                    protected short secondID() {
+                    protected short secondId() {
                         return (short) MLGui.this.table.getAjId();
                     }
                 };
@@ -107,7 +107,7 @@ public class MLGui extends APlugin.Gui {
                 setAssembly(table.getAjIndex(), ajButton);
             }
             if (sizes[1] > 0) {
-                Button<MLGui> bjButton = new Button<MLGui>(this) {
+                BaseButton<MLGui> bjButton = new BaseButton<MLGui>(this) {
 
                     @Override
                     protected String buttonName() {
@@ -126,7 +126,7 @@ public class MLGui extends APlugin.Gui {
                     }
 
                     @Override
-                    protected short secondID() {
+                    protected short secondId() {
                         return (short) MLGui.this.table.getBjId();
                     }
                 };
@@ -137,7 +137,7 @@ public class MLGui extends APlugin.Gui {
                 setAssembly(table.getBjIndex(), bjButton);
             }
             if (sizes[2] > 0) {
-                Button<MLGui> cjButton = new Button<MLGui>(this) {
+                BaseButton<MLGui> cjButton = new BaseButton<MLGui>(this) {
 
                     @Override
                     protected String buttonName() {
@@ -156,7 +156,7 @@ public class MLGui extends APlugin.Gui {
                     }
 
                     @Override
-                    protected short secondID() {
+                    protected short secondId() {
                         return (short) MLGui.this.table.getCjId();
                     }
 
@@ -168,7 +168,7 @@ public class MLGui extends APlugin.Gui {
                 setAssembly(table.getCjIndex(), cjButton);
             }
             if (sizes[3] > 0) {
-                Button<MLGui> djButton = new Button<MLGui>(this) {
+                BaseButton<MLGui> djButton = new BaseButton<MLGui>(this) {
 
                     @Override
                     protected String buttonName() {
@@ -187,7 +187,7 @@ public class MLGui extends APlugin.Gui {
                     }
 
                     @Override
-                    protected short secondID() {
+                    protected short secondId() {
                         return (short) MLGui.this.table.getDjId();
                     }
 
@@ -200,7 +200,7 @@ public class MLGui extends APlugin.Gui {
             }
 
             if (sizes[4] > 0) {
-                Button<MLGui> ejButton = new Button<MLGui>(this) {
+                BaseButton<MLGui> ejButton = new BaseButton<MLGui>(this) {
 
                     @Override
                     protected String buttonName() {
@@ -219,7 +219,7 @@ public class MLGui extends APlugin.Gui {
                     }
 
                     @Override
-                    protected short secondID() {
+                    protected short secondId() {
                         return (short) MLGui.this.table.getEjId();
                     }
                 };
@@ -230,7 +230,7 @@ public class MLGui extends APlugin.Gui {
                 setAssembly(table.getEjIndex(), ejButton);
             }
             if (sizes[5] > 0) {
-                Button<MLGui> fjButton = new Button<MLGui>(this) {
+                BaseButton<MLGui> fjButton = new BaseButton<MLGui>(this) {
 
                     @Override
                     protected String buttonName() {
@@ -249,7 +249,7 @@ public class MLGui extends APlugin.Gui {
                     }
 
                     @Override
-                    protected short secondID() {
+                    protected short secondId() {
                         return (short) MLGui.this.table.getFjId();
                     }
 

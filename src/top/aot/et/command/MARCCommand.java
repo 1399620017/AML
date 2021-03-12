@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 import top.aot.et.role.RcRole;
 import top.aot.et.role.RcRoleList;
 import top.aot.cls.Cls;
-import top.aot.plugin.APlugin.GuiBase;
+import top.aot.plugin.aml.APlugin.GuiBase;
 
 public class MARCCommand implements CommandExecutor {
 
@@ -16,7 +16,7 @@ public class MARCCommand implements CommandExecutor {
         if (arg0 instanceof Player) {
             Player player = (Player) arg0;
             RcRole role = RcRoleList.getRole(player);
-            GuiBase.openWindow(player, new Cls.RcGui(player, role.getEValues().get("point")));
+            GuiBase.openWindow(player, new Cls.RcGui(player, role.getEventValues().get("point")));
         }
         return true;
     }

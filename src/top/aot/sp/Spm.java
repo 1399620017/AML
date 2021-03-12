@@ -2,17 +2,16 @@ package top.aot.sp;
 
 import setting.MLShop;
 import top.aot.itf.Main;
-import top.aot.cls.Cls;
-import top.aot.plugin.APlugin;
+import top.aot.plugin.aml.APlugin;
 import top.aot.sp.command.ASPCommand;
 
 /**
- * @author ：ZhangHe
+ * @author ：aoisa
  * @date ：Created in 2020/9/21 12:50
  * @description：
  */
-public enum spm implements Main {
-
+public enum Spm implements Main {
+    /** 怪物商城模块入口 */
     A{
         @Override
         public void init() {

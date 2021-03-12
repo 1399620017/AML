@@ -2,8 +2,9 @@ package setting;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import top.aot.cls.Cls;
+import top.aot.constant.IntegerConstant;
 import top.aot.constant.StringConstant;
-import top.aot.plugin.APlugin.AsxConfig;
+import top.aot.plugin.aml.APlugin.AsxConfig;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -199,17 +200,17 @@ public class MonsterTable extends AsxConfig {
 
     @Override
     protected void loadConfig(FileConfiguration config) {
-        ajId = config.getInt("ajId", 0);
+        ajId = config.getInt("ajId", IntegerConstant.CONFIG_FIELD_VALUE_0);
         aj = config.getStringList("aj");
-        bjId = config.getInt("bjId", 0);
+        bjId = config.getInt("bjId", IntegerConstant.CONFIG_FIELD_VALUE_0);
         bj = config.getStringList("bj");
-        cjId = config.getInt("cjId", 0);
+        cjId = config.getInt("cjId", IntegerConstant.CONFIG_FIELD_VALUE_0);
         cj = config.getStringList("cj");
-        djId = config.getInt("djId", 0);
+        djId = config.getInt("djId", IntegerConstant.CONFIG_FIELD_VALUE_0);
         dj = config.getStringList("dj");
-        ejId = config.getInt("ejId", 0);
+        ejId = config.getInt("ejId", IntegerConstant.CONFIG_FIELD_VALUE_0);
         ej = config.getStringList("ej");
-        fjId = config.getInt("fjId", 0);
+        fjId = config.getInt("fjId", IntegerConstant.CONFIG_FIELD_VALUE_0);
         fj = config.getStringList("fj");
         ajName = config.getString("ajName", "普通怪物图鉴");
         bjName = config.getString("bjName", "精英怪物图鉴");

@@ -1,9 +1,7 @@
 package top.aot.itf;
 
-import top.aot.cls.Cls;
-
 /**
- * @author ：ZhangHe
+ * @author ：aoisa
  * @date ：Created in 2020/9/9 11:49
  * @description：通用模块接口
  */

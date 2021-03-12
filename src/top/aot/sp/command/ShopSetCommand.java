@@ -7,11 +7,11 @@ import setting.MLShop;
 import setting.MonsterList;
 import top.aot.bean.Monster;
 import top.aot.constant.IntegerConstant;
-import top.aot.plugin.APlugin.Util.PlayerUtil;
-import top.aot.plugin.APlugin.Command;
+import top.aot.plugin.aml.APlugin.Util.PlayerUtil;
+import top.aot.plugin.aml.APlugin.Command;
 
 /**
- * @author ：ZhangHe
+ * @author ：aoisa
  * @date ：Created in 2020/8/13 10:50
  * @description：
  */

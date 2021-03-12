@@ -3,10 +3,9 @@ package top.aot.et.command;
 import org.bukkit.entity.Player;
 import setting.MLEventList;
 import setting.MLEventSetup;
-import top.aot.et.rcm;
-import top.aot.cls.Cls;
-import top.aot.plugin.APlugin.Command;
-import top.aot.plugin.APlugin.Msg;
+import top.aot.et.Rcm;
+import top.aot.plugin.aml.APlugin.Command;
+import top.aot.plugin.aml.APlugin.Msg;
 
 public class MReloadRcCommand extends Command {
 
@@ -17,7 +16,7 @@ public class MReloadRcCommand extends Command {
     @Override
     public boolean send(Player player, String[] args) {
         MLEventList.list = new MLEventList();
-        rcm.setting = new MLEventSetup();
+        Rcm.setting = new MLEventSetup();
         Msg.sendMsgTrue(player, "重载插件配置完毕！");
         return true;
     }

@@ -5,10 +5,13 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import top.aot.cls.Cls;
 
-public class KillEntityListener implements Listener{
+/**
+ * @author aoisa
+ */
+public class KillEntityListener implements Listener {
 
-	@EventHandler
-	public void _kill(EntityDeathEvent e) {
-		Cls.C._kill(e);
-	}
+    @EventHandler
+    public void kill(EntityDeathEvent e) {
+        Cls.C.kill(e);
+    }
 }

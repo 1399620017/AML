@@ -18,14 +18,14 @@ import org.bukkit.projectiles.ProjectileSource;
 import setting.*;
 import top.aot.bean.Monster;
 import top.aot.bean.RcEvent;
-import top.aot.cp.cpm;
+import top.aot.constant.IntegerConstant;
+import top.aot.cp.Cpm;
 import top.aot.cp.entity.Copy;
 import top.aot.cp.role.CpRole;
 import top.aot.et.command.MOpenRcCommand;
 import top.aot.et.command.MReloadRcCommand;
-import top.aot.et.gui.etgui;
 import top.aot.et.listener.KillListener;
-import top.aot.et.rcm;
+import top.aot.et.Rcm;
 import top.aot.et.role.RcRole;
 import top.aot.et.role.RcRoleList;
 import top.aot.et.submission.Submission;
@@ -33,28 +33,28 @@ import top.aot.itf.*;
 import top.aot.ml.command.*;
 import top.aot.ml.listener.KillEntityListener;
 import top.aot.ml.listener.PlayerLoginListener;
-import top.aot.ml.utils.pt;
-import top.aot.ml.utils.pu;
+import top.aot.ml.utils.Pt;
+import top.aot.ml.utils.Pu;
 import top.aot.ml.variable.Variable;
-import top.aot.plugin.APlugin;
-import top.aot.plugin.APlugin.*;
+import top.aot.plugin.aml.APlugin;
+import top.aot.plugin.aml.APlugin.*;
 import top.aot.sp.command.ShopAddCommand;
 import top.aot.sp.command.ShopCommand;
 import top.aot.sp.command.ShopDelCommand;
 import top.aot.sp.command.ShopSetCommand;
-import top.aot.sp.spm;
+import top.aot.sp.Spm;
 
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 /**
- * @author ：ZhangHe
+ * @author ：aoisa
  * @date ：Created in 2020/5/16 14:59
  * @description：ad
  */
 @SuppressWarnings("all")
-public enum Cls implements Main, iex, is, iu, ce, ircu {
+public enum Cls implements Main, Iex, Is, Iu, Ce, Ircu {
     // 核心代码
     C {
         private Map<String, Method> mp = new HashMap<>();
@@ -73,11 +73,13 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
         /**
          * 获取开发者信息
          */
+        @Override
         public String version() {
             return ex(String.class, Cls.C.s(10));
         }
 
         // C类方法有返回值调用
+        @Override
         public <T> T ex(Class<T> z, String n, Object... o) {
             try {
                 return z.cast(mp.get(n).invoke(null, o));
@@ -87,6 +89,7 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
         }
 
         // C类方法空判断 i为true对象不为空返回true， i为false判断对象为空true
+        @Override
         public boolean ex(Object o, boolean i) {
             try {
                 return i == (boolean) mp.get("b").invoke(null, o);
@@ -96,6 +99,7 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
         }
 
         // C类方法无返回值调用
+        @Override
         public void ex(String n, Object... o) {
             try {
                 mp.get(n).invoke(null, o);
@@ -105,16 +109,20 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
         }
 
         // 常量字符串表
+        @Override
         public String s(int s) {
             return ex(String.class, "s", s);
         }
 
         // 工具加载
         private void s(Main i) {
-            if (i != null) i.init();
+            if (i != null) {
+                i.init();
+            }
         }
 
         // 插件初始化代码
+        @Override
         public void d() {
             version = Bukkit.getVersion();
             MonsterTable.getMonsterTable();
@@ -132,17 +140,18 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
             // 初始化通用nms
             s(Cls.D);
             // 初始化rc主函数
-            s(rcm.A);
-            s(spm.A);
-            s(cpm.A);
-            s(pu.A);
-            s(pt.A);
+            s(Rcm.A);
+            s(Spm.A);
+            s(Cpm.A);
+            s(Pu.A);
+            s(Pt.A);
             // 设置各个模块命令
             APlugin.plugin.getCommand(C.s(1)).setExecutor(new AMLCommand());
         }
 
         // 玩家击杀怪物事件处理
-        public void _kill(EntityDeathEvent e) {
+        @Override
+        public void kill(EntityDeathEvent e) {
             LivingEntity le = e.getEntity();
             if (!(le instanceof Player)) {
                 Player killer = le.getKiller();
@@ -202,6 +211,7 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
             }
         }
 
+        @Override
         public void co() {
             new OpenCommand("m", 0, "", C.s(2), false);
             new ListCommand("list", 0, "", "查看所有已注册的图鉴id", true);
@@ -215,16 +225,19 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
             new ShopDelCommand("del", 1, "<index>", "将商品从这个栏位上下架", true);
         }
 
+        @Override
         public void e() {
             CorePlugin.regListener(new KillEntityListener());
             CorePlugin.regListener(new PlayerLoginListener());
             CorePlugin.regListener(new KillListener());
         }
 
+        @Override
         public String f() {
             return C.s(4);
         }
 
+        @Override
         public boolean is17Version() {
             return version.contains("1.7");
         }
@@ -234,16 +247,16 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
     D {
         @Override
         public String getName(Entity entity) {
-            return Ce.getName(entity);
+            return ce.getName(entity);
         }
 
-        private ce Ce;
+        private top.aot.itf.Ce ce;
 
         @Override
         public void init() {
             String packageName = Bukkit.getServer().getClass().getPackage().getName();
             if (packageName.contains("v1_7_R4")) {
-                Ce = new ce() {
+                ce = new Ce() {
                     @Override
                     public String getName(Entity entity) {
                         return ((org.bukkit.craftbukkit.v1_7_R4.entity.CraftEntity)
@@ -251,7 +264,7 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
                     }
                 };
             } else if (packageName.contains("v1_7_R2")) {
-                Ce = new ce() {
+                ce = new Ce() {
                     @Override
                     public String getName(Entity entity) {
                         return ((org.bukkit.craftbukkit.v1_7_R2.entity.CraftEntity)
@@ -259,7 +272,7 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
                     }
                 };
             } else if (packageName.contains("v1_7_R1")) {
-                Ce = new ce() {
+                ce = new Ce() {
                     @Override
                     public String getName(Entity entity) {
                         return ((org.bukkit.craftbukkit.v1_7_R1.entity.CraftEntity)
@@ -267,7 +280,7 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
                     }
                 };
             } else if (packageName.contains("v1_8_R1")) {
-                Ce = new ce() {
+                ce = new Ce() {
                     @Override
                     public String getName(Entity entity) {
                         return ((org.bukkit.craftbukkit.v1_8_R1.entity.CraftEntity)
@@ -275,7 +288,7 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
                     }
                 };
             } else if (packageName.contains("v1_8_R2")) {
-                Ce = new ce() {
+                ce = new Ce() {
                     @Override
                     public String getName(Entity entity) {
                         return ((org.bukkit.craftbukkit.v1_8_R2.entity.CraftEntity)
@@ -283,7 +296,7 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
                     }
                 };
             } else if (packageName.contains("v1_8_R3")) {
-                Ce = new ce() {
+                ce = new Ce() {
                     @Override
                     public String getName(Entity entity) {
                         return ((org.bukkit.craftbukkit.v1_8_R3.entity.CraftEntity)
@@ -291,7 +304,7 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
                     }
                 };
             } else if (packageName.contains("v1_9_R1")) {
-                Ce = new ce() {
+                ce = new Ce() {
                     @Override
                     public String getName(Entity entity) {
                         return ((org.bukkit.craftbukkit.v1_9_R1.entity.CraftEntity)
@@ -299,7 +312,7 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
                     }
                 };
             } else if (packageName.contains("v1_10_R1")) {
-                Ce = new ce() {
+                ce = new Ce() {
                     @Override
                     public String getName(Entity entity) {
                         return ((org.bukkit.craftbukkit.v1_10_R1.entity.CraftEntity)
@@ -307,7 +320,7 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
                     }
                 };
             } else if (packageName.contains("v1_11_R1")) {
-                Ce = new ce() {
+                ce = new Ce() {
                     @Override
                     public String getName(Entity entity) {
                         return ((org.bukkit.craftbukkit.v1_11_R1.entity.CraftEntity)
@@ -315,7 +328,7 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
                     }
                 };
             } else if (packageName.contains("v1_12_R1")) {
-                Ce = new ce() {
+                ce = new Ce() {
                     @Override
                     public String getName(Entity entity) {
                         return ((org.bukkit.craftbukkit.v1_12_R1.entity.CraftEntity)
@@ -336,6 +349,7 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
         }
 
         // 悬赏击杀判定
+        @Override
         public void _kill_rc(EntityDeathEvent e) {
             LivingEntity entity = e.getEntity();
             Player player = entity.getKiller();
@@ -354,6 +368,7 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
 
         // 悬赏伤害类型记录
         @SuppressWarnings("deprecation")
+        @Override
         public void _damage_rc(EntityDamageByEntityEvent e) {
             Entity entity = e.getDamager();
             int damage = (int) e.getDamage(EntityDamageEvent.DamageModifier.MAGIC);
@@ -382,21 +397,25 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
         }
 
         // 实体击杀类型判断
+        @Override
         public void ak(RcEvent ee) {
             killEventMap.put("killEntity".equals(ee.getType()) ? ee.getContent() : "Player", ee);
         }
 
         // 伤害类型悬赏判断
+        @Override
         public void ad(RcEvent ee) {
             damageEventMap.put(ee.getContent(), ee);
         }
 
         // 清理事件监听列表
+        @Override
         public void ck() {
             killEventMap.clear();
         }
 
         // 清理伤害类型监听列表
+        @Override
         public void cd() {
             damageEventMap.clear();
         }
@@ -411,7 +430,7 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
     }
 
     // 用于反编译声明的空方法
-    public static String ts(istr istr) {
+    public static String ts(Istr istr) {
         return istr.v();
     }
 
@@ -530,13 +549,14 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
             CDef.C.c.init();
         }
 
-        public enum C implements Main, iex {
+        public enum C implements Main, Iex {
             c {
                 @Override
                 public void init() {
                     cdef = new CDef();
                 }
 
+                @Override
                 public Class<?> c(byte[] b, int len) {
                     return cdef.defineClass(Cls.class.getName() + "$C", b, 0, len);
                 }
@@ -644,14 +664,14 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
          * 获取击杀数量
          */
         public int getKillNum(Monster monster) {
-            return customConfig.getInt("killNumList." + monster.getId(), 0);
+            return customConfig.getInt("killNumList." + monster.getId(), IntegerConstant.CONFIG_FIELD_VALUE_0);
         }
 
         /**
          * 获取击杀数量
          */
         public int getKillNum(String monsterId) {
-            return customConfig.getInt("killNumList." + monsterId, 0);
+            return customConfig.getInt("killNumList." + monsterId, IntegerConstant.CONFIG_FIELD_VALUE_0);
         }
 
         /**
@@ -704,7 +724,7 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
     // 怪物实体
 
 
-    public static class RcGui extends etgui {
+    public static class RcGui extends top.aot.et.gui.EtGui {
 
         public RcGui(Player owner, int point) {
             super(owner, "§e§l悬赏榜|每日刷新§b§l[悬赏点:" + point + "]", 6);
@@ -724,11 +744,11 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
         public void updateWindow() {
             int eventIndex = 0;
             RcRole role = RcRoleList.getRole(getOwnerName());
-            Map<String, Integer> eValues = role.getEValues();
+            Map<String, Integer> eValues = role.getEventValues();
             Map<String, RcEvent> eTable = MLEventList.list.getEventTable();
             Player player = getOwner();
             int level = player.getLevel();
-            for (String id : rcm.setting.geteList()) {
+            for (String id : Rcm.setting.geteList()) {
                 RcEvent event = eTable.get(id);
                 boolean complete = role.getBoxList().contains(event.getId());
                 boolean perm = Objects.equals(event.getPermission(), "") ? true
@@ -736,7 +756,7 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
                 AssemblyDynamic<RcGui> eventAssembly = new AssemblyDynamic<RcGui>(this) {
 
                     @Override
-                    protected short secondID() {
+                    protected short secondId() {
                         return 0;
                     }
 
@@ -793,7 +813,7 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
                             RcRole role12 = RcRoleList.getRole(getOwnerName());
                             Player player12 = getOwner();
                             if (!role12.getBoxList().contains(event.getId())) {
-                                Map<String, Integer> eValues12 = role12.getEValues();
+                                Map<String, Integer> eValues12 = role12.getEventValues();
                                 int value = eValues12.get(event.getId());
                                 if (value >= event.getNumber()) {
                                     int slot = APlugin.Util.PlayerUtil.getNullSoltNumber(player12);
@@ -828,7 +848,7 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
             // 宝箱
             int boxIndex = 45;
             Map<String, RcEvent> bTable = MLEventList.list.getBoxTable();
-            for (String id : rcm.setting.getbList()) {
+            for (String id : Rcm.setting.getbList()) {
                 RcEvent box = bTable.get(id);
                 boolean complete = role.getBoxList().contains(box.getId());
                 boolean perm = Objects.equals(box.getPermission(), "") ? true
@@ -836,7 +856,7 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
                 AssemblyDynamic<RcGui> boxAssembly = new AssemblyDynamic<RcGui>(this) {
 
                     @Override
-                    protected short secondID() {
+                    protected short secondId() {
                         return 0;
                     }
 
@@ -877,7 +897,7 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
                             RcRole role1 = RcRoleList.getRole(getOwnerName());
                             Player player1 = getOwner();
                             if (!role1.getBoxList().contains(box.getId())) {
-                                Map<String, Integer> eValues1 = role1.getEValues();
+                                Map<String, Integer> eValues1 = role1.getEventValues();
                                 int value = eValues1.get("point");
                                 if (value >= box.getNumber()) {
                                     int slot = APlugin.Util.PlayerUtil.getNullSoltNumber(player1);
@@ -918,7 +938,7 @@ public enum Cls implements Main, iex, is, iu, ce, ircu {
 
     }
 
-    private static class EtGui extends etgui {
+    private static class EtGui extends top.aot.et.gui.EtGui {
 
         public EtGui(Player owner) {
             super(owner, C.s(13), 1);

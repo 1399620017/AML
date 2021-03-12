@@ -2,12 +2,12 @@ package top.aot.sp.command;
 
 import org.bukkit.entity.Player;
 import top.aot.cls.Cls.Role;
-import top.aot.plugin.APlugin.GuiBase;
-import top.aot.plugin.APlugin.Command;
+import top.aot.plugin.aml.APlugin.GuiBase;
+import top.aot.plugin.aml.APlugin.Command;
 import top.aot.sp.gui.ShopGui;
 
 /**
- * @author ：ZhangHe
+ * @author ：aoisa
  * @date ：Created in 2020/8/13 10:50
  * @description：
  */

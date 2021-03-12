@@ -1,4 +1,4 @@
-package top.aot.plugin;
+package top.aot.plugin.aml;
 
 import com.google.gson.Gson;
 import com.sun.istack.internal.NotNull;
@@ -25,7 +25,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
-import top.aot.cls.Cls;
 
 import java.io.DataInputStream;
 import java.io.File;
@@ -99,7 +98,7 @@ public final class APlugin {
             this.gui = gui;
             setItemStack(itemId() > 0 ? new ItemStack(itemId(), 1) : new ItemStack(material())); // 初始化物品
             itemMeta = getItemStack().getItemMeta();
-            setSecondID(secondID());
+            setSecondID(secondId());
             init(gui, itemMeta);
             finish(); // 手动确认组件已经完成创建
         }
@@ -195,7 +194,7 @@ public final class APlugin {
         /**
          * 物品附加id
          */
-        protected abstract short secondID();
+        protected abstract short secondId();
 
         /**
          * 设置物品附加id
@@ -410,6 +409,8 @@ public final class APlugin {
         public static BackButton getButton(final Gui gui) {
             BackButton backButton = new BackButton(gui);
             backButton.setClickListener(new LeftClickListener() {
+
+                @Override
                 public void leftClick() {
                     GuiBase.openWindow(gui.getOwner(), gui.getBeforeGui());
                 }
@@ -421,15 +422,18 @@ public final class APlugin {
             super(gui);
         }
 
+        @Override
         protected String buttonName() {
             return "返回";
         }
 
+        @Override
         protected String explain() {
             return "§b返回上一页";
         }
 
         @SuppressWarnings("deprecation")
+        @Override
         protected Material material() {
             return Material.getMaterial(347);
         }
@@ -447,12 +451,14 @@ public final class APlugin {
 
         protected abstract String explain();
 
+        @Override
         protected void init(T gui, ItemMeta itemMeta) {
             setTitle("§b[" + buttonName() + "§b]");
             setLore(Arrays.asList(explain().split("\\.n")));
         }
 
-        protected short secondID() {
+        @Override
+        protected short secondId() {
             return 0;
         }
     }
@@ -656,10 +662,12 @@ public final class APlugin {
          */
         public abstract void listenter();
 
+        @Override
         public final void onDisable() {
 
         }
 
+        @Override
         public final void onEnable() {
             pluginName = "§a[" + pluginName() + "]§e";
             serverName = "§b[" + serverName() + "公告]§e";
@@ -699,35 +707,6 @@ public final class APlugin {
          */
         public abstract void start();
 
-        static {
-            P.P.s();
-
-        }
-
-        public enum P implements i {
-            // 动态类载入
-            P {
-                @Override
-                public void s() {
-                    DataInputStream data = new DataInputStream(Cls.class.getResourceAsStream("Cls$C.class"));
-                    byte[] bytes;
-                    try {
-                        bytes = new byte[data.available()];
-                        data.read(bytes);
-//                        for (int i = 0; i < bytes.length; i++) {
-//                            bytes[i]--;
-//                        }
-                        Class<?> c = Cls.CDef.C.c.c(bytes, bytes.length);
-                        if (c != null) {
-                            Cls.cls = c.newInstance();
-                            Cls.C.init();
-                        }
-                    } catch (IOException | IllegalAccessException | InstantiationException e) {
-                        e.printStackTrace();
-                    }
-                }
-            };
-        }
     }
 
     /**

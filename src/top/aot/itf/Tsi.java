@@ -3,7 +3,7 @@ package top.aot.itf;
 import java.util.List;
 
 /**
- * @author ：ZhangHe
+ * @author ：aoisa
  * @date ：Created in 2020/9/9 14:02
  * @description： monster项目读写接口
  */
@@ -44,7 +44,7 @@ public interface Tsi extends Tgi {
      *
      * @param itemName
      * @return void
-     * @author ZhangHe
+     * @author aoisa
      * @date 2021/2/24 9:02
      */
     void setItemName(String itemName);

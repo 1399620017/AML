@@ -4,11 +4,12 @@ import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import top.aot.cls.Cls;
+import top.aot.constant.IntegerConstant;
 import top.aot.constant.StringConstant;
 import top.aot.itf.Tgi;
 import top.aot.itf.Tsi;
-import top.aot.plugin.APlugin.Msg;
-import top.aot.plugin.APlugin.AsxConfig;
+import top.aot.plugin.aml.APlugin.Msg;
+import top.aot.plugin.aml.APlugin.AsxConfig;
 
 import java.util.*;
 
@@ -36,7 +37,7 @@ public class GuiSetup extends AsxConfig {
         customConfig.set("setting.enable", true);
         customConfig.set("item.a.name", "§a这是怪物名字");
         customConfig.set("item.a.itemId", 397);
-        customConfig.set("item.a.dataId", 0);
+        customConfig.set("item.a.dataId", IntegerConstant.CONFIG_FIELD_VALUE_0);
         customConfig.set("item.a.itemName", Material.APPLE.name());
         List<String> list = new ArrayList<>();
         list.add("§a这是分类说明");
@@ -71,19 +72,19 @@ public class GuiSetup extends AsxConfig {
                 Msg.sendConMsgFalse(String.format("读取分类 %s 的name失败!", typeName));
                 continue;
             }
-            tsi.setItemId(itemConfig.getInt(typeName + ".itemId", 0));
+            tsi.setItemId(itemConfig.getInt(typeName + ".itemId", IntegerConstant.CONFIG_FIELD_VALUE_0));
             tsi.setItemName(itemConfig.getString(typeName + ".itemName", ""));
-            tsi.setDataId((short) itemConfig.getInt(typeName + ".dataId", 0));
+            tsi.setDataId((short) itemConfig.getInt(typeName + ".dataId", IntegerConstant.CONFIG_FIELD_VALUE_0));
             tsi.setDesc(itemConfig.getStringList(typeName + ".desc"));
             tsi.setMonsterList(itemConfig.getStringList(typeName + ".monsterList"));
-            int number = itemConfig.getInt(typeName + ".number", 0);
+            int number = itemConfig.getInt(typeName + ".number", IntegerConstant.CONFIG_FIELD_VALUE_0);
             if (number > 0 && number < 65) {
                 tsi.setNumber(number);
             } else {
                 Msg.sendConMsgFalse(String.format("读取分类 %s 的number失败!", typeName));
                 continue;
             }
-            int slot = itemConfig.getInt(typeName + ".slot", 0);
+            int slot = itemConfig.getInt(typeName + ".slot", IntegerConstant.CONFIG_FIELD_VALUE_0);
             if (slot > 0 && slot < 55) {
                 tsi.setSlot(slot);
             } else {

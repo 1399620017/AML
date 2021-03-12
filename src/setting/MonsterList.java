@@ -2,9 +2,10 @@ package setting;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import top.aot.bean.Monster;
+import top.aot.constant.IntegerConstant;
 import top.aot.constant.StringConstant;
-import top.aot.plugin.APlugin;
-import top.aot.plugin.APlugin.AsxConfig;
+import top.aot.plugin.aml.APlugin;
+import top.aot.plugin.aml.APlugin.AsxConfig;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -50,7 +51,7 @@ public class MonsterList extends AsxConfig {
         customConfig.set("a.drops", drops);
         customConfig.set("a.location", "刘家村");
         customConfig.set("a.itemId", 397);
-        customConfig.set("a.touId", 0);
+        customConfig.set("a.touId", IntegerConstant.CONFIG_FIELD_VALUE_0);
         customConfig.set("a.health", "80");
         List<String> repeatList = new ArrayList<>();
         repeatList.add("/say §e无限次执行的命令列表");
@@ -84,13 +85,13 @@ public class MonsterList extends AsxConfig {
                     .setDesc(config.getStringList(key + ".desc"))
                     .setDrops(config.getStringList(key + ".drops"))
                     .setLocation(config.getString(key + ".location", "未知"))
-                    .setItemId(config.getInt(key + ".itemId", 0))
-                    .setTouId(config.getInt(key + ".touId", 0))
+                    .setItemId(config.getInt(key + ".itemId", IntegerConstant.CONFIG_FIELD_VALUE_0))
+                    .setTouId(config.getInt(key + ".touId", IntegerConstant.CONFIG_FIELD_VALUE_0))
                     .setHealth(config.getString(key + ".health", "1"))
                     .setOnlyList(config.getStringList(key + ".only.list"))
                     .setRepeatList(config.getStringList(key + ".repeat.list"))
                     .setOnlyExplain(config.getString(key + ".only.explan", ""))
-                    .setOnlySlot(config.getInt(key + ".only.slot", 0))
+                    .setOnlySlot(config.getInt(key + ".only.slot", IntegerConstant.CONFIG_FIELD_VALUE_0))
                     .setRepeatExplain(config.getString(key + ".repeat.explan", ""))
                     .setCustomDesc(config.getStringList(key + ".customDesc"))
                     .setNpc(config.getBoolean(key + ".npc", false))

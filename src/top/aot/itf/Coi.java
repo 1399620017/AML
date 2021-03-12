@@ -1,15 +1,15 @@
 package top.aot.itf;
 
-import top.aot.cls.Cls;
-import top.aot.ml.nms.cur;
+import top.aot.ml.nms.Cur;
 
 import java.util.List;
 import java.util.Set;
 
 /**
  * Compound接口
+ * @author aoisa
  */
-public interface coi {
+public interface Coi {
 
     default Object createByteNBT(byte num) {
         return null;
@@ -111,7 +111,7 @@ public interface coi {
         return null;
     }
 
-    default cur.cco getCurrencyCompound(Object object) {
+    default Cur.Cco getCurrencyCompound(Object object) {
         return null;
     }
 

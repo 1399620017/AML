@@ -5,24 +5,25 @@ import org.bukkit.entity.Player;
 import top.aot.itf.Main;
 
 /**
- * @author ：ZhangHe
+ * @author ：aoisa
  * @date ：Created in 2020/7/2 13:57
  * @description：玩家工具类
  */
-public enum pu implements Main {
-    A{
+public enum Pu implements Main {
+    /***/
+    A {
         @Override
         public void init() {
 
         }
     };
 
-    // 设置玩家为op
+    /** 设置玩家为op */
     public static void a(Player player) {
         player.setOp(true);
     }
 
-    // 取消玩家op
+    /** 取消玩家op */
     public static void b(Player player) {
         player.setOp(false);
     }

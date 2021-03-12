@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author ：ZhangHe
+ * @author ：aoisa
  * @date ：Created in 2020/10/23 14:03
  * @description：
  */
@@ -28,27 +28,27 @@ public class Copy {
     public int number;
     /** 时间单位内副本次数上限提升 */
     public List<String> numberMaxList;
-    // 限时 以秒为单位，超时自动放弃当前副本
+    /** 限时 以秒为单位，超时自动放弃当前副本 */
     public int limitTime;
-    // 副本说明
+    /** 副本说明 */
     public List<String> desc;
-    // 必填数据 最低等级要求
+    /** 必填数据 最低等级要求 */
     public int minLevel;
-    // 必填数据 最高等级要求
+    /** 必填数据 最高等级要求 */
     public int maxLevel;
-    // 最大奖励数量 1 背包要有此数量的空位才可以领取奖励
+    /** 最大奖励数量 1 背包要有此数量的空位才可以领取奖励 */
     public int maxNumber;
-    // 需求权限 不需要可不填
+    /** 需求权限 不需要可不填 */
     public String permission;
-    // 进入条件 “name 数量”
+    /** 进入条件 “name 数量” */
     public String items;
-    // 所在世界
+    /** 所在世界 */
     public String world;
-    // 坐标点 x
+    /** 坐标点 x */
     public double x;
-    // 坐标点 y
+    /** 坐标点 y */
     public double y;
-    // 坐标点 z
+    /** 坐标点 z */
     public double z;
 
     public float pitch;
@@ -60,12 +60,12 @@ public class Copy {
 
     private final Map<String, Reward> rewardMap = new HashMap<>();
 
-    // 世界实例
+    /** 世界实例 */
     public World getWorld() {
         return Bukkit.getWorld(world);
     }
 
-    // 位置实例
+    /** 位置实例 */
     public Location getLocation() {
         World world = getWorld();
         if (world != null) {
@@ -115,12 +115,12 @@ public class Copy {
         return rewardMap;
     }
 
-    // 判断此怪物是否是此副本的怪物
+    /** 判断此怪物是否是此副本的怪物 */
     public boolean hasMonster(Monster monster) {
         return map.containsKey(monster.getId());
     }
 
-    // 获取此副本中此怪物的击杀数量要求
+    /** 获取此副本中此怪物的击杀数量要求 */
     public int getKillNumber(Monster monster) {
         return map.getOrDefault(monster.getId(), -1);
     }

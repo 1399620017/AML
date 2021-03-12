@@ -4,7 +4,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.ItemStack;
 import top.aot.constant.IntegerConstant;
 import top.aot.constant.StringConstant;
-import top.aot.plugin.APlugin.AsxConfig;
+import top.aot.plugin.aml.APlugin.AsxConfig;
 
 import java.util.HashMap;
 import java.util.Map;

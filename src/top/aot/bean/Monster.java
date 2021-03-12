@@ -1,11 +1,9 @@
 package top.aot.bean;
 
-import top.aot.cls.Cls;
-
 import java.util.List;
 
 /**
- * @author ：ZhangHe
+ * @author ：aoisa
  * @date ：Created in 2020/10/30 13:31
  * @description：
  */

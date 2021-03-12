@@ -10,24 +10,23 @@ import setting.GuiSetup;
 import setting.MonsterList;
 import top.aot.bean.Monster;
 import top.aot.cls.Cls;
-import top.aot.ml.utils.pu;
-import top.aot.plugin.APlugin;
+import top.aot.constant.IntegerConstant;
+import top.aot.ml.utils.Pu;
+import top.aot.plugin.aml.APlugin;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author ：ZhangHe
+ * @author ：aoisa
  * @date ：Created in 2020/11/1 12:44
  * @description：
  */
 public class ListGui extends APlugin.Gui {
 
-    MLGui mlGui;
-    List<String> listName;
-    private GuiSetup newTable;
+    private List<String> listName;
 
-    public ListGui(APlugin.Gui beforeGui, Player owner) {
+    ListGui(APlugin.Gui beforeGui, Player owner) {
         super(beforeGui, owner, "§e怪物列表", 6);
     }
 
@@ -38,8 +37,8 @@ public class ListGui extends APlugin.Gui {
 
     @Override
     protected void initWindow() {
-        newTable = GuiSetup.table;
-        mlGui = (MLGui) getBeforeGui();
+        GuiSetup newTable = GuiSetup.table;
+        MLGui mlGui = (MLGui) getBeforeGui();
         if (newTable.isEnable()) {
             listName = mlGui.getCurrentTgi().getMonsterList();
         } else {
@@ -81,8 +80,8 @@ public class ListGui extends APlugin.Gui {
                 APlugin.AssemblyDynamic<ListGui> monsterAssembly = new APlugin.AssemblyDynamic<ListGui>(this) {
 
                     @Override
-                    protected short secondID() {
-                        return (short) (unlock ? monster.getTouId() : 0);
+                    protected short secondId() {
+                        return (short) (unlock ? monster.getTouId() : IntegerConstant.CONFIG_FIELD_VALUE_0);
                     }
 
                     @Override
@@ -165,9 +164,9 @@ public class ListGui extends APlugin.Gui {
 
     private void exe(Player player, List<String> onlyList) {
         try {
-            pu.a(player);
+            Pu.a(player);
             for (String cmd : onlyList) {
-                if (cmd.substring(0, 1).equals("/")) {
+                if ("/".equals(cmd.substring(0, 1))) {
                     Bukkit.dispatchCommand(player, cmd.substring(1));
                 } else {
                     Bukkit.dispatchCommand(APlugin.serverSender,
@@ -177,14 +176,14 @@ public class ListGui extends APlugin.Gui {
         } catch (Exception ignored) {
 
         } finally {
-            pu.b(player);
+            Pu.b(player);
         }
     }
 
     private void exeOp(Player player, List<String> onlyList) {
         try {
             for (String cmd : onlyList) {
-                if (cmd.substring(0, 1).equals("/")) {
+                if ("/".equals(cmd.substring(0, 1))) {
                     Bukkit.dispatchCommand(player, cmd.substring(1));
                 } else {
                     Bukkit.dispatchCommand(APlugin.serverSender,

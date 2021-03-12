@@ -4,10 +4,10 @@ import setting.CopyList;
 import top.aot.cp.command.ACPCommand;
 import top.aot.cp.command.ACPTCommand;
 import top.aot.itf.Main;
-import top.aot.plugin.APlugin;
+import top.aot.plugin.aml.APlugin;
 
 /**
- * @author ：ZhangHe
+ * @author ：aoisa
  * @date ：Created in 2020/10/22 21:56
  * @description：
  * @副本图鉴功能：
@@ -26,8 +26,9 @@ import top.aot.plugin.APlugin;
  * @13：完成击杀时聊天栏提示击杀要求和完成情况，达到要求后不再提示。
  * @14：副本奖励类型可设置命令或者物品直接发放奖励。
  */
-public enum cpm implements Main {
+public enum Cpm implements Main {
 
+    /** 副本图鉴模块实例 */
     A {
         @Override
         public void init() {

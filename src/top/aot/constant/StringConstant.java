@@ -30,4 +30,39 @@ public class StringConstant {
     public static final String MONSTERLIST_LOAD_TIPS = "加载怪物图鉴数量:";
     /** 加载悬赏图鉴提示 */
     public static final String EVENTLIST_LOAD_TIPS = "加载悬赏数量:";
+
+    /** 命令： 命令字符串 */
+    public static final String COMMAND_LIST = "list";
+    public static final String COMMAND_RELOAD = "reload";
+    public static final String COMMAND_OPEN = "open";
+    public static final String COMMAND_SHOW = "show";
+    public static final String COMMAND_DELITEMS = "delitems";
+    public static final String COMMAND_CLEARNUM = "clearnum";
+    public static final String COMMAND_NUMLIST = "numlist";
+
+    /** Variable： Variable字符串 */
+    public static final String VARIABLE_NUM = "num";
+    public static final String VARIABLE_SUM = "sum";
+    public static final String VARIABLE_PAY = "pay";
+
+    /** 副本进入次数刷新周期： 命令字符串 */
+    public static final String COPY_COUNT_TYPE_DAY = "日";
+    public static final String COPY_COUNT_TYPE_WEEK = "周";
+    public static final String COPY_COUNT_TYPE_MONTH = "月";
+    public static final String COPY_COUNT_TYPE_YEAR = "年";
+    public static final String COPY_COUNT_TYPE_NULL = "无";
+    public static final String COMMAND_ADDREWARD = "addreward";
+    public static final String COMMAND_ITEM = "item";
+
+    /** 配置文件KEY */
+    public static final String CONFIG_FIELD_KILLNUMBER = "killNumber";
+    public static final String CONFIG_FIELD_DAY = "day";
+    public static final String CONFIG_FIELD_WEEK = "week";
+    public static final String CONFIG_FIELD_MONTH = "month";
+    public static final String CONFIG_FIELD_YEAR = "year";
+    public static final String CONFIG_FIELD_DEFAULT_STR = "1";
+    public static final String CONFIG_FIELD_FINISH = "finish";
+    public static final String CONFIG_FIELD_FINISHNAME = "finishName";
+    public static final String CONFIG_FIELD_COPYING = "copying";
+    public static final String CONFIG_FIELD_LASTCOPYENDTIME = "lastCopyEndTime";
 }

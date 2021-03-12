@@ -2,10 +2,11 @@ package top.aot.sp.command;
 
 import org.bukkit.entity.Player;
 import setting.MLShop;
-import top.aot.plugin.APlugin.Command;
+import top.aot.constant.IntegerConstant;
+import top.aot.plugin.aml.APlugin.Command;
 
 /**
- * @author ：ZhangHe
+ * @author ：aoisa
  * @date ：Created in 2020/8/13 10:50
  * @description：
  */
@@ -28,7 +29,7 @@ public class ShopDelCommand extends Command {
         int index;
         try {
             index = Integer.parseInt(args[0]);
-            if (index < 0 || index > 53) {
+            if (index < 0 || index >= IntegerConstant.INV_MAX_SLOT_LINE_6) {
                 sendFalseMsg(player, "栏位<index>只允许输入0-53的数字");
                 return true;
             }

@@ -2,7 +2,7 @@ package setting;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import top.aot.constant.StringConstant;
-import top.aot.plugin.APlugin.AsxConfig;
+import top.aot.plugin.aml.APlugin.AsxConfig;
 
 import java.util.ArrayList;
 import java.util.List;

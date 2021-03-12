@@ -2,10 +2,8 @@ package top.aot.bean;
 
 import org.bukkit.inventory.ItemStack;
 
-import java.util.ArrayList;
-
 /**
- * @author ：ZhangHe
+ * @author ：aoisa
  * @date ：Created in 2020/10/30 14:48
  * @description：
  */
@@ -13,7 +11,7 @@ public class Reward {
 
     private String name;
 
-    // 类型 item command
+    /** 类型 item或者command */
     private String type;
 
     private ItemStack itemStack;

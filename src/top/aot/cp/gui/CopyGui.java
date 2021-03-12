@@ -12,14 +12,15 @@ import setting.CopyList;
 import setting.MonsterList;
 import top.aot.bean.Monster;
 import top.aot.bean.Reward;
+import top.aot.constant.IntegerConstant;
 import top.aot.cp.entity.Copy;
 import top.aot.cp.role.CpRole;
-import top.aot.plugin.APlugin;
-import top.aot.plugin.APlugin.Util.PlayerUtil;
-import top.aot.plugin.APlugin.Msg;
-import top.aot.plugin.APlugin.LeftClickListener;
-import top.aot.plugin.APlugin.AssemblyDynamic;
-import top.aot.plugin.APlugin.Gui;
+import top.aot.plugin.aml.APlugin;
+import top.aot.plugin.aml.APlugin.Util.PlayerUtil;
+import top.aot.plugin.aml.APlugin.Msg;
+import top.aot.plugin.aml.APlugin.LeftClickListener;
+import top.aot.plugin.aml.APlugin.AssemblyDynamic;
+import top.aot.plugin.aml.APlugin.Gui;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,7 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
- * @author ：ZhangHe
+ * @author ：aoisa
  * @date ：Created in 2020/10/23 10:08
  * @description：
  */
@@ -67,7 +68,7 @@ public class CopyGui extends Gui {
                 if (copy.items != null) {
                     lore.add("§f进入条件");
                     String[] strings = copy.items.split(" ");
-                    if (strings.length == 2) {
+                    if (strings.length == IntegerConstant.COMMAND_ARGS_SPLIT_LENGTH_2) {
                         lore.add("§f :" + strings[0] + " §f" + strings[1] + "个消耗");
                     }
                 }
@@ -99,7 +100,7 @@ public class CopyGui extends Gui {
             }
 
             @Override
-            protected short secondID() {
+            protected short secondId() {
                 return 0;
             }
         };
@@ -136,7 +137,7 @@ public class CopyGui extends Gui {
                 if (location != null) {
                     if (copyTemp.items != null) {
                         String[] strings = copyTemp.items.split(" ");
-                        if (strings.length == 2) {
+                        if (strings.length == IntegerConstant.COMMAND_ARGS_SPLIT_LENGTH_2) {
                             try {
                                 if (!PlayerUtil.costItem(player, strings[0], Integer.parseInt(strings[1]))) {
                                     player.sendMessage("§c你的“" + strings[0] + "§c”剩余数量不足！");
@@ -178,7 +179,7 @@ public class CopyGui extends Gui {
                 }
 
                 @Override
-                protected short secondID() {
+                protected short secondId() {
                     return 0;
                 }
             };
@@ -224,7 +225,7 @@ public class CopyGui extends Gui {
                 }
 
                 @Override
-                protected short secondID() {
+                protected short secondId() {
                     return 0;
                 }
             };
@@ -279,7 +280,7 @@ public class CopyGui extends Gui {
                 AssemblyDynamic<CopyGui> monsterButton = new AssemblyDynamic<CopyGui>(this) {
 
                     @Override
-                    protected short secondID() {
+                    protected short secondId() {
                         return (short) monster.getTouId();
                     }
 
@@ -329,7 +330,7 @@ public class CopyGui extends Gui {
             AssemblyDynamic<CopyGui> rewardButton = new AssemblyDynamic<CopyGui>(this) {
 
                 @Override
-                protected short secondID() {
+                protected short secondId() {
                     return 0;
                 }
 

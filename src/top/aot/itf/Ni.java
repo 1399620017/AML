@@ -1,7 +1,5 @@
 package top.aot.itf;
 
-import top.aot.cls.Cls;
-
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -9,7 +7,7 @@ import java.lang.reflect.Method;
 /**
  * NMS接口
  */
-public interface ni {
+public interface Ni {
 
     default String getNmsVersion() {
         return null;

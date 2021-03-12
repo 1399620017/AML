@@ -5,10 +5,13 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import top.aot.cls.Cls;
 
-public class PlayerLoginListener implements Listener{
+/**
+ * @author aoisa
+ */
+public class PlayerLoginListener implements Listener {
 
-	@EventHandler
-	public void _login(PlayerJoinEvent e) {
-		Cls.Role.reloadRole(e.getPlayer());
-	}
+    @EventHandler
+    public void login(PlayerJoinEvent e) {
+        Cls.Role.reloadRole(e.getPlayer());
+    }
 }

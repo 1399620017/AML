@@ -6,9 +6,14 @@ import org.bukkit.entity.Player;
 import setting.MonsterList;
 import top.aot.bean.Monster;
 import top.aot.cls.Cls;
+import top.aot.constant.IntegerConstant;
+import top.aot.constant.StringConstant;
 
 import java.util.Objects;
 
+/**
+ * @author aoisa
+ */
 public class Variable extends PlaceholderHook {
 
     public static boolean register() {
@@ -18,17 +23,17 @@ public class Variable extends PlaceholderHook {
     @Override
     public String onPlaceholderRequest(Player player, String variable) {
         String[] variables = variable.split("_");
-        if (variables.length == 2) {
+        if (variables.length == IntegerConstant.COMMAND_ARGS_SPLIT_LENGTH_2) {
             switch (variables[0]) {
                 case "ms":
                     Cls.Role role = Cls.Role.getRole(player);
-                    if (Objects.equals(variables[1], "num")) {
+                    if (Objects.equals(variables[1], StringConstant.VARIABLE_NUM)) {
                         return String.valueOf(role.getUnlockNum());
-                    } else if (Objects.equals(variables[1], "sum")) {
+                    } else if (Objects.equals(variables[1], StringConstant.VARIABLE_SUM)) {
                         return String.valueOf(MonsterList.list.getMonsterNum());
                     }
                     return "0";
-                case "num":
+                case StringConstant.VARIABLE_NUM:
                     // 获取玩家击杀的某类型怪物数量
                     Monster monster = MonsterList.list.getMonsterById(variables[1]);
                     if (Cls.C.ex(monster, false)) {
@@ -47,8 +52,8 @@ public class Variable extends PlaceholderHook {
                 default:
                     break;
             }
-        } else if (variables.length == 3) {
-            if ("pay".equals(variables[0])) {
+        } else if (variables.length == IntegerConstant.COMMAND_ARGS_SPLIT_LENGTH_3) {
+            if (StringConstant.VARIABLE_PAY.equals(variables[0])) {
                 Monster monster = MonsterList.list.getMonsterById(variables[1]);
                 if (Cls.C.ex(monster, false)) {
                     return "false";

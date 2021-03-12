@@ -1,12 +1,13 @@
 package setting;
 
 import org.bukkit.configuration.file.FileConfiguration;
+import top.aot.constant.IntegerConstant;
 import top.aot.constant.StringConstant;
-import top.aot.et.rcm;
+import top.aot.et.Rcm;
 import top.aot.bean.RcEvent;
 import top.aot.cls.Cls;
-import top.aot.plugin.APlugin;
-import top.aot.plugin.APlugin.AsxConfig;
+import top.aot.plugin.aml.APlugin;
+import top.aot.plugin.aml.APlugin.AsxConfig;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,8 +54,8 @@ public class MLEventList extends AsxConfig {
         customConfig.set("event.1.desc", desc);
         // point奖励
         customConfig.set("event.1.point", 5);
-        customConfig.set("event.1.slot", 0);
-        customConfig.set("event.1.level", 0);
+        customConfig.set("event.1.slot", IntegerConstant.CONFIG_FIELD_VALUE_0);
+        customConfig.set("event.1.level", IntegerConstant.CONFIG_FIELD_VALUE_0);
 
         customConfig.set("event.2.name", "§e刺客试炼");
         customConfig.set("event.2.type", "killPlayer");
@@ -64,8 +65,8 @@ public class MLEventList extends AsxConfig {
         customConfig.set("event.2.desc", desc);
         // point奖励
         customConfig.set("event.2.point", 5);
-        customConfig.set("event.2.slot", 0);
-        customConfig.set("event.2.level", 0);
+        customConfig.set("event.2.slot", IntegerConstant.CONFIG_FIELD_VALUE_0);
+        customConfig.set("event.2.level", IntegerConstant.CONFIG_FIELD_VALUE_0);
 
         customConfig.set("event.3.name", "§e神箭手");
         customConfig.set("event.3.type", "damageType");
@@ -75,8 +76,8 @@ public class MLEventList extends AsxConfig {
         customConfig.set("event.3.desc", desc);
         // point奖励
         customConfig.set("event.3.point", 6);
-        customConfig.set("event.3.slot", 0);
-        customConfig.set("event.3.level", 0);
+        customConfig.set("event.3.slot", IntegerConstant.CONFIG_FIELD_VALUE_0);
+        customConfig.set("event.3.level", IntegerConstant.CONFIG_FIELD_VALUE_0);
 
         // 积分宝箱
         customConfig.set("box.b1.name", "§e60积分宝箱");
@@ -91,8 +92,8 @@ public class MLEventList extends AsxConfig {
         List<String> boxDesc = new ArrayList<>();
         boxDesc.add("§a 战魂点*2");
         customConfig.set("box.b1.desc", boxDesc);
-        customConfig.set("box.b1.point", 0);
-        customConfig.set("box.b1.slot", 0);
+        customConfig.set("box.b1.point", IntegerConstant.CONFIG_FIELD_VALUE_0);
+        customConfig.set("box.b1.slot", IntegerConstant.CONFIG_FIELD_VALUE_0);
         customConfig.set("box.b1.level", 20);
         // 积分宝箱
         customConfig.set("box.b2.name", "§e60积分宝箱");
@@ -106,8 +107,8 @@ public class MLEventList extends AsxConfig {
         List<String> boxDesc2 = new ArrayList<>();
         boxDesc.add("§a 战魂点*2");
         customConfig.set("box.b2.desc", boxDesc2);
-        customConfig.set("box.b2.point", 0);
-        customConfig.set("box.b2.slot", 0);
+        customConfig.set("box.b2.point", IntegerConstant.CONFIG_FIELD_VALUE_0);
+        customConfig.set("box.b2.slot", IntegerConstant.CONFIG_FIELD_VALUE_0);
         customConfig.set("box.b2.level", 20);
     }
 
@@ -120,7 +121,7 @@ public class MLEventList extends AsxConfig {
     protected void loadConfig(FileConfiguration config) {
         Cls.E.ck();
         REWARD_MAP.clear();
-        for (String key : rcm.setting.geteList()) {
+        for (String key : Rcm.setting.geteList()) {
             RcEvent ee =
                     new RcEvent(key).setName(config.getString("event." + key + ".name")).setType(config.getString("event." + key + ".type")).setContent(config.getString("event." + key + ".content")).setNumber(config.getInt("event." + key + ".number")).setCmds(config.getStringList("event." + key + ".cmds")).setDesc(config.getStringList("event." + key + ".desc")).setPoint(config.getInt("event." + key + ".point")).setSlot(config.getInt("event." + key + ".slot")).setLevel(config.getInt("event." + key + ".level")).setPermission(config.getString("event." + key + ".permission", ""));
             REWARD_MAP.put(key, ee);
@@ -136,7 +137,7 @@ public class MLEventList extends AsxConfig {
             }
         }
         CHEST_MAP.clear();
-        for (String key : rcm.setting.getbList()) {
+        for (String key : Rcm.setting.getbList()) {
             RcEvent eb = new RcEvent(key)
                     .setName(config.getString("box." + key + ".name"))
                     .setType(config.getString("box." + key + ".type"))
@@ -160,4 +161,7 @@ public class MLEventList extends AsxConfig {
         return CHEST_MAP;
     }
 
+    public int size() {
+        return REWARD_MAP.size();
+    }
 }

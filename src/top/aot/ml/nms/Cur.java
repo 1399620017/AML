@@ -1,12 +1,12 @@
 package top.aot.ml.nms;
 
 import org.bukkit.entity.Entity;
-import top.aot.itf.ci;
-import top.aot.itf.coi;
-import top.aot.itf.ei;
-import top.aot.itf.ni;
+import top.aot.itf.Ci;
+import top.aot.itf.Coi;
+import top.aot.itf.Ei;
+import top.aot.itf.Ni;
 import top.aot.cls.Cls;
-import top.aot.plugin.APlugin.Msg;
+import top.aot.plugin.aml.APlugin.Msg;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -14,7 +14,7 @@ import java.lang.reflect.Method;
 import java.util.*;
 
 @SuppressWarnings("all")
-public enum cur implements ci, ni, coi, ei {
+public enum Cur implements Ci, Ni, Coi, Ei {
     /**
      * nms工具类
      */
@@ -42,10 +42,12 @@ public enum cur implements ci, ni, coi, ei {
             Msg.sendConMsgTrue("Current net.minecraft.server version - " + nmsVersion);
         }
 
+        @Override
         public String getNmsVersion() {
             return nmsVersion;
         }
 
+        @Override
         public Class<?> getNmsClass(String className) {
             try {
                 return Class.forName("net.minecraft.server." + nmsVersion + "." + className);
@@ -54,6 +56,7 @@ public enum cur implements ci, ni, coi, ei {
             }
         }
 
+        @Override
         public Class<?> getClassOfPath(String path) {
             try {
                 return Class.forName(path);
@@ -62,6 +65,7 @@ public enum cur implements ci, ni, coi, ei {
             }
         }
 
+        @Override
         public Class<?> getCraftClass(String path, String className) {
             try {
                 return Class.forName("org.bukkit.craftbukkit." + nmsVersion + "." + path + "." + className);
@@ -70,6 +74,7 @@ public enum cur implements ci, ni, coi, ei {
             }
         }
 
+        @Override
         public Method getMethod(Class<?> cls, String methodName) {
             Method[] k = cls.getDeclaredMethods();
             for (Method method : k) {
@@ -81,6 +86,7 @@ public enum cur implements ci, ni, coi, ei {
             return null;
         }
 
+        @Override
         public Method getMethod(Class<?> cls, Class<?> resultCls) {
             Method[] k = cls.getDeclaredMethods();
             for (Method method : k) {
@@ -92,6 +98,7 @@ public enum cur implements ci, ni, coi, ei {
             return null;
         }
 
+        @Override
         public Method getMethod(Class<?> cls, Class<?> resultCls, Class<?>... params) {
             Method[] k = cls.getDeclaredMethods();
             for (Method method : k) {
@@ -104,6 +111,7 @@ public enum cur implements ci, ni, coi, ei {
             return null;
         }
 
+        @Override
         public Field getField(Class<?> cls, String fieldName) {
             try {
                 Field field = cls.getDeclaredField(fieldName);
@@ -118,6 +126,7 @@ public enum cur implements ci, ni, coi, ei {
 
         }
 
+        @Override
         public Field getField(Class<?> cls, Class<?> fieldType) {
             try {
                 Field[] fields = cls.getDeclaredFields();
@@ -141,6 +150,7 @@ public enum cur implements ci, ni, coi, ei {
 
         }
 
+        @Override
         public void setValue(Field field, Object obj, Object args) {
             try {
                 field.set(obj, args);
@@ -148,6 +158,7 @@ public enum cur implements ci, ni, coi, ei {
             }
         }
 
+        @Override
         public Object getValue(Field field, Object obj) {
             try {
                 return field.get(obj);
@@ -156,6 +167,7 @@ public enum cur implements ci, ni, coi, ei {
             return null;
         }
 
+        @Override
         public Object invokeMethod(Method method, Object obj, Object... args) {
             try {
                 return method.invoke(obj, args);
@@ -165,6 +177,7 @@ public enum cur implements ci, ni, coi, ei {
             }
         }
 
+        @Override
         public Object newNBTTag(Constructor<?> constructor, Object... args) {
             try {
                 return constructor.newInstance(args);
@@ -173,6 +186,7 @@ public enum cur implements ci, ni, coi, ei {
             }
         }
 
+        @Override
         public Constructor<?> getConstructor(Class<?> nmsNBTTagLongCls, Class<?>... classes) {
             try {
                 Constructor<?> constructor = nmsNBTTagLongCls.getDeclaredConstructor(classes);
@@ -350,6 +364,7 @@ public enum cur implements ci, ni, coi, ei {
         /**
          * 生成一个Byte类型的NBT
          */
+        @Override
         public Object createByteNBT(byte num) {
             return A.newNBTTag(nmsNBTTagByteConstructor, num);
         }
@@ -357,6 +372,7 @@ public enum cur implements ci, ni, coi, ei {
         /**
          * 生成一个ByteArray类型的NBT
          */
+        @Override
         public Object createByteArrayNBT(byte[] num) {
             return A.newNBTTag(nmsNBTTagByteArrayConstructor, num);
         }
@@ -364,6 +380,7 @@ public enum cur implements ci, ni, coi, ei {
         /**
          * 生成一个Compound类型的NBT
          */
+        @Override
         public Object createCompoundNBT() {
             return A.newNBTTag(nmsNBTTagCompoundConstructor);
         }
@@ -371,6 +388,7 @@ public enum cur implements ci, ni, coi, ei {
         /**
          * 生成一个Double类型的NBT
          */
+        @Override
         public Object createDoubleNBT(double num) {
             return A.newNBTTag(nmsNBTTagDoubleConstructor, num);
         }
@@ -378,6 +396,7 @@ public enum cur implements ci, ni, coi, ei {
         /**
          * 生成一个Float类型的NBT
          */
+        @Override
         public Object createFloatNBT(float num) {
             return A.newNBTTag(nmsNBTTagFloatConstructor, num);
         }
@@ -385,6 +404,7 @@ public enum cur implements ci, ni, coi, ei {
         /**
          * 生成一个Int类型的NBT
          */
+        @Override
         public Object createIntNBT(int num) {
             return A.newNBTTag(nmsNBTTagIntConstructor, num);
         }
@@ -392,6 +412,7 @@ public enum cur implements ci, ni, coi, ei {
         /**
          * 生成一个IntArray类型的NBT
          */
+        @Override
         public Object createIntArrayNBT(int[] num) {
             return A.newNBTTag(nmsNBTTagIntArrayConstructor, num);
         }
@@ -399,6 +420,7 @@ public enum cur implements ci, ni, coi, ei {
         /**
          * 生成一个空的List类型的NBT
          */
+        @Override
         public Object createListNBT() {
             return A.newNBTTag(nmsNBTTagListConstructor);
         }
@@ -406,6 +428,7 @@ public enum cur implements ci, ni, coi, ei {
         /**
          * 生成一个long的NBT
          */
+        @Override
         public Object createLongNBT(long num) {
             return A.newNBTTag(nmsNBTTagLongConstructor, num);
         }
@@ -413,6 +436,7 @@ public enum cur implements ci, ni, coi, ei {
         /**
          * 生成一个short的NBT
          */
+        @Override
         public Object createShortNBT(short num) {
             return A.newNBTTag(nmsNBTTagShortConstructor, num);
         }
@@ -420,6 +444,7 @@ public enum cur implements ci, ni, coi, ei {
         /**
          * 生成一个string的NBT
          */
+        @Override
         public Object createStringNBT(String string) {
             return A.newNBTTag(nmsNBTTagStringConstructor, string);
         }
@@ -427,6 +452,7 @@ public enum cur implements ci, ni, coi, ei {
         /**
          * 获取Byte类型NBT的byte值
          */
+        @Override
         public byte getTagByte(Object byteTag) {
             return (byte) A.getValue(nmsNBTTagByteField, byteTag);
         }
@@ -434,6 +460,7 @@ public enum cur implements ci, ni, coi, ei {
         /**
          * 获取ByteArray类型NBT的byteArray值
          */
+        @Override
         public byte[] getTagArrayByte(Object byteArrayTag) {
             return (byte[]) A.getValue(nmsNBTTagByteArrayField, byteArrayTag);
         }
@@ -441,6 +468,7 @@ public enum cur implements ci, ni, coi, ei {
         /**
          * 获取Double类型NBT的double值
          */
+        @Override
         public double getTagDouble(Object doubleTag) {
             return (double) A.getValue(nmsNBTTagDoubleField, doubleTag);
         }
@@ -448,6 +476,7 @@ public enum cur implements ci, ni, coi, ei {
         /**
          * 获取Float类型NBT的float值
          */
+        @Override
         public float getTagFloat(Object floatTag) {
             return (float) A.getValue(nmsNBTTagFloatField, floatTag);
         }
@@ -455,6 +484,7 @@ public enum cur implements ci, ni, coi, ei {
         /**
          * 获取Int类型NBT的int值
          */
+        @Override
         public int getTagInt(Object intTag) {
             return (int) A.getValue(nmsNBTTagIntField, intTag);
         }
@@ -463,6 +493,7 @@ public enum cur implements ci, ni, coi, ei {
         /**
          * 获取IntArray类型NBT的intArray值
          */
+        @Override
         public int[] getTagIntArray(Object intArrayTag) {
             return (int[]) A.getValue(nmsNBTTagIntArrayField, intArrayTag);
         }
@@ -470,6 +501,7 @@ public enum cur implements ci, ni, coi, ei {
         /**
          * 获取list类型的NBT的List
          */
+        @Override
         public List getTagList(Object listTag) {
             return (List) A.getValue(nmsNBTTagListListField, listTag);
         }
@@ -477,6 +509,7 @@ public enum cur implements ci, ni, coi, ei {
         /**
          * 给List类型的NBT添加一个元素
          */
+        @Override
         public void tagListAdd(Object listTag, Object addElement) {
             A.invokeMethod(nmsNBTTagListAddMethod, listTag, addElement);
         }
@@ -484,6 +517,7 @@ public enum cur implements ci, ni, coi, ei {
         /**
          * 给List类型的NBT删除一个元素
          */
+        @Override
         public boolean tagListDel(Object listTag, int index) {
             List<?> list = getTagList(listTag);
             try {
@@ -498,6 +532,7 @@ public enum cur implements ci, ni, coi, ei {
         /**
          * 清除List类型的所有元素
          */
+        @Override
         public boolean tagListClear(Object listTag) {
             List<?> list = getTagList(listTag);
             list.clear();
@@ -510,6 +545,7 @@ public enum cur implements ci, ni, coi, ei {
          *
          * @param NBTTagList, List<NBTBase>
          */
+        @Override
         public void setTagList(Object listTag, Object list) {
             A.setValue(nmsNBTTagListListField, listTag, list);
         }
@@ -517,6 +553,7 @@ public enum cur implements ci, ni, coi, ei {
         /**
          * 获取Long类型NBT的long值
          */
+        @Override
         public long getTagLong(Object longTag) {
             return (long) A.getValue(nmsNBTTagLongField, longTag);
         }
@@ -524,6 +561,7 @@ public enum cur implements ci, ni, coi, ei {
         /**
          * 获取Short类型NBT的short值
          */
+        @Override
         public short getTagShort(Object shortTag) {
             return (short) A.getValue(nmsNBTTagShortField, shortTag);
         }
@@ -531,6 +569,7 @@ public enum cur implements ci, ni, coi, ei {
         /**
          * 获取String类型NBT的String值
          */
+        @Override
         public String getTagString(Object stringTag) {
             return (String) A.getValue(nmsNBTTagStringField, stringTag);
         }
@@ -538,13 +577,15 @@ public enum cur implements ci, ni, coi, ei {
         /**
          * 获取
          */
-        public cco getCurrencyCompound(Object object) {
-            return new cco(object);
+        @Override
+        public Cco getCurrencyCompound(Object object) {
+            return new Cco(object);
         }
 
         /**
          * 为compound类型NBT添加一个子节点
          */
+        @Override
         public void addCompoundTag(Object tag, String key, Object obj) {
             A.invokeMethod(nmsNBTTagCompoundSetMethod, tag, key, obj);
         }
@@ -552,6 +593,7 @@ public enum cur implements ci, ni, coi, ei {
         /**
          * 获取compound类型NBT的子节点
          */
+        @Override
         public Object getCompoundTag(Object compoundTag, String key) {
             return A.invokeMethod(nmsNBTTagCompoundGetMethod, compoundTag, key);
         }
@@ -559,6 +601,7 @@ public enum cur implements ci, ni, coi, ei {
         /**
          * 删除compound类型NBT的子节点
          */
+        @Override
         public Object delCompoundTag(Object compoundTag, String key) {
             return A.invokeMethod(nmsNBTTagCompoundDelMethod, compoundTag, key);
         }
@@ -566,6 +609,7 @@ public enum cur implements ci, ni, coi, ei {
         /**
          * 获取compound类型NBT的键集合 如果不是compoundTag则返回空
          */
+        @Override
         public Set<String> getTagKeySet(Object compoundTag) {
             if (nmsNBTTagCompoundCls == compoundTag.getClass()) {
                 return (Set<String>) A.invokeMethod(cMethod, compoundTag);
@@ -574,66 +618,79 @@ public enum cur implements ci, ni, coi, ei {
             }
         }
 
+        @Override
         public boolean isTagBase(Object compoundTag, String key) {
             Object object = getCompoundTag(compoundTag, key);
             return nmsNBTBaseCls == object.getClass().getSuperclass();
         }
 
+        @Override
         public boolean isByte(Object compoundTag, String key) {
             Object object = getCompoundTag(compoundTag, key);
             return nmsNBTTagByteCls == object.getClass();
         }
 
+        @Override
         public boolean isByteArray(Object compoundTag, String key) {
             Object object = getCompoundTag(compoundTag, key);
             return nmsNBTTagByteArrayCls == object.getClass();
         }
 
+        @Override
         public boolean isCompound(Object compoundTag, String key) {
             Object object = getCompoundTag(compoundTag, key);
             return nmsNBTTagCompoundCls == object.getClass();
         }
 
+        @Override
         public boolean isDouble(Object compoundTag, String key) {
             Object object = getCompoundTag(compoundTag, key);
             return nmsNBTTagDoubleCls == object.getClass();
         }
 
+        @Override
         public boolean isFloat(Object compoundTag, String key) {
             Object object = getCompoundTag(compoundTag, key);
             return nmsNBTTagFloatCls == object.getClass();
         }
 
+        @Override
         public boolean isInt(Object compoundTag, String key) {
             Object object = getCompoundTag(compoundTag, key);
             return nmsNBTTagIntCls == object.getClass();
         }
 
+        @Override
         public boolean isIntArray(Object compoundTag, String key) {
             Object object = getCompoundTag(compoundTag, key);
             return nmsNBTTagIntArrayCls == object.getClass();
         }
 
+        @Override
         public boolean isList(Object compoundTag, String key) {
             Object object = getCompoundTag(compoundTag, key);
             return nmsNBTTagListCls == object.getClass();
         }
 
+        @Override
         public boolean isLong(Object compoundTag, String key) {
             Object object = getCompoundTag(compoundTag, key);
             return nmsNBTTagLongCls == object.getClass();
         }
 
+        @Override
         public boolean isShort(Object compoundTag, String key) {
             Object object = getCompoundTag(compoundTag, key);
             return nmsNBTTagShortCls == object.getClass();
         }
 
+        @Override
         public boolean isString(Object compoundTag, String key) {
             Object object = getCompoundTag(compoundTag, key);
             return nmsNBTTagStringCls == object.getClass();
         }
 
+        @Override
         public Class<?> getNmsNBTTagCompoundCls() {
             return nmsNBTTagCompoundCls;
         }
@@ -704,11 +761,13 @@ public enum cur implements ci, ni, coi, ei {
             Msg.sendConMsgTrue("time:" + (System.nanoTime() - time));
         }
 
+        @Override
         public Object getNmsEntity(Entity entity) {
             Object craftEntity = craftEntityCls.cast(entity);
             return getValue(nmsEntityField, craftEntity);
         }
 
+        @Override
         public Object getCraftCreature(Entity entity) {
             if (entity.getClass() == craftCreatureCls) {
                 return craftCreatureCls.cast(entity);
@@ -716,24 +775,29 @@ public enum cur implements ci, ni, coi, ei {
             return null;
         }
 
+        @Override
         public Object getEntityNbt(Object entityCreature) {
             return getValue(entityNbt, entityInsentientCls.cast(entityCreature));
         }
 
-        public cee getCurrencyEntity(Entity entity) {
-            return new cee(entity);
+        @Override
+        public Cee getCurrencyEntity(Entity entity) {
+            return new Cee(entity);
         }
 
+        @Override
         public Object getEntityCreature(Object craftCreature) {
             return invokeMethod(craftCreatureGetHandleMethod, craftCreature);
         }
 
+        @Override
         public Object getNmEntityCreature(Object craftCreature) {
             System.out.println(craftNmGetHandleMethod);
             System.out.println(craftCreature);
             return invokeMethod(craftNmGetHandleMethod, craftCreature);
         }
 
+        @Override
         public Object getNmEEntityCreature(Object craftCreature) {
             return invokeMethod(nmEGetHandleMethod, craftCreature);
         }
@@ -757,7 +821,7 @@ public enum cur implements ci, ni, coi, ei {
      * 初始化所有项目
      */
     public static void il() {
-        for (cur currency : cur.values()) {
+        for (Cur currency : Cur.values()) {
             currency.init();
         }
     }
@@ -765,16 +829,16 @@ public enum cur implements ci, ni, coi, ei {
     /**
      * 通用NBTCompound类
      */
-    public static class cco {
+    public static class Cco {
 
-        private static coi compound = c;
+        private static Coi compound = c;
 
         private Object currencyCompound;
 
         /**
          * 创建通用Compound
          */
-        private cco(Object object) {
+        private Cco(Object object) {
             this.currencyCompound = object;
         }
 
@@ -842,16 +906,16 @@ public enum cur implements ci, ni, coi, ei {
     /**
      * 通用NBTEntity类
      */
-    public static class cee {
+    public static class Cee {
 
-        private static ei ne = e;
+        private static Ei ne = e;
 
         private Object craftCreature;
 
         private Object nmEEntityCreature;
         private Object entityNbt;
 
-        public cee(Entity entity) {
+        public Cee(Entity entity) {
             System.out.println("entity " + entity);
             this.craftCreature = getCraftCreature(entity);
             System.out.println("craftCreature " + craftCreature);
@@ -903,7 +967,7 @@ public enum cur implements ci, ni, coi, ei {
             return ne.getEntityNbt(entityCreature);
         }
 
-        public cco getNbt() {
+        public Cco getNbt() {
             return c.getCurrencyCompound(entityNbt);
         }
 

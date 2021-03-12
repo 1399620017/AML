@@ -1,13 +1,11 @@
 package top.aot.itf;
 
-import top.aot.cls.Cls;
-
 /**
- * @author ：ZhangHe
+ * @author ：aoisa
  * @date ：Created in 2020/9/9 11:49
  * @description： 类加载方法接口
  */
-public interface iex {
+public interface Iex {
 
     default <T> T ex(Class<T> z, String n, Object... o) {
         return null;

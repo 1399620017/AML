@@ -1,30 +1,33 @@
 package top.aot.module;
 
 /**
- * @author ：ZhangHe
+ * @author ：aoisa
  * @date ：Created in 2020/9/14 15:17
  * @description：sx模块
  */
-public final class msx {
+public final class Msx {
 
-    interface sxmi {
+    interface Sxmi {
 
     }
 
-    public enum esx implements sxmi{
+    public enum esx implements Sxmi {
+        /***/
         enable {
 
         },
+        /***/
         disable {
 
         }
     }
 
-    private static sxmi sxmi = esx.disable;
+    private static Sxmi sxmi = esx.disable;
 
-    private msx() {}
+    private Msx() {
+    }
 
-    public static sxmi get() {
+    public static Sxmi get() {
         return sxmi;
     }
 

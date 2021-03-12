@@ -2,29 +2,32 @@ package top.aot.et.role;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import setting.MLEventList;
-import top.aot.et.rcm;
 import top.aot.bean.RcEvent;
-import top.aot.cls.Cls;
-import top.aot.plugin.APlugin.Util.DateTool;
-import top.aot.plugin.APlugin.AsxConfig;
+import top.aot.constant.IntegerConstant;
+import top.aot.et.Rcm;
+import top.aot.plugin.aml.APlugin.AsxConfig;
+import top.aot.plugin.aml.APlugin.Util.DateTool;
 
 import java.util.*;
 
+/**
+ * @author aoisa
+ */
 public class RcRole extends AsxConfig {
 
     private String date;
     private List<String> boxList;
     private int point;
 
-    public RcRole(String fileName) {
+    RcRole(String fileName) {
         super(fileName);
         reset();
     }
 
     private void reset() {
         if (!Objects.equals(DateTool.getDateString(), date)) {
-            for (String id : rcm.setting.geteList()) {
-                customConfig.set("event." + id, 0);
+            for (String id : Rcm.setting.geteList()) {
+                customConfig.set("event." + id, IntegerConstant.CONFIG_FIELD_VALUE_0);
             }
             point = 0;
             boxList = new ArrayList<>();
@@ -57,11 +60,11 @@ public class RcRole extends AsxConfig {
     /**
      * 获取任务数值
      */
-    public Map<String, Integer> getEValues() {
+    public Map<String, Integer> getEventValues() {
         reset();
-        Map<String, Integer> map = new HashMap<>();
+        Map<String, Integer> map = new HashMap<>((int) (MLEventList.list.size() * 1.25 + 1));
         for (String key : MLEventList.list.getEventTable().keySet()) {
-            map.put(key, customConfig.getInt("event." + key, 0));
+            map.put(key, customConfig.getInt("event." + key, IntegerConstant.CONFIG_FIELD_VALUE_0));
         }
         map.put("point", customConfig.getInt("point"));
         return map;
@@ -70,7 +73,7 @@ public class RcRole extends AsxConfig {
     /**
      * 更新任务数值
      */
-    public void setEValues(String i, int num) {
+    public void setEventValues(String i, int num) {
         reset();
         customConfig.set("event." + i, num);
         update();

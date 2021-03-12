@@ -7,13 +7,13 @@ import top.aot.bean.Monster;
 import top.aot.bean.Reward;
 import top.aot.constant.StringConstant;
 import top.aot.cp.entity.Copy;
-import top.aot.plugin.APlugin.AsxConfig;
-import top.aot.plugin.APlugin.Msg;
+import top.aot.plugin.aml.APlugin.AsxConfig;
+import top.aot.plugin.aml.APlugin.Msg;
 
 import java.util.*;
 
 /**
- * @author ：ZhangHe
+ * @author ：aoisa
  * @date ：Created in 2020/10/22 21:52
  * @description：
  */
@@ -230,7 +230,8 @@ public class CopyList extends AsxConfig {
 
     /** 清理副本额外进入次数 */
     public static void clearPermNum(Copy copy) {
-        instance.customConfig.set(copy.key + ".numberMaxList", null);
+        copy.numberMaxList.clear();
+        instance.customConfig.set(copy.key + ".numberMaxList", copy.numberMaxList);
         COPY_MAP.put(copy.key, copy);
         instance.update();
     }

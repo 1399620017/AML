@@ -9,8 +9,8 @@ import setting.MonsterList;
 import top.aot.bean.Monster;
 import top.aot.cls.Cls;
 import top.aot.ml.gui.MLGui;
-import top.aot.plugin.APlugin.GuiBase;
-import top.aot.plugin.APlugin.Msg;
+import top.aot.plugin.aml.APlugin.GuiBase;
+import top.aot.plugin.aml.APlugin.Msg;
 
 import java.util.Objects;
 

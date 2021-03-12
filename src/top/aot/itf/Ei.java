@@ -1,13 +1,12 @@
 package top.aot.itf;
 
 import org.bukkit.entity.Entity;
-import top.aot.cls.Cls;
-import top.aot.ml.nms.cur;
+import top.aot.ml.nms.Cur;
 
 /**
  * 实体接口
  */
-public interface ei {
+public interface Ei {
 
     default Object getNmsEntity(Entity entity) {
         return null;
@@ -21,7 +20,7 @@ public interface ei {
         return null;
     }
 
-    default cur.cee getCurrencyEntity(Entity entity) {
+    default Cur.Cee getCurrencyEntity(Entity entity) {
         return null;
     }
 

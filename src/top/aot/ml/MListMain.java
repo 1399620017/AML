@@ -2,8 +2,11 @@ package top.aot.ml;
 
 import org.bukkit.command.ConsoleCommandSender;
 import top.aot.cls.Cls;
-import top.aot.plugin.APlugin.CorePlugin;
+import top.aot.plugin.aml.APlugin.CorePlugin;
 
+/**
+ * @author aoisa
+ */
 public class MListMain extends CorePlugin {
 
     @Override
@@ -23,7 +26,7 @@ public class MListMain extends CorePlugin {
 
     @Override
     public String pluginCommand() {
-        return Cls.C.s(8);
+        return "ml";
     }
 
     @Override

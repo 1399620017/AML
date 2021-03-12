@@ -3,12 +3,12 @@ package top.aot.ml.command;
 import org.bukkit.entity.Player;
 import setting.MonsterList;
 import top.aot.bean.Monster;
-import top.aot.plugin.APlugin.Command;
+import top.aot.plugin.aml.APlugin.Command;
 
 import java.util.Map;
 
 /**
- * @author ：ZhangHe
+ * @author ：aoisa
  * @date ：Created in 2020/9/22 13:16
  * @description：
  */

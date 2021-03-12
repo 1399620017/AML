@@ -1,13 +1,11 @@
 package top.aot.itf;
 
-import top.aot.cls.Cls;
-
 /**
- * @author ：ZhangHe
+ * @author ：aoisa
  * @date ：Created in 2020/9/9 11:50
  * @description： 核心代码接口
  */
-public interface is {
+public interface Is {
 
     default String version() {
         return null;

@@ -7,16 +7,19 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import top.aot.cls.Cls;
 
-public class KillListener implements Listener{
-	
-	@EventHandler(priority = EventPriority.LOWEST)
-	public void kill(EntityDeathEvent e) {
-		Cls.E._kill_rc(e);
-	}
+/**
+ * @author aoisa
+ */
+public class KillListener implements Listener {
 
-	@EventHandler(ignoreCancelled = true, priority = EventPriority.HIGHEST)
-	public void entityDamageByEntityEvent(EntityDamageByEntityEvent e) {
-		Cls.E._damage_rc(e);
-	}
+    @EventHandler(priority = EventPriority.LOWEST)
+    public void kill(EntityDeathEvent e) {
+        Cls.E._kill_rc(e);
+    }
+
+    @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGHEST)
+    public void entityDamageByEntityEvent(EntityDamageByEntityEvent e) {
+        Cls.E._damage_rc(e);
+    }
 
 }

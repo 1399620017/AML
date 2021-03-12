@@ -11,18 +11,18 @@ import setting.MonsterList;
 import top.aot.bean.Monster;
 import top.aot.cls.Cls.Role;
 import top.aot.constant.IntegerConstant;
-import top.aot.plugin.APlugin.AssemblyDynamic;
-import top.aot.plugin.APlugin.Gui;
-import top.aot.plugin.APlugin.LeftClickListener;
-import top.aot.plugin.APlugin.Msg;
-import top.aot.plugin.APlugin.Util.PlayerUtil;
+import top.aot.plugin.aml.APlugin.AssemblyDynamic;
+import top.aot.plugin.aml.APlugin.Gui;
+import top.aot.plugin.aml.APlugin.LeftClickListener;
+import top.aot.plugin.aml.APlugin.Msg;
+import top.aot.plugin.aml.APlugin.Util.PlayerUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 /**
- * @author ：ZhangHe
+ * @author ：aoisa
  * @date ：Created in 2020/8/13 9:29
  * @description：
  */
@@ -84,7 +84,7 @@ public class ShopGui extends Gui {
                     }
 
                     @Override
-                    protected short secondID() {
+                    protected short secondId() {
                         return commodity.getItemStack().getDurability();
                     }
                 };
